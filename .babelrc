@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3.35"
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "babel-plugin-react-remove-properties",
+          { "properties": ["data-testid"] }
+        ]
+      ]
+    }
+  }
+}
