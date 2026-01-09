@@ -34,38 +34,38 @@ export default defineConfig([
       react: {
         version: 'detect',
       },
-      // "import-x/order": [
-      //   "error",
-      //   {
-      //     groups: [
-      //       "builtin",
-      //       "external",
-      //       "internal",
-      //       ["parent", "sibling", "index"],
-      //       "object",
-      //       "type"
-      //     ],
-      //     pathGroups: [
-      //       { pattern: "@/app/**", group: "internal", position: "before" },
-      //       { pattern: "@/pages/**", group: "internal", position: "before" },
-      //       { pattern: "@/widgets/**", group: "internal", position: "before" },
-      //       { pattern: "@/features/**", group: "internal", position: "before" },
-      //       { pattern: "@/entities/**", group: "internal", position: "before" },
-      //       { pattern: "@/shared/**", group: "internal", position: "before" },
-      //     ],
-      //     pathGroupsExcludedImportTypes: ["react"],
-      //     "newlines-between": "always",
-      //     alphabetize: { order: "asc", caseInsensitive: true },
-      //   },
-      // ],
-      // "boundaries/elements": [
-      //   { type: "app", pattern: "src/app/*" },
-      //   { type: "pages", pattern: "src/pages/*" },
-      //   { type: "widgets", pattern: "src/widgets/*" },
-      //   { type: "features", pattern: "src/features/*" },
-      //   { type: "entities", pattern: "src/entities/*" },
-      //   { type: "shared", pattern: "src/shared/*" },
-      // ],
+      'import-x/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'object',
+            'type',
+          ],
+          pathGroups: [
+            { pattern: '@/app/**', group: 'internal', position: 'before' },
+            { pattern: '@/pages/**', group: 'internal', position: 'before' },
+            { pattern: '@/widgets/**', group: 'internal', position: 'before' },
+            { pattern: '@/features/**', group: 'internal', position: 'before' },
+            { pattern: '@/entities/**', group: 'internal', position: 'before' },
+            { pattern: '@/shared/**', group: 'internal', position: 'before' },
+          ],
+          pathGroupsExcludedImportTypes: ['react'],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'boundaries/elements': [
+        { type: 'app', pattern: 'src/app/*' },
+        { type: 'pages', pattern: 'src/pages/*' },
+        { type: 'widgets', pattern: 'src/widgets/*' },
+        { type: 'features', pattern: 'src/features/*' },
+        { type: 'entities', pattern: 'src/entities/*' },
+        { type: 'shared', pattern: 'src/shared/*' },
+      ],
     },
     rules: {
       'prettier/prettier': 'error',
@@ -93,38 +93,44 @@ export default defineConfig([
         },
       ],
 
-      // "boundaries/entry-point": [
-      //   "error",
-      //   {
-      //     defaultAllowed: false,
-      //     rules: [
-      //       {
-      //         target: [["shared", { fileName: "*.{ts,tsx}" }]],
-      //         allow: true,
-      //       },
-      //       {
-      //         target: ["app", "pages", "widgets", "features", "entities"],
-      //         allow: "index.ts",
-      //       },
-      //     ],
-      //   },
-      // ],
+      'boundaries/entry-point': [
+        'error',
+        {
+          defaultAllowed: false,
+          rules: [
+            {
+              target: [['shared', { fileName: '*.{ts,tsx}' }]],
+              allow: true,
+            },
+            {
+              target: ['app', 'pages', 'widgets', 'features', 'entities'],
+              allow: 'index.ts',
+            },
+          ],
+        },
+      ],
 
-      // "boundaries/element-types": [
-      //   "error",
-      //   {
-      //     defaultAllowed: false,
-      //     message: "${file.type} не может импортировать ${dependency.type}",
-      //     rules: [
-      //       { from: "app", allow: ["pages", "widgets", "features", "entities", "shared"] },
-      //       { from: "pages", allow: ["widgets", "features", "entities", "shared"] },
-      //       { from: "widgets", allow: ["features", "entities", "shared"] },
-      //       { from: "features", allow: ["entities", "shared"] },
-      //       { from: "entities", allow: ["shared"] },
-      //       { from: "shared", allow: ["shared"] },
-      //     ],
-      //   },
-      // ],
+      'boundaries/element-types': [
+        'error',
+        {
+          defaultAllowed: false,
+          message: '${file.type} не может импортировать ${dependency.type}',
+          rules: [
+            {
+              from: 'app',
+              allow: ['pages', 'widgets', 'features', 'entities', 'shared'],
+            },
+            {
+              from: 'pages',
+              allow: ['widgets', 'features', 'entities', 'shared'],
+            },
+            { from: 'widgets', allow: ['features', 'entities', 'shared'] },
+            { from: 'features', allow: ['entities', 'shared'] },
+            { from: 'entities', allow: ['shared'] },
+            { from: 'shared', allow: ['shared'] },
+          ],
+        },
+      ],
     },
   },
   eslintConfigPrettier,

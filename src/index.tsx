@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import './styles/global.scss';
-import { App } from './App';
+import './app/styles/global.scss';
+import { App } from './app/App';
+import { GlobalErrorProvider } from './app/providers/GlobalErrorProvider/GlobalErrorProvider';
 
 const container = document.getElementById('root');
 
@@ -9,4 +10,8 @@ if (!container) {
 }
 
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <GlobalErrorProvider>
+    <App />
+  </GlobalErrorProvider>,
+);

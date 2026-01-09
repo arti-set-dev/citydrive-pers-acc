@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
+import { lazy, useEffect } from 'react';
 import { Layout } from './Layout';
-import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { lazy } from 'react';
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const AboutPage = lazy(() => import('../pages/AboutPage/AboutPage'));
 
 const router = createBrowserRouter([
   {
