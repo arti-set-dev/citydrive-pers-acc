@@ -1,0 +1,14 @@
+.DatePicker {
+  --rdp-accent-color: var(--brand);
+
+  position: absolute;
+  z-index: var(--z-popover);
+  top: 40px;
+  left: 0;
+
+  padding: var(--gap-16);
+  border-radius: var(--radius-16);
+
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+}

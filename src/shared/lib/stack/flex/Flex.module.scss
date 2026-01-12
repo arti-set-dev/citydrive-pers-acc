@@ -1,0 +1,43 @@
+.Flex {
+  display: flex;
+  flex-direction: var(--df-dir);
+  gap: var(--df-gap);
+  align-items: var(--df-align);
+  justify-content: var(--df-justify);
+
+  /* 1. Сначала самый большой порог (LG) */
+  @media (width <= 1024px) {
+    flex-direction: var(--df-dir-lg, var(--df-dir));
+    gap: var(--df-gap-lg, var(--df-gap));
+    align-items: var(--df-align-lg, var(--df-align));
+    justify-content: var(--df-justify-lg, var(--df-justify));
+  }
+
+  /* 2. Затем средний (MD) — он перекроет LG на 768px */
+  @media (width <= 768px) {
+    flex-direction: var(--df-dir-md, var(--df-dir-lg, var(--df-dir)));
+    gap: var(--df-gap-md, var(--df-gap-lg, var(--df-gap)));
+    align-items: var(--df-align-md, var(--df-align-lg, var(--df-align)));
+    justify-content: var(
+      --df-justify-md,
+      var(--df-justify-lg, var(--df-justify))
+    );
+  }
+
+  /* 3. В конце самый маленький (SM) — он перекроет всех на 640px */
+  @media (width <= 640px) {
+    flex-direction: var(
+      --df-dir-sm,
+      var(--df-dir-md, var(--df-dir-lg, var(--df-dir)))
+    );
+    gap: var(--df-gap-sm, var(--df-gap-md, var(--df-gap-lg, var(--df-gap))));
+    align-items: var(
+      --df-align-sm,
+      var(--df-align-md, var(--df-align-lg, var(--df-align)))
+    );
+    justify-content: var(
+      --df-justify-sm,
+      var(--df-justify-md, var(--df-justify-lg, var(--df-justify)))
+    );
+  }
+}

@@ -13,10 +13,13 @@ export default defineConfig([
   {
     ignores: ['build/**', 'node_modules/**', '*.config.js'],
   },
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
-      js,
       boundaries,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
@@ -24,83 +27,53 @@ export default defineConfig([
       'unused-imports': unusedImports,
       prettier: prettierPlugin,
     },
-    extends: ['js/recommended'],
-    languageOptions: { globals: globals.browser },
-  },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  {
-    settings: {
-      react: {
-        version: 'detect',
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: {
+        project: './tsconfig.json',
       },
-      'import-x/order': [
-        'error',
-        {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling', 'index'],
-            'object',
-            'type',
-          ],
-          pathGroups: [
-            { pattern: '@/app/**', group: 'internal', position: 'before' },
-            { pattern: '@/pages/**', group: 'internal', position: 'before' },
-            { pattern: '@/widgets/**', group: 'internal', position: 'before' },
-            { pattern: '@/features/**', group: 'internal', position: 'before' },
-            { pattern: '@/entities/**', group: 'internal', position: 'before' },
-            { pattern: '@/shared/**', group: 'internal', position: 'before' },
-          ],
-          pathGroupsExcludedImportTypes: ['react'],
-          'newlines-between': 'always',
-          alphabetize: { order: 'asc', caseInsensitive: true },
-        },
-      ],
+    },
+    settings: {
+      react: { version: 'detect' },
+      'import-x/resolver': {
+        typescript: { alwaysTryTypes: true, project: './tsconfig.json' },
+        node: true,
+      },
+      'import/resolver': {
+        typescript: { alwaysTryTypes: true, project: './tsconfig.json' },
+        node: true,
+      },
+      'boundaries/base-path': 'src',
       'boundaries/elements': [
-        { type: 'app', pattern: 'src/app/*' },
-        { type: 'pages', pattern: 'src/pages/*' },
-        { type: 'widgets', pattern: 'src/widgets/*' },
-        { type: 'features', pattern: 'src/features/*' },
-        { type: 'entities', pattern: 'src/entities/*' },
-        { type: 'shared', pattern: 'src/shared/*' },
+        { type: 'app', pattern: 'app' },
+        { type: 'pages', pattern: 'pages/*' },
+        { type: 'widgets', pattern: 'widgets/*' },
+        { type: 'features', pattern: 'features/*' },
+        { type: 'entities', pattern: 'entities/*' },
+        { type: 'shared', pattern: 'shared/*' },
       ],
     },
     rules: {
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-react': 'off',
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-
       'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'warn',
-        {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
-      ],
-
-      'react/self-closing-comp': [
+      'unused-imports/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
+      'react/jsx-curly-brace-presence': [
         'error',
         {
-          component: true,
-          html: true,
+          props: 'never',
+          children: 'never',
+          propElementValues: 'always',
         },
       ],
-
       'boundaries/entry-point': [
         'error',
         {
-          defaultAllowed: false,
+          default: 'disallow',
           rules: [
             {
-              target: [['shared', { fileName: '*.{ts,tsx}' }]],
-              allow: true,
+              target: [['shared']],
+              allow: '**',
             },
             {
               target: ['app', 'pages', 'widgets', 'features', 'entities'],
@@ -109,11 +82,10 @@ export default defineConfig([
           ],
         },
       ],
-
       'boundaries/element-types': [
         'error',
         {
-          defaultAllowed: false,
+          default: 'disallow',
           message: '${file.type} не может импортировать ${dependency.type}',
           rules: [
             {

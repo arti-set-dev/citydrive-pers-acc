@@ -13,6 +13,7 @@ export default {
     'declaration-no-important': true,
     'selector-max-id': 0,
     'max-nesting-depth': 3,
-    'selector-class-pattern': '^[a-zA-Z][a-zA-Z0-9]*$',
+    'selector-class-pattern':
+      '^(?:[A-Z][a-zA-Z0-9]*|[a-z][a-z0-9]*(?:-[a-z][a-z0-9]*)*|[a-z][a-zA-Z0-9]*[A-Z][a-zA-Z0-9]*)$',
   },
 };

@@ -1,0 +1,72 @@
+.Flex {
+  position: relative;
+
+  display: flex;
+  flex-direction: var(--df-dir);
+  gap: var(--df-gap);
+  align-items: var(--df-align);
+  justify-content: var(--df-justify);
+
+  &:is(ul, ol) {
+    margin: var(--df-margin, 0);
+    padding: var(--df-padding, 0);
+    list-style: none;
+  }
+
+  /* Ноутбуки (Lg) */
+  @media (width <= 1024px) {
+    flex-direction: var(--df-dir-lg, var(--df-dir));
+    gap: var(--df-gap-lg, var(--df-gap));
+    align-items: var(--df-align-lg, var(--df-align));
+    justify-content: var(--df-justify-lg, var(--df-justify));
+
+    &:is(ul, ol) {
+      margin: var(--df-margin-lg, var(--df-margin, 0));
+      padding: var(--df-padding-lg, var(--df-padding, 0));
+    }
+  }
+
+  /* Планшеты (Md) */
+  @media (width <= 768px) {
+    flex-direction: var(--df-dir-md, var(--df-dir-lg, var(--df-dir)));
+    gap: var(--df-gap-md, var(--df-gap-lg, var(--df-gap)));
+    align-items: var(--df-align-md, var(--df-align-lg, var(--df-align)));
+    justify-content: var(
+      --df-justify-md,
+      var(--df-justify-lg, var(--df-justify))
+    );
+
+    &:is(ul, ol) {
+      margin: var(--df-margin-md, var(--df-margin-lg, var(--df-margin, 0)));
+      padding: var(--df-padding-md, var(--df-padding-lg, var(--df-padding, 0)));
+    }
+  }
+
+  /* Мобильные (Sm) */
+  @media (width <= 640px) {
+    flex-direction: var(
+      --df-dir-sm,
+      var(--df-dir-md, var(--df-dir-lg, var(--df-dir)))
+    );
+    gap: var(--df-gap-sm, var(--df-gap-md, var(--df-gap-lg, var(--df-gap))));
+    align-items: var(
+      --df-align-sm,
+      var(--df-align-md, var(--df-align-lg, var(--df-align)))
+    );
+    justify-content: var(
+      --df-justify-sm,
+      var(--df-justify-md, var(--df-justify-lg, var(--df-justify)))
+    );
+
+    &:is(ul, ol) {
+      margin: var(
+        --df-margin-sm,
+        var(--df-margin-md, var(--df-margin-lg, var(--df-margin, 0)))
+      );
+      padding: var(
+        --df-padding-sm,
+        var(--df-padding-md, var(--df-padding-lg, var(--df-padding, 0)))
+      );
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.Sidebar {
+  position: sticky;
+  z-index: var(--z-sticky);
+  top: 0;
+  height: 100vh;
+
+  @include sm {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.Logo {
+  @include sm {
+    display: none;
+  }
+}
+
+.SidebarLink {
+  overflow: hidden;
+  display: flex;
+  gap: var(--gap-8);
+  align-items: center;
+
+  padding: var(--gap-4);
+  padding-left: 20px;
+  border-radius: var(--radius-4);
+
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-xs);
+  color: var(--text-secondary);
+  text-decoration: none;
+
+  transition: background-color var(--ui-transition-duration);
+
+  @include sm {
+    flex-direction: column;
+    gap: var(--gap-4);
+    padding: var(--gap-4);
+    font-size: var(--font-size-12);
+  }
+
+  @include hover {
+    background-color: var(--primitive-gray-300);
+  }
+
+  &:focus-visible {
+    background-color: var(--primitive-gray-300);
+  }
+
+  &.SidebarLinkActive {
+    position: relative;
+    background-color: var(--primitive-gray-300);
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 2px;
+      height: 100%;
+
+      background-color: var(--primitive-green-600);
+
+      @include sm {
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+      }
+    }
+  }
+}
+
+.PopoverPanel {
+  z-index: var(--z-popover);
+  padding: var(--gap-4);
+  border-radius: var(--radius-4);
+  background-color: var(--bg-tertiary);
+}

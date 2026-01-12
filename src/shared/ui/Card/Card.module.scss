@@ -1,0 +1,84 @@
+.Card {
+  cursor: initial;
+
+  position: relative;
+
+  width: var(--card-width, auto);
+  max-width: 100%;
+  padding: var(--card-padding, 0);
+  border-radius: var(--card-radius, 0);
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  &.shadow {
+    box-shadow: var(--shadow-xl);
+  }
+
+  &.borderTop {
+    border-top: 1px solid var(--border-primary);
+  }
+
+  &.borderBottom {
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  &.borderLeft {
+    border-left: 1px solid var(--border-primary);
+  }
+
+  &.borderRight {
+    border-right: 1px solid var(--border-primary);
+  }
+
+  @media (width <= 1024px) {
+    width: var(--card-width-lg, var(--card-width));
+    padding: var(
+      --card-padding-lg,
+      var(--card-padding-md, var(--card-padding-sm, var(--card-padding, 0)))
+    );
+    border-radius: var(
+      --card-radius-lg,
+      var(--card-radius-md, var(--card-radius-sm, var(--card-radius, 0)))
+    );
+  }
+
+  @media (width <= 768px) {
+    width: var(--card-width-md, var(--card-width-lg, var(--card-width)));
+    padding: var(
+      --card-padding-md,
+      var(--card-padding-sm, var(--card-padding, 0))
+    );
+    border-radius: var(
+      --card-radius-md,
+      var(--card-radius-sm, var(--card-radius, 0))
+    );
+  }
+
+  @media (width <= 640px) {
+    width: var(
+      --card-width-sm,
+      var(--card-width-md, var(--card-width-lg, var(--card-width)))
+    );
+    padding: var(--card-padding-sm, var(--card-padding, 0));
+    border-radius: var(--card-radius-sm, var(--card-radius, 0));
+  }
+}
+
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+.bg-outline {
+  border: 1px solid var(--border-primary);
+  background-color: transparent;
+}

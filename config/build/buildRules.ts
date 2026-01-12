@@ -1,10 +1,13 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import type { BuildEnv } from './types/types';
+import path from 'path';
 
 export const buildRules = (mode: BuildEnv): webpack.RuleSetRule[] => {
   const isDev = mode.mode === 'development';
   const isProd = !isDev;
+  const mixinsPath = path.posix.join('@', 'app', 'styles', '_mixins.scss');
+
   return [
     {
       test: /\.tsx?$/,
@@ -46,7 +49,13 @@ export const buildRules = (mode: BuildEnv): webpack.RuleSetRule[] => {
             },
           },
         },
-        'sass-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            // Здесь магия
+            additionalData: `@use "${mixinsPath}" as *;`,
+          },
+        },
       ],
     },
     {

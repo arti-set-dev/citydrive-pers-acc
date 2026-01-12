@@ -1,0 +1,29 @@
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+$mq-sm: 640px;
+$mq-md: 768px;
+$mq-lg: 1024px;
+
+@mixin sm {
+  @media (width <= #{$mq-sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (width <= #{$mq-md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (width <= #{$mq-lg}) {
+    @content;
+  }
+}

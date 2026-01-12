@@ -1,0 +1,37 @@
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 1), minmax(0, 1fr));
+  gap: var(--grid-gap, 0);
+
+  @media (width <= 1024px) {
+    grid-template-columns: repeat(
+      var(--grid-cols-lg, var(--grid-cols)),
+      minmax(0, 1fr)
+    );
+    gap: var(--grid-gap-lg, var(--grid-gap));
+  }
+
+  /* Планшеты и ниже */
+  @media (width <= 768px) {
+    grid-template-columns: repeat(
+      var(--grid-cols-md, var(--grid-cols-lg, var(--grid-cols))),
+      minmax(0, 1fr)
+    );
+    gap: var(--grid-gap-md, var(--grid-gap-lg, var(--grid-gap)));
+  }
+
+  /* Мобильные устройства */
+  @media (width <= 640px) {
+    grid-template-columns: repeat(
+      var(
+        --grid-cols-sm,
+        var(--grid-cols-md, var(--grid-cols-lg, var(--grid-cols)))
+      ),
+      minmax(0, 1fr)
+    );
+    gap: var(
+      --grid-gap-sm,
+      var(--grid-gap-md, var(--grid-gap-lg, var(--grid-gap)))
+    );
+  }
+}

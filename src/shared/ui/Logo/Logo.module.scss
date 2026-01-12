@@ -1,0 +1,13 @@
+.LogoLink {
+  text-decoration: none;
+}
+
+.LogoText {
+  padding: var(--gap-4);
+  border: 2px solid var(--text-primary);
+
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  text-transform: uppercase;
+}

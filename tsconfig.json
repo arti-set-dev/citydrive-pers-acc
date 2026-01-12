@@ -15,5 +15,11 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["webpack.config.ts", "config", "src"]
+  "include": [
+    "webpack.config.ts",
+    "config",
+    "src",
+    "eslint.config.ts",
+    "stylelint.config.mjs"
+  ]
 }

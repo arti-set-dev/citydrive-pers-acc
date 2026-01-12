@@ -1,16 +1,84 @@
 :root {
-  // primitive colors
+  /* primitive colors */
   --primitive-white: #fff;
   --primitive-black: #000;
-  --primitive-gray-100: #f5f5f5;
-  --primitive-gray-900: #1a1a1a;
+  --primitive-gray-25: #fcfcfd;
+  --primitive-gray-50: #f8fafc;
+  --primitive-gray-100: #f1f5f9;
+  --primitive-gray-200: #e2e8f0;
+  --primitive-gray-300: #cbd5e1;
+  --primitive-gray-400: #94a3b8;
+  --primitive-gray-500: #64748b;
+  --primitive-gray-600: #475569;
+  --primitive-gray-700: #334155;
+  --primitive-gray-800: #1f2937;
+  --primitive-gray-900: #0f172a;
 
-  // design system colors
-  --bg-primary: var(--primitive-white);
+  /* brand / accents (green is primary in UI) */
+  --primitive-green-50: #ecfdf3;
+  --primitive-green-100: #dcfce7;
+  --primitive-green-200: #bbf7d0;
+  --primitive-green-300: #86efac;
+  --primitive-green-500: #22c55e;
+  --primitive-green-600: #16a34a;
+  --primitive-green-700: #15803d;
+
+  /* semantic */
+  --primitive-red-500: #ef4444;
+  --primitive-amber-500: #f59e0b;
+  --primitive-blue-500: #3b82f6;
+
+  /* =========================
+     Design system tokens
+     ========================= */
+
+  /* backgrounds */
+  --bg-primary: var(--primitive-white); /* page background */
+  --bg-secondary: var(--primitive-gray-50); /* subtle panels */
+  --bg-tertiary: var(--primitive-gray-100); /* tables / list rows */
+  --bg-elevated: var(--primitive-white); /* cards / modals */
+  --bg-overlay: rgb(15 23 42 / 45%); /* dim behind modal */
+
+  /* text */
   --text-primary: var(--primitive-gray-900);
-  --accent: #007bff;
+  --text-secondary: var(--primitive-gray-600);
+  --text-tertiary: var(--primitive-gray-500);
+  --text-inverse: var(--primitive-white);
 
-  // z-indexes
+  /* borders / dividers */
+  --border-primary: var(--primitive-gray-200);
+  --border-secondary: var(--primitive-gray-100);
+
+  /* focus */
+  --focus-ring: rgb(34 197 94 / 35%); /* green-ish ring */
+
+  /* brand */
+  --brand: var(--primitive-green-600);
+  --brand-hover: var(--primitive-green-700);
+  --brand-weak: var(--primitive-green-50);
+
+  /* controls */
+  --control-bg: var(--bg-elevated);
+  --control-bg-hover: var(--primitive-gray-50);
+  --control-border: var(--border-primary);
+  --control-placeholder: var(--primitive-gray-400);
+
+  /* states */
+  --success: var(--primitive-green-600);
+  --warning: var(--primitive-amber-500);
+  --danger: var(--primitive-red-500);
+  --info: var(--primitive-blue-500);
+
+  /* shadows */
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 8%);
+  --shadow-md: 0 -8px 24px rgb(15 23 42 / 10%);
+  --shadow-xl: 0px 0px 24px 10px rgb(15 23 42 / 10%);
+
+  /* =========================
+     Non-color tokens (your base)
+     ========================= */
+
+  /* z-indexes */
   --z-negative: -1;
   --z-base: 0;
   --z-dropdown: 100;
@@ -20,4 +88,114 @@
   --z-modal: 500;
   --z-popover: 600;
   --z-tooltip: 700;
+
+  /* gap */
+  --gap-0: 0px;
+  --gap-4: 4px;
+  --gap-8: 8px;
+  --gap-16: 16px;
+  --gap-24: 24px;
+  --gap-32: 32px;
+
+  /* =========================================
+     Typography — primitive font sizes
+     ========================================= */
+
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-28: 28px;
+  --font-size-32: 32px;
+  --font-size-40: 40px;
+
+  /* =========================================
+     Typography — line heights
+     ========================================= */
+
+  --line-height-xs: 1.2;
+  --line-height-sm: 1.35;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.65;
+
+  /* =========================================
+     Typography — font weights
+     ========================================= */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* =========================================
+     Typography — semantic tokens
+     (использовать в компонентах)
+     ========================================= */
+
+  /* body text */
+  --text-body-xs: var(--font-size-12);
+  --text-body-sm: var(--font-size-13);
+  --text-body-md: var(--font-size-14);
+  --text-body-lg: var(--font-size-16);
+
+  /* labels / captions */
+  --text-caption: var(--font-size-12);
+  --text-label: var(--font-size-13);
+
+  /* buttons */
+  --text-button-sm: var(--font-size-13);
+  --text-button-md: var(--font-size-14);
+  --text-button-lg: var(--font-size-16);
+
+  /* headings */
+  --text-h1: var(--font-size-32);
+  --text-h2: var(--font-size-24);
+  --text-h3: var(--font-size-20);
+  --text-h4: var(--font-size-18);
+  --text-h5: var(--font-size-16);
+
+  /* page titles / numbers (dashboard, 404, balances) */
+  --text-display-sm: var(--font-size-28);
+  --text-display-md: var(--font-size-32);
+  --text-display-lg: var(--font-size-40);
+
+  /* =========================================
+  Radius — primitive values
+  ========================================= */
+
+  --radius-0: 0px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+
+  // transitions
+  --ui-transition-duration: 0.3s;
+
+  /* =========================================
+     Width — primitive values
+     ========================================= */
+
+  --width-0: 0px;
+  --width-24: 24px;
+  --width-32: 32px;
+  --width-40: 40px;
+  --width-48: 48px;
+  --width-64: 64px;
+  --width-80: 80px;
+  --width-120: 120px;
+  --width-160: 160px;
+  --width-200: 200px;
+  --width-240: 240px;
+  --width-280: 280px;
+  --width-540: 540px;
+  --width-full: 100%;
+
+  // opacity
+  --opacity-50: 50%;
 }

@@ -38,6 +38,7 @@
     "css-loader": "^7.1.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-boundaries": "^5.3.1",
     "eslint-plugin-import-x": "^4.16.1",
     "eslint-plugin-prettier": "^5.5.4",
@@ -64,9 +65,12 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "clsx": "^2.1.1",
     "core-js": "3.35",
     "react": "^19.2.3",
+    "react-day-picker": "^9.13.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^19.2.3",
     "react-error-boundary": "^6.0.3",
     "react-router-dom": "^7.11.0"

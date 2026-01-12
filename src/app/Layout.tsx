@@ -1,18 +1,21 @@
+import { Card } from '@/shared/ui/Card/Card';
+import { Navbar } from '@/widgets/Navbar';
+import { Sidebar } from '@/widgets/Sidebar';
 import { Suspense } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
   return (
-    <div>
-      <nav>
-        <Link to="/">Главная</Link>
-        <Link to="/about">О нас</Link>
-      </nav>
-      <main>
-        <Suspense fallback={<div>loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </main>
-    </div>
+    <>
+      <Sidebar />
+      <Card variant="bg-primary" fullWidth>
+        <Navbar />
+        <Card as="main">
+          <Suspense fallback={<div>loading...</div>}>
+            <Outlet />
+          </Suspense>
+        </Card>
+      </Card>
+    </>
   );
 };

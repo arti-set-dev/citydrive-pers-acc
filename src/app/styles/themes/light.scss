@@ -1,4 +1,24 @@
 .LightTheme {
   --bg-primary: var(--primitive-white);
+  --bg-secondary: var(--primitive-gray-50);
+  --bg-tertiary: var(--primitive-gray-100);
+  --bg-elevated: var(--primitive-white);
+  --bg-overlay: rgb(15 23 42 / 45%);
   --text-primary: var(--primitive-gray-900);
+  --text-secondary: var(--primitive-gray-600);
+  --text-tertiary: var(--primitive-gray-500);
+  --text-inverse: var(--primitive-white);
+  --border-primary: var(--primitive-gray-200);
+  --border-secondary: var(--primitive-gray-100);
+  --brand: var(--primitive-green-600);
+  --brand-hover: var(--primitive-green-700);
+  --brand-weak: var(--primitive-green-50);
+  --control-bg: var(--bg-elevated);
+  --control-bg-hover: var(--primitive-gray-50);
+  --control-border: var(--border-primary);
+  --control-placeholder: var(--primitive-gray-400);
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 8%);
+  --shadow-md: 0 8px 24px rgb(15 23 42 / 10%);
+
+  color-scheme: light;
 }

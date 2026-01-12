@@ -1,0 +1,31 @@
+.PaginationLink,
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--width-24);
+  height: var(--width-24);
+
+  font-size: var(--font-size-14);
+  text-decoration: none;
+}
+
+.Button {
+  border-radius: var(--radius-4);
+  color: var(--text-primary);
+  transition: background-color var(--ui-transition-duration) ease;
+
+  @include hover {
+    background-color: var(--control-placeholder);
+  }
+
+  &.current {
+    color: var(--text-inverse);
+    background-color: var(--text-secondary);
+  }
+}
+
+.Arrow {
+  color: var(--text-primary);
+}

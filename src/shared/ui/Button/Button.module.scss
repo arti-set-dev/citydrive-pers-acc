@@ -1,0 +1,77 @@
+.button {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--gap-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-4);
+
+  font-size: var(--text-button-lg);
+  font-weight: var(--font-weight-regular);
+
+  background-color: transparent;
+
+  transition: background-color var(--ui-transition-duration) ease;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 50%;
+  }
+
+  &.primary {
+    color: var(--primitive-white);
+    background-color: var(--brand);
+
+    @include hover {
+      background-color: var(--brand-hover);
+    }
+
+    &:active {
+      background-color: var(--brand-hover);
+    }
+  }
+
+  &.clear {
+    border-color: transparent;
+    color: var(--text-secondary);
+    background-color: transparent;
+
+    @include hover {
+      color: var(--text-primary);
+    }
+
+    &:active {
+      color: var(--text-primary);
+    }
+  }
+
+  &.clear-brand {
+    border-color: transparent;
+    color: var(--brand);
+    background-color: transparent;
+  }
+
+  &.close {
+    width: 30px;
+    height: 30px;
+
+    background-image: url('../../assets/icons/circle-x.svg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  &.offset0 {
+    padding: var(--gap-0);
+  }
+
+  &.offset4 {
+    padding: var(--gap-4);
+  }
+
+  &.offset8 {
+    padding: var(--gap-8);
+  }
+}

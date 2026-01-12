@@ -1,4 +1,25 @@
 .DarkTheme {
-  --bg-primary: var(--primitive-gray-900);
-  --text-primary: var(--primitive-gray-100);
+  --bg-primary: #0b1220; /* deep slate */
+  --bg-secondary: #0f172a; /* panels */
+  --bg-tertiary: rgb(255 255 255 / 4%);
+  --bg-elevated: #111c33; /* cards/modals */
+  --bg-overlay: rgb(0 0 0 / 60%);
+  --text-primary: rgb(255 255 255 / 92%);
+  --text-secondary: rgb(255 255 255 / 72%);
+  --text-tertiary: rgb(255 255 255 / 56%);
+  --text-inverse: var(--primitive-gray-900);
+  --border-primary: rgb(255 255 255 / 10%);
+  --border-secondary: rgb(255 255 255 / 6%);
+  --brand: #22c55e; /* keep brand readable */
+  --brand-hover: #16a34a;
+  --brand-weak: rgb(34 197 94 / 12%);
+  --control-bg: rgb(255 255 255 / 4%);
+  --control-bg-hover: rgb(255 255 255 / 6%);
+  --control-border: rgb(255 255 255 / 12%);
+  --control-placeholder: rgb(255 255 255 / 35%);
+  --focus-ring: rgb(34 197 94 / 45%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 35%);
+  --shadow-md: 0 12px 40px rgb(0 0 0 / 45%);
+
+  color-scheme: dark;
 }

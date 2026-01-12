@@ -1,0 +1,39 @@
+.Field {
+  width: 100%;
+  padding: var(--gap-16);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-8);
+
+  font: inherit;
+  color: var(--text-primary);
+
+  background-color: transparent;
+
+  &::placeholder {
+    color: var(--control-placeholder);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: var(--opacity-50);
+  }
+}
+
+.Wrapper {
+  position: relative;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.Icon {
+  position: absolute;
+  top: var(--gap-16);
+  right: var(--gap-16);
+
+  width: var(--width-24);
+  height: var(--width-24);
+
+  color: var(--text-tertiary);
+}
