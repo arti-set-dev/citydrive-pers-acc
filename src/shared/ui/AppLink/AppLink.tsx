@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './AppLink.module.scss';
 
-type AppLinkVariant = 'brand';
+type AppLinkVariant = 'brand' | 'outline';
 
 interface AppLinkProps {
   children: React.ReactNode;
@@ -26,7 +26,9 @@ export const AppLink = (props: AppLinkProps) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        clsx(className, styles[variant], { [activeClassName]: isActive })
+        clsx(styles.AppLink, styles[variant], className, {
+          [activeClassName]: isActive,
+        })
       }
       to={to}
       {...other}

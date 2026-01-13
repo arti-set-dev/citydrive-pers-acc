@@ -1,0 +1,22 @@
+.Select {
+  z-index: var(--z-dropdown);
+}
+
+.Option {
+  position: relative;
+  z-index: var(--z-dropdown);
+  padding: var(--gap-4);
+  background-color: var(--bg-primary);
+}
+
+.Options {
+  position: absolute;
+  width: 100%;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-4);
+}
+
+.focus {
+  color: var(--primitive-white);
+  background-color: var(--text-tertiary);
+}

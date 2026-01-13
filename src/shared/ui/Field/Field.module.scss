@@ -1,5 +1,5 @@
 .Field {
-  width: 100%;
+  width: auto;
   padding: var(--gap-16);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-8);
@@ -21,6 +21,10 @@
 
 .Wrapper {
   position: relative;
+
+  .Field {
+    padding-right: 43px;
+  }
 
   &.fullWidth {
     width: 100%;

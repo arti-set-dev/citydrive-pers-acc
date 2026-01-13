@@ -1,4 +1,25 @@
+.AppLink {
+  border-radius: var(--radius-4);
+  text-decoration: none;
+  transition:
+    background-color var(--ui-transition-duration) ease,
+    color var(--ui-transition-duration) ease,
+    border-color var(--ui-transition-duration) ease;
+}
+
 .brand {
   color: var(--brand);
   text-decoration: none;
+}
+
+.outline {
+  padding: var(--gap-8);
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+
+  @include hover {
+    border-color: var(--brand);
+    color: var(--primitive-white);
+    background-color: var(--brand);
+  }
 }

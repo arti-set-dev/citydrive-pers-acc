@@ -20,6 +20,8 @@ type WidthToken =
   | 240
   | 280
   | 540
+  | 770
+  | 830
   | 'auto'
   | 'full';
 
@@ -36,6 +38,8 @@ interface CardProps<T extends ElementType = 'div'> {
   width?: Responsive<WidthToken>;
   shadow?: boolean;
   borderLine?: BorderLine;
+  isOverflowAuto?: boolean;
+  minWidth?: Responsive<WidthToken>;
   style?: React.CSSProperties;
 }
 
@@ -82,6 +86,8 @@ export const Card = <T extends ElementType = 'div'>({
   width = 'auto',
   shadow = false,
   borderLine = 'none',
+  isOverflowAuto = false,
+  minWidth = 'auto',
   ...restProps
 }: PolymorphicCardProps<T>) => {
   const Component = (as || 'div') as ElementType;
@@ -102,6 +108,10 @@ export const Card = <T extends ElementType = 'div'>({
     v === 'auto' ? 'auto' : `var(--width-${v})`,
   );
 
+  const minWidthVars = getResponsiveVars(minWidth, 'card-min-width', (v) =>
+    v === 'auto' ? 'auto' : `var(--width-${v})`,
+  );
+
   const borderClassesMap: Record<BorderLine, string> = {
     left: styles.borderLeft,
     right: styles.borderRight,
@@ -116,6 +126,7 @@ export const Card = <T extends ElementType = 'div'>({
         styles[variant],
         borderClassesMap[borderLine],
         { [styles.fullWidth]: fullWidth },
+        { [styles.overflowAuto]: isOverflowAuto },
         { [styles.shadow]: shadow },
         className,
       )}
@@ -124,6 +135,7 @@ export const Card = <T extends ElementType = 'div'>({
         ...radiusVars,
         ...widthVars,
         ...widthStyle,
+        ...minWidthVars,
         ...style,
       }}
       {...restProps}

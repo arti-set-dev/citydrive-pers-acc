@@ -1,0 +1,40 @@
+.Status {
+  cursor: pointer;
+
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: var(--width-12);
+  height: var(--width-12);
+  border-radius: var(--radius-circle);
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: calc(var(--width-12) / 2);
+    height: calc(var(--width-12) / 2);
+    border-radius: inherit;
+  }
+
+  &.active {
+    background-color: rgb(from var(--brand) r g b / 50%);
+
+    &::before {
+      background-color: var(--brand);
+    }
+  }
+
+  &.inactive {
+    background-color: rgb(from var(--danger) r g b / 50%);
+
+    &::before {
+      background-color: var(--danger);
+    }
+  }
+}

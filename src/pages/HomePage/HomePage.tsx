@@ -8,6 +8,53 @@ import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { getRouteTrips } from '@/shared/lib/router/paths';
 import { EmployeeList } from '@/entities/Employee';
+// eslint-disable-next-line boundaries/entry-point
+import type { IEmployee } from '@/entities/Employee/ui/EmployeeList/EmployeeList';
+
+const data: IEmployee[] = [
+  {
+    id: '1',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'active',
+  },
+  {
+    id: '2',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'active',
+  },
+  {
+    id: '3',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'active',
+  },
+  {
+    id: '4',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'active',
+  },
+  {
+    id: '5',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'active',
+  },
+  {
+    id: '6',
+    lastTimeTrip: '15:32',
+    name: 'Константин Герман Феликсовыич',
+    price: '3000 р',
+    status: 'inactive',
+  },
+];
 
 const stack = getVStack({
   gap: 16,
@@ -40,7 +87,7 @@ const HomePage = () => {
         </Text>
         <AppLink to={getRouteTrips()}>Смотреть все {'>'}</AppLink>
       </HStack>
-      <EmployeeList />
+      <EmployeeList data={data} />
     </Card>
   );
 };
