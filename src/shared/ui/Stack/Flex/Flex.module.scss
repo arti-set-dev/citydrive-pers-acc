@@ -13,6 +13,12 @@
     list-style: none;
   }
 
+  &:is(fieldset) {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
   /* Ноутбуки (Lg) */
   @media (width <= 1024px) {
     flex-direction: var(--df-dir-lg, var(--df-dir));

@@ -82,7 +82,7 @@ const hiddenRouts = isMobile
 export const Sidebar = () => {
   return (
     <Card
-      width={{ base: 280, sm: 'full' }}
+      width={{ base: 280, lg: 'full' }}
       variant="bg-tertiary"
       as="aside"
       p={16}

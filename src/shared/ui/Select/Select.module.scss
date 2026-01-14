@@ -1,19 +1,33 @@
-.Select {
-  z-index: var(--z-dropdown);
-}
-
 .Option {
   position: relative;
-  z-index: var(--z-dropdown);
   padding: var(--gap-4);
-  background-color: var(--bg-primary);
 }
 
 .Options {
+  isolation: isolate;
   position: absolute;
+  z-index: var(--z-dropdown);
+
+  overflow: auto;
+
   width: 100%;
+  max-height: 217px;
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-4);
+
+  background-color: var(--bg-primary);
+}
+
+.Input {
+  width: auto;
+  padding: var(--gap-16);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-8);
+
+  font: inherit;
+  color: var(--text-primary);
+
+  background-color: transparent;
 }
 
 .focus {

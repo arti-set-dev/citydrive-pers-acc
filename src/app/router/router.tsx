@@ -3,11 +3,11 @@ import { HomePage } from '@/pages/HomePage';
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { Layout } from '../Layout';
 import { NotFoundPage } from '@/pages/NotFoundPage';
-import routeConfig from './types/config';
+import { routeConfig, RoutePath, routePathMap } from './types/config';
 
 const childRoutes: RouteObject[] = Object.entries(routeConfig).map(
-  ([path, Component]) => ({
-    path,
+  ([key, Component]) => ({
+    path: routePathMap[key as RoutePath],
     element: <Component />,
   }),
 );

@@ -25,7 +25,7 @@ type WidthToken =
   | 'auto'
   | 'full';
 
-type CardElement = 'aside' | 'main' | 'article' | 'header';
+type CardElement = 'aside' | 'main' | 'article' | 'header' | 'form';
 
 interface CardProps<T extends ElementType = 'div'> {
   as?: T extends CardElement ? T : CardElement;
@@ -104,7 +104,7 @@ export const Card = <T extends ElementType = 'div'>({
   const widthStyle =
     width !== undefined ? { '--card-width': `var(--width-${width})` } : {};
 
-  const widthVars = getResponsiveVars(width, 'card-width', (v) =>
+  const widthVars = getResponsiveVars(width, 'card-max-width', (v) =>
     v === 'auto' ? 'auto' : `var(--width-${v})`,
   );
 

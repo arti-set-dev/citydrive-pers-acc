@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
   Listbox,
   ListboxButton,
   ListboxOption,
@@ -13,45 +17,96 @@ import { VStack } from '../Stack';
 import ArrowDown from '@/shared/assets/icons/chevron-down.svg';
 import { Card } from '../Card/Card';
 
-interface IOption {
+export interface IOption {
   id: number;
   name: string;
+  format?: string;
 }
 
 interface SelectOptions {
   options: IOption[];
+  placeholder?: string;
+  className?: string;
+  selected?: IOption | null;
+  onChange?: (e: IOption | null) => void;
+  disabled?: boolean;
 }
 
-export const Select = ({ options }: SelectOptions) => {
-  const [selected, setSelected] = useState(options[0]);
+export const Select = ({
+  options,
+  placeholder,
+  className,
+  selected,
+  onChange,
+  disabled = false,
+}: SelectOptions) => {
+  const [query, setQuery] = useState('');
+  const filteredOptions = useMemo(
+    () =>
+      query === ''
+        ? options
+        : options.filter((option) =>
+            option.name.toLowerCase().includes(query.toLowerCase()),
+          ),
+    [query, options],
+  );
+
+  if (placeholder) {
+    return (
+      <Combobox
+        value={selected}
+        onChange={onChange}
+        onClose={() => setQuery('')}
+        disabled={disabled}
+      >
+        <VStack gap={0} className={styles.Select}>
+          <ComboboxInput
+            className={styles.Input}
+            displayValue={(option: IOption) => option?.name || ''}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={placeholder}
+          />
+
+          <Card p={0}>
+            <ComboboxOptions modal={false} className={styles.Options}>
+              {filteredOptions.map((option) => (
+                <ComboboxOption
+                  key={option.id}
+                  value={option}
+                  className={({ focus }) =>
+                    clsx(styles.Option, {
+                      [styles.focus]: focus,
+                    })
+                  }
+                >
+                  <Text>{option.name}</Text>
+                </ComboboxOption>
+              ))}
+            </ComboboxOptions>
+          </Card>
+        </VStack>
+      </Combobox>
+    );
+  }
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
-      <VStack gap={0} className={styles.Select}>
+    <Listbox disabled={disabled} value={selected} onChange={onChange}>
+      <VStack gap={0} className={clsx(styles.Select, className)}>
         <ListboxButton as={Button} variant="as-field">
-          {selected.name}
+          {selected?.name ?? options[0].name}
           <ArrowDown />
         </ListboxButton>
-
         <Card p={0}>
-          <ListboxOptions className={styles.Options}>
-            {options.map((option) => (
+          <ListboxOptions modal={false} className={styles.Options}>
+            {options.map((opt) => (
               <ListboxOption
-                key={option.id}
-                value={option}
+                key={opt.id}
+                value={opt}
                 className={({ focus }) =>
-                  clsx(styles.Option, {
-                    [styles.focus]: focus,
-                  })
+                  clsx(styles.Option, { [styles.focus]: focus })
                 }
               >
-                {({ selected }) => (
-                  <Text
-                    className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}
-                  >
-                    {option.name}
-                  </Text>
-                )}
+                <Text>{opt.name}</Text>
               </ListboxOption>
             ))}
           </ListboxOptions>
