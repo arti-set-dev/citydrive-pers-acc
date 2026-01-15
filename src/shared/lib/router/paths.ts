@@ -4,7 +4,7 @@ export const PATHS = {
   employees: '/employees',
   employeeNew: '/employees/new',
   departments: '/departments',
-  department: '/departments/',
+  department: '/department/',
   invoices: '/invoices',
   promocodes: '/promocodes',
   trip: '/trip',

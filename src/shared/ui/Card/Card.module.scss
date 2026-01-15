@@ -3,14 +3,14 @@
 
   position: relative;
 
+  width: var(--card-width, auto);
   min-width: var(--card-min-width, auto);
-  max-width: var(--card-max-width, none);
+  max-width: 100%;
   padding: var(--card-padding, 0);
   border-radius: var(--card-radius, 0);
 
   &.fullWidth {
     width: 100%;
-    max-width: none;
   }
 
   &.shadow {
@@ -34,8 +34,8 @@
   }
 
   @media (width <= 1024px) {
+    width: var(--card-width-lg, var(--card-width));
     min-width: var(--card-min-width-lg, var(--card-min-width, auto));
-    max-width: var(--card-width-lg, var(--card-width));
     padding: var(
       --card-padding-lg,
       var(--card-padding-md, var(--card-padding-sm, var(--card-padding, 0)))
@@ -51,10 +51,6 @@
       --card-min-width-md,
       var(--card-min-width-lg, var(--card-min-width, auto))
     );
-    max-width: var(
-      --card-width-sm,
-      var(--card-width-md, var(--card-width, none))
-    );
     padding: var(
       --card-padding-md,
       var(--card-padding-sm, var(--card-padding, 0))
@@ -66,16 +62,16 @@
   }
 
   @media (width <= 640px) {
+    width: var(
+      --card-width-sm,
+      var(--card-width-md, var(--card-width-lg, var(--card-width)))
+    );
     min-width: var(
       --card-min-width-sm,
       var(
         --card-min-width-md,
         var(--card-min-width-lg, var(--card-min-width, auto))
       )
-    );
-    max-width: var(
-      --card-width-sm,
-      var(--card-width-md, var(--card-width-lg, var(--card-width)))
     );
     padding: var(--card-padding-sm, var(--card-padding, 0));
     border-radius: var(--card-radius-sm, var(--card-radius, 0));

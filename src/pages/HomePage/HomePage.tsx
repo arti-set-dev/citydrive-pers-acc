@@ -62,7 +62,7 @@ const stack = getVStack({
 
 const HomePage = () => {
   return (
-    <Card p={16} className={stack.className} style={stack.style}>
+    <Card p={16} className={stack.className} style={stack.style} isOverflowAuto>
       <Text as="h1" size={32} weight="bold">
         Главная
       </Text>

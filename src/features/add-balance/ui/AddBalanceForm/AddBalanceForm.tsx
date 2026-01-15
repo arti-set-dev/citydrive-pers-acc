@@ -22,7 +22,7 @@ export const AddBalanceForm = () => {
           придут в течение трёх рабочих дней.
         </Text>
       </VStack>
-      <DatePicker />
+      <DatePicker fullWidth />
       <Field readOnly value={sumResult} placeholder="Сумма" />
       <Button offset={8}>Скачать счёт в pdf</Button>
     </VStack>

@@ -85,7 +85,7 @@ export const Field = ({
           readOnly={readOnly}
           onChange={onChange}
           placeholder={placeholder}
-          className={styles.Field}
+          className={clsx(styles.Field, { [styles.fullWidth]: fullWidth })}
           {...props}
         />
         <Icon className={styles.Icon} />

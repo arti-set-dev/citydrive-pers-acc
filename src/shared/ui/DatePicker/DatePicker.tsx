@@ -8,7 +8,11 @@ import styles from './DatePicker.module.scss';
 import { Field } from '../Field/Field';
 import CalendarIcon from '@/shared/assets/icons/calendar-minus.svg';
 
-export const DatePicker = () => {
+interface DatePickerProps {
+  fullWidth?: boolean;
+}
+
+export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
   const [range, setRange] = useState<DateRange | undefined>();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,7 +52,7 @@ export const DatePicker = () => {
     <VStack ref={containerRef}>
       <HStack gap={0}>
         <Field
-          fullWidth
+          fullWidth={fullWidth}
           name="start-date"
           readOnly
           icon={CalendarIcon}
@@ -58,7 +62,7 @@ export const DatePicker = () => {
         />
         <Field
           name="end-date"
-          fullWidth
+          fullWidth={fullWidth}
           icon={CalendarIcon}
           placeholder="По"
           value={endDisplay}

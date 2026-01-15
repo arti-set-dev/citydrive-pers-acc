@@ -8,7 +8,7 @@ export const Layout = () => {
   return (
     <>
       <Sidebar />
-      <Card variant="bg-primary" fullWidth>
+      <Card variant="bg-primary" fullWidth isOverflowAuto>
         <Navbar />
         <Card as="main">
           <Suspense fallback={<div>loading...</div>}>
