@@ -1,5 +1,6 @@
 import { DepartmentList } from '@/entities/Department';
 import { SearchDepartmentForm } from '@/features/search-department';
+import { getRouteDepartmentNew } from '@/shared/lib/router/paths';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Card } from '@/shared/ui/Card/Card';
@@ -18,7 +19,7 @@ const DepartmentsPage = () => {
         <Text as="h1" size={32} weight="bold">
           Отделы
         </Text>
-        <AppLink to="" variant="outline">
+        <AppLink to={getRouteDepartmentNew()} variant="outline">
           Добавить отдел
         </AppLink>
       </HStack>

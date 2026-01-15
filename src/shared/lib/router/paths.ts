@@ -4,7 +4,8 @@ export const PATHS = {
   employees: '/employees',
   employeeNew: '/employees/new',
   departments: '/departments',
-  department: '/department/',
+  department: '/department',
+  departmentNew: '/department/new',
   invoices: '/invoices',
   promocodes: '/promocodes',
   trip: '/trip',
@@ -18,6 +19,7 @@ export const getRouteEmployees = (): string => PATHS.employees;
 export const getRouteEmployeeNew = (): string => PATHS.employeeNew;
 export const getRouteDepartments = (): string => PATHS.departments;
 export const getRouteDepartment = (): string => PATHS.departments;
+export const getRouteDepartmentNew = (): string => PATHS.departmentNew;
 export const getRouteTrip = (id: string): string => PATHS.trip + id;
 export const getRouteTrips = (): string => PATHS.trips;
 export const getRouteInvoices = (): string => PATHS.invoices;

@@ -4,6 +4,7 @@ import { EmployeesPage } from '@/pages/EmployeesPage';
 import { HomePage } from '@/pages/HomePage';
 import { InvoicesPage } from '@/pages/InvoicesPage';
 import { LoginPage } from '@/pages/LoginPage';
+import { NewDepartmentPage } from '@/pages/NewDepartmentPage';
 import { NewEmployeePage } from '@/pages/NewEmployeePage';
 import { PromocodesPage } from '@/pages/PromocodesPage';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -16,8 +17,9 @@ type RoutePath =
   | '/'
   | 'auth'
   | 'employees'
-  | 'employeesNew'
+  | 'employeeNew'
   | 'departments'
+  | 'departmentNew'
   | 'department'
   | 'trips'
   | 'trip'
@@ -35,7 +37,8 @@ const routeConfig: Record<RoutePath, PageComponent> = {
   department: DepartmentPage,
   departments: DepartmentsPage,
   employees: EmployeesPage,
-  employeesNew: NewEmployeePage,
+  employeeNew: NewEmployeePage,
+  departmentNew: NewDepartmentPage,
   invoices: InvoicesPage,
   promocodes: PromocodesPage,
   settings: SettingsPage,
@@ -47,9 +50,10 @@ const routePathMap: Record<RoutePath, string> = {
   '/': PATHS.home,
   auth: PATHS.auth,
   employees: PATHS.employees,
-  employeesNew: PATHS.employeeNew,
+  employeeNew: PATHS.employeeNew,
   departments: PATHS.departments,
   department: PATHS.department,
+  departmentNew: PATHS.departmentNew,
   invoices: PATHS.invoices,
   promocodes: PATHS.promocodes,
   trip: PATHS.trip,

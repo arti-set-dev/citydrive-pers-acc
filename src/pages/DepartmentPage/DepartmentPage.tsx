@@ -1,3 +1,4 @@
+import { getRouteDepartmentNew } from '@/shared/lib/router/paths';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Card } from '@/shared/ui/Card/Card';
 import { HStack } from '@/shared/ui/Stack';
@@ -10,7 +11,7 @@ const DepartmentPage = () => {
         <Text as="h1" weight="bold">
           Отделы
         </Text>
-        <AppLink to="" variant="outline">
+        <AppLink to={getRouteDepartmentNew()} variant="outline">
           Добавить отдел
         </AppLink>
       </HStack>

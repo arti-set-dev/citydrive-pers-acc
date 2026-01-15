@@ -1,7 +1,7 @@
 import { getFlex } from '@/shared/lib/stack/flex/getFlex';
 import { Card } from '@/shared/ui/Card/Card';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
-import { Grid, HStack } from '@/shared/ui/Stack';
+import { Grid, HStack, VStack } from '@/shared/ui/Stack';
 import { Status } from '@/shared/ui/Status/Status';
 import { Text } from '@/shared/ui/Text/Text';
 import React from 'react';
@@ -12,8 +12,10 @@ export interface IEmployee {
   id: string;
   lastTimeTrip?: string;
   name: string;
+  email?: string;
+  phone?: string;
   price?: string;
-  status: StatusEmployee;
+  status?: StatusEmployee;
   role?: string;
   spent?: string;
   monthLimit?: string;
@@ -36,7 +38,8 @@ const COLUMN_MAP: Record<
     header: 'Время',
     render: (item) => (
       <HStack gap={8}>
-        <Status status={item.status} />
+        {item.status && <Status status={item.status} />}
+
         <Text>{item.lastTimeTrip}</Text>
       </HStack>
     ),
@@ -45,10 +48,22 @@ const COLUMN_MAP: Record<
     header: 'Сотрудник',
     render: (item) => (
       <HStack gap={8}>
-        <Status status={item.status} />
-        <Text>{item.name}</Text>
+        {item.status && <Status status={item.status} />}
+
+        <VStack gap={4}>
+          <Text>{item.name}</Text>
+          {item.email && (
+            <Text color="text-tertiary" size={14}>
+              {item.email}
+            </Text>
+          )}
+        </VStack>
       </HStack>
     ),
+  },
+  phone: {
+    header: 'Телефон',
+    render: (item) => <Text>{item.phone}</Text>,
   },
   role: {
     header: 'Роль',
@@ -58,13 +73,13 @@ const COLUMN_MAP: Record<
     header: 'Отдел',
     render: (item) => <Text>{item.department}</Text>,
   },
-  spent: {
-    header: 'Потрачено',
-    render: (item) => <Text>{item.spent}</Text>,
-  },
   monthLimit: {
     header: 'Лимит',
     render: (item) => <Text>{item.monthLimit}</Text>,
+  },
+  spent: {
+    header: 'Потрачено',
+    render: (item) => <Text>{item.spent}</Text>,
     align: 'end',
   },
   price: {
@@ -93,60 +108,62 @@ export const EmployeeList = ({ data }: EmployeeListProps) => {
 
   const directionStack = getFlex({ direction: 'column', gap: 16 });
   return (
-    <Card p={0} isOverflowAuto>
-      <Card
-        p={0}
-        className={directionStack.className}
-        style={directionStack.style}
-        minWidth={770}
-      >
-        {/* Шапка */}
-        <Grid cols={gridCols}>
-          {activeColumns.map((key) => {
-            const config = COLUMN_MAP[key];
-            const align = getFlex({ align: config.align || 'start' });
-            return (
-              <Card
-                key={key}
-                p={16}
-                color="text-tertiary"
-                borderLine="bottom"
-                className={align.className}
-                style={align.style}
-              >
-                <Text color="text-tertiary">{config.header}</Text>
-              </Card>
-            );
-          })}
-        </Grid>
+    <VStack>
+      <Card p={0} isOverflowAuto>
+        <Card
+          p={0}
+          className={directionStack.className}
+          style={directionStack.style}
+          minWidth={770}
+        >
+          {/* Шапка */}
+          <Grid cols={gridCols}>
+            {activeColumns.map((key) => {
+              const config = COLUMN_MAP[key];
+              const align = getFlex({ align: config.align || 'start' });
+              return (
+                <Card
+                  key={key}
+                  p={16}
+                  color="text-tertiary"
+                  borderLine="bottom"
+                  className={align.className}
+                  style={align.style}
+                >
+                  <Text color="text-tertiary">{config.header}</Text>
+                </Card>
+              );
+            })}
+          </Grid>
 
-        {/* Данные */}
-        <Grid cols={gridCols}>
-          {data.map((item) => (
-            <React.Fragment key={item.id}>
-              {activeColumns.map((key) => {
-                const config = COLUMN_MAP[key];
-                const align = getFlex({ align: config.align || 'start' });
-                return (
-                  <Card
-                    key={key + item.id}
-                    p={16}
-                    borderLine="bottom"
-                    className={align.className}
-                    style={align.style}
-                  >
-                    {config.render(item)}
-                  </Card>
-                );
-              })}
-            </React.Fragment>
-          ))}
-        </Grid>
-        <HStack justify="space-between">
-          <Pagination currentPage="3" totalPages={10} />
-          <Text color="text-tertiary">1-50 из 883</Text>
-        </HStack>
+          {/* Данные */}
+          <Grid cols={gridCols}>
+            {data.map((item) => (
+              <React.Fragment key={item.id}>
+                {activeColumns.map((key) => {
+                  const config = COLUMN_MAP[key];
+                  const align = getFlex({ align: config.align || 'start' });
+                  return (
+                    <Card
+                      key={key + item.id}
+                      p={16}
+                      borderLine="bottom"
+                      className={align.className}
+                      style={align.style}
+                    >
+                      {config.render(item)}
+                    </Card>
+                  );
+                })}
+              </React.Fragment>
+            ))}
+          </Grid>
+        </Card>
       </Card>
-    </Card>
+      <HStack justify="space-between">
+        <Pagination currentPage="3" totalPages={10} />
+        <Text color="text-tertiary">1-50 из 883</Text>
+      </HStack>
+    </VStack>
   );
 };
