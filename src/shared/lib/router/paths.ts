@@ -4,8 +4,9 @@ export const PATHS = {
   employees: '/employees',
   employeeNew: '/employees/new',
   departments: '/departments',
-  department: '/department',
+  department: '/departments/:id',
   departmentNew: '/department/new',
+  departmentEdit: '/departments/:id/edit',
   invoices: '/invoices',
   promocodes: '/promocodes',
   trip: '/trip',
@@ -18,8 +19,11 @@ export const getRouteAuth = (): string => PATHS.auth;
 export const getRouteEmployees = (): string => PATHS.employees;
 export const getRouteEmployeeNew = (): string => PATHS.employeeNew;
 export const getRouteDepartments = (): string => PATHS.departments;
-export const getRouteDepartment = (): string => PATHS.departments;
+export const getRouteDepartment = (id: string): string =>
+  PATHS.departments + id;
 export const getRouteDepartmentNew = (): string => PATHS.departmentNew;
+export const getRouteDepartmentEdit = (id: string): string =>
+  `/departments/${id}/edit`;
 export const getRouteTrip = (id: string): string => PATHS.trip + id;
 export const getRouteTrips = (): string => PATHS.trips;
 export const getRouteInvoices = (): string => PATHS.invoices;

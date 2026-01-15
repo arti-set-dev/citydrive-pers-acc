@@ -1,3 +1,4 @@
+import { DepartmentEditPage } from '@/pages/DepartmentEditPage';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeesPage } from '@/pages/EmployeesPage';
@@ -20,7 +21,8 @@ type RoutePath =
   | 'employeeNew'
   | 'departments'
   | 'departmentNew'
-  | 'department'
+  | 'departmentId'
+  | 'departmentEdit'
   | 'trips'
   | 'trip'
   | 'invoices'
@@ -34,11 +36,12 @@ type PageComponent =
 const routeConfig: Record<RoutePath, PageComponent> = {
   '/': HomePage,
   auth: LoginPage,
-  department: DepartmentPage,
+  departmentId: DepartmentPage,
   departments: DepartmentsPage,
   employees: EmployeesPage,
   employeeNew: NewEmployeePage,
   departmentNew: NewDepartmentPage,
+  departmentEdit: DepartmentEditPage,
   invoices: InvoicesPage,
   promocodes: PromocodesPage,
   settings: SettingsPage,
@@ -52,7 +55,8 @@ const routePathMap: Record<RoutePath, string> = {
   employees: PATHS.employees,
   employeeNew: PATHS.employeeNew,
   departments: PATHS.departments,
-  department: PATHS.department,
+  departmentId: PATHS.department,
+  departmentEdit: PATHS.departmentEdit,
   departmentNew: PATHS.departmentNew,
   invoices: PATHS.invoices,
   promocodes: PATHS.promocodes,

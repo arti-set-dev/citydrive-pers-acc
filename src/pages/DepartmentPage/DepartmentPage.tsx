@@ -7,6 +7,7 @@ import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Card } from '@/shared/ui/Card/Card';
 import { HStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
+import { getRouteDepartmentEdit } from '@/shared/lib/router/paths';
 
 const data: IEmployee[] = [
   {
@@ -80,7 +81,7 @@ const DepartmentPage = () => {
         <Text as="h1" size={{ base: 32, sm: 20 }} weight="bold">
           Финансовый отдел
         </Text>
-        <AppLink to="" variant="outline">
+        <AppLink to={getRouteDepartmentEdit('1')} variant="outline">
           Редактировать
         </AppLink>
       </HStack>
