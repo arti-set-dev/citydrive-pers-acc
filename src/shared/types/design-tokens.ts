@@ -37,5 +37,6 @@ export type GridColsToken = (typeof GRID_COLUMNS)[number];
 export interface GridProps {
   cols?: Responsive<GridColsToken>;
   gap?: Responsive<GapToken>;
+  className?: string;
   children?: React.ReactNode;
 }

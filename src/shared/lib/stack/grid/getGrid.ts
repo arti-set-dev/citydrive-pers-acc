@@ -7,26 +7,22 @@ export function getGrid(options: Omit<GridProps, 'children'> = {}) {
 
   const setVars = (prefix: string, value: any, isToken = false) => {
     if (!value) return;
+
     if (typeof value !== 'object') {
       styles[`--grid-${prefix}`] = isToken
         ? GAP_VALUES[value as GapToken]
         : value;
     } else {
-      styles[`--grid-${prefix}`] = isToken
-        ? GAP_VALUES[value.base as GapToken]
-        : value.base;
-      if (value.md)
-        styles[`--grid-${prefix}-md`] = isToken
-          ? GAP_VALUES[value.md as GapToken]
-          : value.md;
+      Object.entries(value).forEach(([bp, val]) => {
+        const key =
+          bp === 'base' ? `--grid-${prefix}` : `--grid-${prefix}-${bp}`;
+        styles[key] = isToken ? GAP_VALUES[val as GapToken] : val;
+      });
     }
   };
 
   setVars('cols', cols);
   setVars('gap', gap, true);
 
-  return {
-    className: cls.Grid,
-    style: styles,
-  };
+  return { className: cls.Grid, style: styles };
 }

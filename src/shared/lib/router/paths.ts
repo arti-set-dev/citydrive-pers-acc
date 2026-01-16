@@ -9,7 +9,7 @@ export const PATHS = {
   departmentEdit: '/departments/:id/edit',
   invoices: '/invoices',
   promocodes: '/promocodes',
-  trip: '/trip',
+  trip: '/trips/:id',
   trips: '/trips',
   settings: '/settings',
 } as const;

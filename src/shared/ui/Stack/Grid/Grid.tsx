@@ -5,8 +5,9 @@ import {
   Responsive,
 } from '@/shared/types/design-tokens';
 import styles from './Grid.module.scss';
+import clsx from 'clsx';
 
-export const Grid = ({ cols, gap, children }: GridProps) => {
+export const Grid = ({ cols, gap, children, className }: GridProps) => {
   const getResponsiveVars = (
     prop: Responsive<any> | undefined,
     name: string,
@@ -47,7 +48,7 @@ export const Grid = ({ cols, gap, children }: GridProps) => {
   } as React.CSSProperties;
 
   return (
-    <div className={styles.Grid} style={style}>
+    <div className={clsx(styles.Grid, className)} style={style}>
       {children}
     </div>
   );

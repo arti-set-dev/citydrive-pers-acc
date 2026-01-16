@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "clsx": "^2.1.1",
     "core-js": "3.35",
     "react": "^19.2.3",
