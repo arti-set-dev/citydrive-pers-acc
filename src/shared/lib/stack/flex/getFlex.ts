@@ -7,23 +7,33 @@ export function getFlex(options: Omit<FlexProps, 'children'> = {}) {
   const styles: React.CSSProperties & Record<string, any> = {};
 
   const setVars = (prefix: string, value: any, isToken = false) => {
-    if (!value) return;
-    const finalValue = isToken ? GAP_VALUES[value as GapToken] : value;
+    if (value === undefined || value === null) return;
 
     if (typeof value !== 'object') {
+      const finalValue = isToken ? GAP_VALUES[value as GapToken] : value;
       styles[`--df-${prefix}`] = finalValue;
     } else {
+      // Base (Desktop)
       styles[`--df-${prefix}`] = isToken
         ? GAP_VALUES[value.base as GapToken]
         : value.base;
-      if (value.md)
-        styles[`--df-${prefix}-md`] = isToken
-          ? GAP_VALUES[value.md as GapToken]
-          : value.md;
-      if (value.lg)
+
+      // Breakpoints
+      if (value.lg !== undefined) {
         styles[`--df-${prefix}-lg`] = isToken
           ? GAP_VALUES[value.lg as GapToken]
           : value.lg;
+      }
+      if (value.md !== undefined) {
+        styles[`--df-${prefix}-md`] = isToken
+          ? GAP_VALUES[value.md as GapToken]
+          : value.md;
+      }
+      if (value.sm !== undefined) {
+        styles[`--df-${prefix}-sm`] = isToken
+          ? GAP_VALUES[value.sm as GapToken]
+          : value.sm;
+      }
     }
   };
 
