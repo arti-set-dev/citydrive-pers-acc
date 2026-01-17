@@ -1,5 +1,7 @@
-import { VStack } from '@/shared/ui/Stack';
+import { Flex, VStack } from '@/shared/ui/Stack';
 import { RouteItem } from '../RouteItem/RouteItem';
+import { Pagination } from '@/shared/ui/Pagination/Pagination';
+import { Text } from '@/shared/ui/Text/Text';
 
 interface IBaseRoute {
   id: string;
@@ -41,6 +43,10 @@ export const RouteList = ({ data, reverse }: RouteListProps) => {
       {data.map((route) => (
         <RouteItem key={route.id} reverse={reverse} route={route} />
       ))}
+      <Flex direction={{ base: 'row', lg: 'row' }} justify="space-between">
+        <Pagination currentPage="3" totalPages={10} />
+        <Text color="text-tertiary">1-50 из 883</Text>
+      </Flex>
     </VStack>
   );
 };
