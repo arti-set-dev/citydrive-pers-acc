@@ -27,6 +27,7 @@ interface TextCustomProps {
   weight?: Responsive<FontWeight>;
   height?: Responsive<LineHeight>;
   color?: TextColor;
+  leader?: boolean;
   children: ReactNode;
 }
 
@@ -70,6 +71,7 @@ export const Text = <T extends ElementType = 'div'>({
   height,
   color,
   className,
+  leader = false,
   style,
   ...restProps
 }: Props<T>) => {
@@ -84,7 +86,7 @@ export const Text = <T extends ElementType = 'div'>({
 
   return (
     <Component
-      className={cl(s.Text, className)}
+      className={cl(s.Text, { [s.leader]: leader }, className)}
       style={{ ...responsiveStyles, ...style }}
       {...restProps}
     >

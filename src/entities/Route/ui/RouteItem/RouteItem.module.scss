@@ -1,0 +1,55 @@
+.RoutePath {
+  position: relative;
+  padding-left: var(--gap-24);
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 18px;
+    left: 0;
+    transform: translateX(-50%);
+
+    width: 2px;
+    height: 100%;
+
+    background-color: var(--text-primary);
+  }
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 0;
+    transform: translateX(-50%);
+
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--text-primary);
+    border-radius: var(--radius-circle);
+
+    background-color: var(--bg-primary);
+  }
+}
+
+.RoutePathStart {
+  &::before {
+    width: 13px;
+    height: 13px;
+    border-color: var(--primitive-violet);
+  }
+}
+
+.RoutePathEnd {
+  &::after {
+    display: none;
+  }
+
+  &::before {
+    width: 13px;
+    height: 13px;
+    border-color: var(--primitive-green-600);
+  }
+}

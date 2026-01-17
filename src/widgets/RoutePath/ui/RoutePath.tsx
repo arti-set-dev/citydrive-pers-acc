@@ -1,83 +1,42 @@
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import styles from './RoutePath.module.scss';
-import clsx from 'clsx';
+import { RouteItem } from '@/entities/Route';
+// eslint-disable-next-line boundaries/entry-point
+import { IRoute } from '@/entities/Route/ui/RouteList/RouteList';
 
 export const RoutePath = () => {
-  return (
-    <VStack as="ul">
-      <HStack
-        justify="space-between"
-        as="li"
-        className={clsx(styles.RoutePath, styles.RoutePathStart)}
-      >
-        <VStack>
-          <Text>ул. Пенькова, 28</Text>
-          <Text size={14} color="text-tertiary">
-            Москва
-          </Text>
-        </VStack>
-        <VStack>
-          <Text>15:32</Text>
-          <Text size={14} color="text-tertiary">
-            18 сентября
-          </Text>
-        </VStack>
-      </HStack>
-      <HStack
-        justify="space-between"
-        as="li"
-        className={clsx(styles.RoutePath)}
-      >
-        <VStack>
-          <Text>ул. Пенькова, 28</Text>
-          <Text size={14} color="text-tertiary">
-            Москва
-          </Text>
-        </VStack>
-        <VStack>
-          <Text>15:32</Text>
-          <Text size={14} color="text-tertiary">
-            18 сентября
-          </Text>
-        </VStack>
-      </HStack>
-      <HStack
-        justify="space-between"
-        as="li"
-        className={clsx(styles.RoutePath)}
-      >
-        <VStack>
-          <Text>ул. Пенькова, 28</Text>
-          <Text size={14} color="text-tertiary">
-            Москва
-          </Text>
-        </VStack>
-        <VStack>
-          <Text>15:32</Text>
-          <Text size={14} color="text-tertiary">
-            18 сентября
-          </Text>
-        </VStack>
-      </HStack>
-      <HStack
-        justify="space-between"
-        as="li"
-        className={clsx(styles.RoutePath, styles.RoutePathEnd)}
-      >
-        <VStack>
-          <Text>ул. Пенькова, 28</Text>
-          <Text size={14} color="text-tertiary">
-            Москва
-          </Text>
-        </VStack>
-        <VStack>
-          <Text>15:32</Text>
-          <Text size={14} color="text-tertiary">
-            18 сентября
-          </Text>
-        </VStack>
-      </HStack>
-    </VStack>
-  );
+  const route: IRoute = {
+    id: '1',
+    stops: [
+      {
+        id: '1',
+        address: 'Ул. Пенькова, 28',
+        city: 'Москва',
+        date: '18 сентября',
+        time: '15:32',
+        isStart: true,
+      },
+      {
+        id: '2',
+        address: 'Ул. Новолесная, 2',
+        city: 'Москва',
+        date: '18 сентября',
+        time: '15:32',
+      },
+      {
+        id: '3',
+        address: 'Ул. Бретская, 44',
+        city: 'Москва',
+        date: '18 сентября',
+        time: '15:32',
+      },
+      {
+        id: '4',
+        address: 'Ул. Рассольникова, 1',
+        city: 'Москва',
+        date: '18 сентября',
+        time: '15:32',
+        isEnd: true,
+      },
+    ],
+  };
+  return <RouteItem route={route} />;
 };

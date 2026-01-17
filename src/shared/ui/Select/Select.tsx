@@ -9,7 +9,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react';
-import { Button } from '../Button/Button';
+import { Button, ButtonOffset, ButtonVariant } from '../Button/Button';
 import styles from './Select.module.scss';
 import clsx from 'clsx';
 import { Text } from '../Text/Text';
@@ -23,23 +23,29 @@ export interface IOption {
   format?: string;
 }
 
-interface SelectOptions {
-  options: IOption[];
+interface SelectOptions<T extends IOption> {
+  options: T[];
   placeholder?: string;
   className?: string;
-  selected?: IOption | null;
-  onChange?: (e: IOption | null) => void;
+  selected?: T | null;
+  onChange?: (e: T | null | any) => void;
   disabled?: boolean;
+  variant?: ButtonVariant;
+  offset?: ButtonOffset;
+  desc?: string;
 }
 
-export const Select = ({
+export const Select = <T extends IOption>({
   options,
   placeholder,
   className,
   selected,
   onChange,
+  variant = 'as-field',
   disabled = false,
-}: SelectOptions) => {
+  desc = '',
+  offset,
+}: SelectOptions<T>) => {
   const [query, setQuery] = useState('');
   const filteredOptions = useMemo(
     () =>
@@ -92,8 +98,8 @@ export const Select = ({
   return (
     <Listbox disabled={disabled} value={selected} onChange={onChange}>
       <VStack gap={0} className={clsx(styles.Select, className)}>
-        <ListboxButton as={Button} variant="as-field">
-          {selected?.name ?? options[0].name}
+        <ListboxButton as={Button} variant={variant} offset={offset}>
+          {selected?.name || desc || options[0].name}
           <ArrowDown />
         </ListboxButton>
         <Card p={0}>

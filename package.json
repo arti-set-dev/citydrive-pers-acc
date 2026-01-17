@@ -26,6 +26,7 @@
     "@eslint/js": "^9.39.2",
     "@svgr/webpack": "^8.1.0",
     "@types/circular-dependency-plugin": "^5.0.8",
+    "@types/leaflet": "^1.9.21",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
@@ -66,14 +67,15 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
-    "@pbe/react-yandex-maps": "^1.2.5",
     "clsx": "^2.1.1",
     "core-js": "3.35",
+    "leaflet": "^1.9.4",
     "react": "^19.2.3",
     "react-day-picker": "^9.13.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.2.3",
     "react-error-boundary": "^6.0.3",
+    "react-leaflet": "^5.0.0",
     "react-number-format": "^5.4.4",
     "react-router-dom": "^7.11.0"
   }

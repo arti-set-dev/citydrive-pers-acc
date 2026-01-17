@@ -25,7 +25,14 @@ type WidthToken =
   | 'auto'
   | 'full';
 
-type CardElement = 'aside' | 'main' | 'article' | 'header' | 'form';
+type CardElement =
+  | 'aside'
+  | 'main'
+  | 'article'
+  | 'header'
+  | 'form'
+  | 'ul'
+  | 'li';
 
 interface CardProps<T extends ElementType = 'div'> {
   as?: T extends CardElement ? T : CardElement;

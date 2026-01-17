@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './AppLink.module.scss';
 
-type AppLinkVariant = 'brand' | 'outline';
+type AppLinkVariant = 'brand' | 'outline' | 'regular';
 
 interface AppLinkProps {
   children: React.ReactNode;

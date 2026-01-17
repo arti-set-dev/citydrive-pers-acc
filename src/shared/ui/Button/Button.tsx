@@ -3,16 +3,17 @@ import clsx from 'clsx';
 import s from './Button.module.scss';
 import { HStack } from '../Stack';
 
-type ButtonOffset = 0 | 4 | 8 | '';
+export type ButtonOffset = 0 | 4 | 8;
+export type ButtonVariant =
+  | 'primary'
+  | 'clear'
+  | 'clear-brand'
+  | 'close'
+  | 'outline'
+  | 'as-field';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?:
-    | 'primary'
-    | 'clear'
-    | 'clear-brand'
-    | 'close'
-    | 'outline'
-    | 'as-field';
+  variant?: ButtonVariant;
   offset?: ButtonOffset;
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
 }
@@ -21,11 +22,11 @@ export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   className,
   children,
-  offset = '',
+  offset = 0,
   icon: Icon,
   ...props
 }) => {
-  const offsetClassesMap: Record<Exclude<ButtonOffset, ''>, string> = {
+  const offsetClassesMap: Record<ButtonOffset, string> = {
     0: s.offset0,
     4: s.offset4,
     8: s.offset8,
@@ -38,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
             s.button,
             s.offset,
             s[variant],
-            offset && offsetClassesMap[offset],
+            offsetClassesMap[offset],
             className,
           )}
           {...props}
@@ -55,7 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
         s.button,
         s.offset,
         s[variant],
-        offset && offsetClassesMap[offset],
+        offsetClassesMap[offset],
         className,
       )}
       {...props}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { DayPicker, DateRange } from 'react-day-picker';
 import { format } from 'date-fns';
-import { HStack, VStack } from '../Stack';
+import { Flex, VStack } from '../Stack';
 import { ru } from 'date-fns/locale';
 import 'react-day-picker/dist/style.css';
 import styles from './DatePicker.module.scss';
@@ -50,7 +50,7 @@ export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
 
   return (
     <VStack ref={containerRef}>
-      <HStack gap={0}>
+      <Flex direction={{ base: 'row', lg: 'row' }} gap={0}>
         <Field
           fullWidth={fullWidth}
           name="start-date"
@@ -70,7 +70,7 @@ export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
           disabled={!range?.from}
           onClick={() => setIsOpen(true)}
         />
-      </HStack>
+      </Flex>
 
       {isOpen && (
         <DayPicker

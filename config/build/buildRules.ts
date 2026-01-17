@@ -52,7 +52,6 @@ export const buildRules = (mode: BuildEnv): webpack.RuleSetRule[] => {
         {
           loader: 'sass-loader',
           options: {
-            // Здесь магия
             additionalData: `@use "${mixinsPath}" as *;`,
           },
         },
@@ -63,6 +62,13 @@ export const buildRules = (mode: BuildEnv): webpack.RuleSetRule[] => {
       type: 'asset/resource',
       generator: {
         filename: 'fonts/[name][ext][query]',
+      },
+    },
+    {
+      test: /\.(png|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+      generator: {
+        filename: 'images/[name][ext][query]',
       },
     },
     {
