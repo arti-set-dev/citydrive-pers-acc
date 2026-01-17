@@ -32,3 +32,17 @@
     opacity: var(--opacity-50);
   }
 }
+
+.bg-primary {
+  padding: var(--gap-16);
+  color: var(--primitive-white);
+  background-color: var(--brand);
+
+  @include hover {
+    background-color: var(--brand-hover);
+  }
+
+  &:active {
+    background-color: var(--brand-hover);
+  }
+}
