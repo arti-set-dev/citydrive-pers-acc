@@ -1,4 +1,7 @@
-import { getRouteEmployees } from '@/shared/lib/router/paths';
+import {
+  getRouteEmployeeEdit,
+  getRouteEmployees,
+} from '@/shared/lib/router/paths';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Card } from '@/shared/ui/Card/Card';
 import { Flex, HStack, VStack } from '@/shared/ui/Stack';
@@ -26,7 +29,7 @@ const EmployeePage = () => {
           </Text>
         </HStack>
 
-        <AppLink to="" variant="outline">
+        <AppLink to={getRouteEmployeeEdit('1')} variant="outline">
           Редактировать
         </AppLink>
       </HStack>

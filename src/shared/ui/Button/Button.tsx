@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   className,
   children,
-  offset = 0,
+  offset,
   icon: Icon,
   ...props
 }) => {
@@ -39,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({
             s.button,
             s.offset,
             s[variant],
-            offsetClassesMap[offset],
+            offset && offsetClassesMap[offset],
             className,
           )}
           {...props}
@@ -56,7 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
         s.button,
         s.offset,
         s[variant],
-        offsetClassesMap[offset],
+        offset && offsetClassesMap[offset],
         className,
       )}
       {...props}

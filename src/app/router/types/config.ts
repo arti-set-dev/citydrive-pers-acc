@@ -1,6 +1,7 @@
 import { DepartmentEditPage } from '@/pages/DepartmentEditPage';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
+import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
 import { EmployeePage } from '@/pages/EmployeePage';
 import { EmployeesPage } from '@/pages/EmployeesPage';
 import { HomePage } from '@/pages/HomePage';
@@ -21,6 +22,7 @@ type RoutePath =
   | 'employees'
   | 'employee'
   | 'employeeNew'
+  | 'employeeEdit'
   | 'departments'
   | 'departmentNew'
   | 'departmentId'
@@ -42,6 +44,7 @@ const routeConfig: Record<RoutePath, PageComponent> = {
   departments: DepartmentsPage,
   employees: EmployeesPage,
   employee: EmployeePage,
+  employeeEdit: EmployeeEditPage,
   employeeNew: NewEmployeePage,
   departmentNew: NewDepartmentPage,
   departmentEdit: DepartmentEditPage,
@@ -57,6 +60,7 @@ const routePathMap: Record<RoutePath, string> = {
   auth: PATHS.auth,
   employees: PATHS.employees,
   employee: PATHS.employee,
+  employeeEdit: PATHS.employeeEdit,
   employeeNew: PATHS.employeeNew,
   departments: PATHS.departments,
   departmentId: PATHS.department,
