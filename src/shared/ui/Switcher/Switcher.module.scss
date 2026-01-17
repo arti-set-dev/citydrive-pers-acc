@@ -1,0 +1,53 @@
+.Switcher {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+
+  width: var(--width-48);
+  height: 24px;
+  padding: var(--gap-4);
+  border: none;
+  border-radius: 100px;
+
+  background-color: var(--bg-tertiary); // серый (gray-200)
+  outline: none;
+
+  transition: background-color 0.2s ease-in-out;
+
+  &[data-checked] {
+    background-color: var(--brand); // синий (blue-600)
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px #2563eb;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 50%;
+  }
+}
+
+.Thumb {
+  pointer-events: none;
+
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-circle);
+
+  background-color: var(--primitive-white);
+
+  transition: transform 0.2s ease-in-out;
+
+  .Switcher[data-checked] & {
+    transform: translateX(calc(var(--width-48) - 17px - (var(--gap-4) * 2)));
+  }
+}
