@@ -11,7 +11,7 @@ interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   readOnly?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
-  type?: 'text' | 'search' | 'number' | 'tel';
+  type?: 'text' | 'search' | 'number' | 'tel' | 'password' | 'email';
   fullWidth?: boolean;
 }
 

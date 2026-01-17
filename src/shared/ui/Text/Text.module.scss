@@ -5,6 +5,7 @@
   font-weight: var(--txt-weight);
   line-height: var(--txt-height);
   color: var(--txt-color, inherit);
+  text-align: var(--txt-align, inherit);
 
   @media (width <= 1024px) {
     font-size: var(
@@ -19,18 +20,24 @@
       --txt-height-lg,
       var(--txt-height-md, var(--txt-height-sm, var(--txt-height)))
     );
+    text-align: var(
+      --txt-align-lg,
+      var(--txt-align-md, var(--txt-align-sm, var(--txt-align)))
+    );
   }
 
   @media (width <= 768px) {
     font-size: var(--txt-size-md, var(--txt-size-sm, var(--txt-size)));
     font-weight: var(--txt-weight-md, var(--txt-weight-sm, var(--txt-weight)));
     line-height: var(--txt-height-md, var(--txt-height-sm, var(--txt-height)));
+    text-align: var(--txt-align-md, var(--txt-align-sm, var(--txt-align)));
   }
 
   @media (width <= 640px) {
     font-size: var(--txt-size-sm, var(--txt-size));
     font-weight: var(--txt-weight-sm, var(--txt-weight));
     line-height: var(--txt-height-sm, var(--txt-height));
+    text-align: var(--txt-align-sm, var(--txt-align));
   }
 }
 

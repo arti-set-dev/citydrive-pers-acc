@@ -9,6 +9,7 @@ import s from './Text.module.scss';
 
 type FontSize = 10 | 12 | 13 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 40;
 type FontWeight = 'regular' | 'medium' | 'semibold' | 'bold';
+type TextAlign = 'left' | 'center' | 'right' | 'justify';
 type LineHeight = 'xs' | 'sm' | 'md' | 'lg';
 type TextColor =
   | 'text-primary'
@@ -28,6 +29,7 @@ interface TextCustomProps {
   height?: Responsive<LineHeight>;
   color?: TextColor;
   leader?: boolean;
+  align?: Responsive<TextAlign>;
   children: ReactNode;
 }
 
@@ -45,6 +47,8 @@ const mapToken = (prop: string, value: any) => {
       return `var(--line-height-${value})`;
     case 'color':
       return `var(--${value})`;
+    case 'align':
+      return value;
     default:
       return value;
   }
@@ -72,6 +76,7 @@ export const Text = <T extends ElementType = 'div'>({
   color,
   className,
   leader = false,
+  align,
   style,
   ...restProps
 }: Props<T>) => {
@@ -81,6 +86,7 @@ export const Text = <T extends ElementType = 'div'>({
     ...getResponsiveVars('size', size),
     ...getResponsiveVars('weight', weight),
     ...getResponsiveVars('height', height),
+    ...getResponsiveVars('align', align),
     '--txt-color': mapToken('color', color),
   } as CSSProperties;
 
