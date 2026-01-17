@@ -4,12 +4,14 @@ import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
 import { EmployeePage } from '@/pages/EmployeePage';
 import { EmployeesPage } from '@/pages/EmployeesPage';
+import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage';
 import { HomePage } from '@/pages/HomePage';
 import { InvoicesPage } from '@/pages/InvoicesPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { NewDepartmentPage } from '@/pages/NewDepartmentPage';
 import { NewEmployeePage } from '@/pages/NewEmployeePage';
 import { PromocodesPage } from '@/pages/PromocodesPage';
+import { ResetPasswordPage } from '@/pages/ResetPasswordPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { TripPage } from '@/pages/TripPage';
 import { TripsPage } from '@/pages/TripsPage';
@@ -19,6 +21,8 @@ import { ComponentType, LazyExoticComponent } from 'react';
 type RoutePath =
   | '/'
   | 'auth'
+  | 'authForgot'
+  | 'authReset'
   | 'employees'
   | 'employee'
   | 'employeeNew'
@@ -40,6 +44,8 @@ type PageComponent =
 const routeConfig: Record<RoutePath, PageComponent> = {
   '/': HomePage,
   auth: LoginPage,
+  authForgot: ForgotPasswordPage,
+  authReset: ResetPasswordPage,
   departmentId: DepartmentPage,
   departments: DepartmentsPage,
   employees: EmployeesPage,
@@ -58,6 +64,8 @@ const routeConfig: Record<RoutePath, PageComponent> = {
 const routePathMap: Record<RoutePath, string> = {
   '/': PATHS.home,
   auth: PATHS.auth,
+  authForgot: PATHS.forgotPassword,
+  authReset: PATHS.resetPassword,
   employees: PATHS.employees,
   employee: PATHS.employee,
   employeeEdit: PATHS.employeeEdit,

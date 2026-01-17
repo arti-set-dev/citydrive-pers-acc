@@ -1,6 +1,6 @@
 import { NotificationButton } from '@/entities/Notification';
 import { AddBalance } from '@/features/add-balance';
-import { Login } from '@/features/login';
+import { LogoutButton } from '@/features/login';
 import { getHStack } from '@/shared/lib/stack/flex/getHStack';
 import { Card } from '@/shared/ui/Card/Card';
 import { HStack } from '@/shared/ui/Stack';
@@ -21,7 +21,7 @@ export const Navbar = () => {
       <AddBalance />
       <HStack gap={4}>
         <NotificationButton />
-        <Login />
+        <LogoutButton />
       </HStack>
     </Card>
   );

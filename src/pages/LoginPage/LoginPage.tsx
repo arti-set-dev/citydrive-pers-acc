@@ -1,12 +1,10 @@
 import { ImportDataAboutCompanyButton } from '@/features/import-data-about-company';
+import { LoginForm } from '@/features/login';
+import { getRouteForgotAuthPassword } from '@/shared/lib/router/paths';
 import { getFlex } from '@/shared/lib/stack/flex/getFlex';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { Logo } from '@/shared/ui/Logo/Logo';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+import { HStack } from '@/shared/ui/Stack';
 
 const stack = getFlex({
   align: 'center',
@@ -18,19 +16,11 @@ const LoginPage = () => {
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <Card p={0} width={540}>
-        <VStack as="form" gap={24}>
-          <Logo />
-          <Text align="center" weight="medium" size={28}>
-            Вход в личный кабинет
-          </Text>
-          <VStack gap={16}>
-            <Field type="email" value="" placeholder="Email" />
-            <Field type="password" value="" placeholder="Пароль" />
-          </VStack>
-          <Button offset={8}>Войти</Button>
-        </VStack>
+        <LoginForm />
         <HStack justify="space-between">
-          <AppLink to="">Забыли пароль</AppLink>
+          <AppLink variant="regular" to={getRouteForgotAuthPassword()}>
+            Забыли пароль
+          </AppLink>
           <ImportDataAboutCompanyButton />
         </HStack>
       </Card>
