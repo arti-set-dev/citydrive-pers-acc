@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import 'webpack-dev-server';
 import { buildRules } from './config/build/buildRules.ts';
-import { dirname } from './config/build/utils/dirname.ts';
+import { dirname } from './scripts/dirname.ts';
 import { buildPlugins } from './config/build/buildPlugins.ts';
 import { buildDevServer } from './config/build/buildDevServer.ts';
 import { buildResolves } from './config/build/buildResolves.ts';
