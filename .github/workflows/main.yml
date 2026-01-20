@@ -48,6 +48,9 @@ jobs:
           LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
         continue-on-error: true
 
+      - name: Fix Permissions for Lost Pixel folder
+        run: sudo chown -R $USER:$USER .lostpixel
+
       - name: Generate Lost Pixel HTML Report
         run: npx reg-cli .lostpixel/current .lostpixel/baseline .lostpixel/difference -R ./.lostpixel/report.html
 
