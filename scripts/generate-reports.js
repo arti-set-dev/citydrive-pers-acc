@@ -1,5 +1,8 @@
-const fs = require('fs-extra');
-const path = require('path');
+import fs from 'fs-extra';
+import path from 'path';
+import { dirname } from './dirname.ts';
+
+const __dirname = dirname(import.meta.url);
 
 const REPORTS_DIR = path.resolve(__dirname, '..', 'reports');
 
