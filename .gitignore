@@ -2,7 +2,6 @@
 node_modules
 .idea
 /storybook-static
-/reports/unit
 /jest-report
 .lostpixel
 .lostpixel/report.html
@@ -18,7 +17,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 /coverage
-/reports
 .nyc_output
 
 .env
