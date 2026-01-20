@@ -21,6 +21,6 @@
     "src",
     "eslint.config.ts",
     "stylelint.config.mjs",
-    ".storybook/**/*.ts"
-, "scripts/dirname.ts", ".storybook/preview.tsx"  ]
+    "config/.storybook/**/*.ts"
+, "scripts/dirname.ts", "config/.storybook/preview.tsx"  ]
 }

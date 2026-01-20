@@ -16,8 +16,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:report": "cross-env GENERATE_REPORT=true jest",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006 -c ./config/.storybook",
+    "build-storybook": "storybook build -c ./config/.storybook"
   },
   "keywords": [],
   "author": "",

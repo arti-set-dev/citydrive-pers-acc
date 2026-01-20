@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-webpack5';
 import { MemoryRouter } from 'react-router-dom';
-import '../src/app/styles/global.scss';
+import '../../src/app/styles/global.scss';
 
 const preview: Preview = {
   parameters: {

@@ -1,11 +1,11 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
-import { dirname } from '../scripts/dirname.ts';
+import { dirname } from '../../scripts/dirname.ts';
 
 const __dirname = dirname(import.meta.url);
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../../src/**/*.mdx', '../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-a11y',
@@ -13,12 +13,12 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
   ],
   framework: '@storybook/react-webpack5',
-  staticDirs: ['../public', '../src/shared/assets/images'],
+  staticDirs: ['../../public', '../../src/shared/assets/images'],
   webpackFinal: async (config) => {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
+        '@': path.resolve(__dirname, '../../src'),
       };
     }
     if (config.module?.rules) {
