@@ -5,6 +5,8 @@ node_modules
 .loki/report.html
 .loki/report.json
 /reports/unit
+.lostpixel
+.lostpixel/report.html
 
 .cache/
 *.log
