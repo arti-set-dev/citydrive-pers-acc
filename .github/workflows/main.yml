@@ -42,9 +42,20 @@ jobs:
         run: npm run storybook:build
         continue-on-error: true
 
-      - name: Screenshot Tests
-        run: npm run screen-test:report
+      - name: Lost Pixel Visual Regression
+        uses: lost-pixel/lost-pixel@v3.22.0
+        env:
+          LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
         continue-on-error: true
+
+      - name: Generate Lost Pixel HTML Report
+        run: npx reg-cli .lostpixel/current .lostpixel/baseline .lostpixel/difference -R ./.lostpixel/report.html
+
+      - name: Upload Lost Pixel Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lost-pixel-visual-report
+          path: .lostpixel/
 
       - name: Generate Global Report
         run: npm run generate-reports
