@@ -1,1 +1,26 @@
-{"failedItems":[],"newItems":["shared-app-image--primary.png","shared-app-link--active.png","shared-app-link--bg-primary.png","shared-app-link--brand.png","shared-app-link--outline.png","shared-app-link--regular.png"],"deletedItems":[],"passedItems":[],"expectedItems":[],"actualItems":["shared-app-image--primary.png","shared-app-link--active.png","shared-app-link--bg-primary.png","shared-app-link--brand.png","shared-app-link--outline.png","shared-app-link--regular.png"],"diffItems":[],"actualDir":"./.lostpixel\\current","expectedDir":"./.lostpixel\\baseline","diffDir":"./.lostpixel\\difference"}
+{
+  "failedItems": [],
+  "newItems": [
+    "shared-app-image--primary.png",
+    "shared-app-link--active.png",
+    "shared-app-link--bg-primary.png",
+    "shared-app-link--brand.png",
+    "shared-app-link--outline.png",
+    "shared-app-link--regular.png"
+  ],
+  "deletedItems": [],
+  "passedItems": [],
+  "expectedItems": [],
+  "actualItems": [
+    "shared-app-image--primary.png",
+    "shared-app-link--active.png",
+    "shared-app-link--bg-primary.png",
+    "shared-app-link--brand.png",
+    "shared-app-link--outline.png",
+    "shared-app-link--regular.png"
+  ],
+  "diffItems": [],
+  "actualDir": "./.lostpixel\\current",
+  "expectedDir": "./.lostpixel\\baseline",
+  "diffDir": "./.lostpixel\\difference"
+}

@@ -36,6 +36,7 @@ interface TextCustomProps {
 type Props<T extends ElementType> = { as?: T } & TextCustomProps &
   Omit<ComponentPropsWithoutRef<T>, keyof TextCustomProps | 'as'>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapToken = (prop: string, value: any) => {
   if (!value) return undefined;
   switch (prop) {
@@ -54,6 +55,7 @@ const mapToken = (prop: string, value: any) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getResponsiveVars = (prop: string, value?: Responsive<any>) => {
   if (!value) return {};
   if (typeof value !== 'object') {

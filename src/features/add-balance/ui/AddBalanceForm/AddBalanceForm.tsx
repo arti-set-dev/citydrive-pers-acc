@@ -6,7 +6,7 @@ import { Text } from '@/shared/ui/Text/Text';
 import { useState } from 'react';
 
 export const AddBalanceForm = () => {
-  const [sumResult, setSumResult] = useState('');
+  const [sumResult] = useState('');
   return (
     <VStack gap={24}>
       <Text as="h2" weight="bold" size={32}>

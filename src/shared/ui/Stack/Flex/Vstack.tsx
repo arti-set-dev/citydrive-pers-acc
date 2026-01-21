@@ -16,7 +16,8 @@ type VStackProps<T extends ElementType = 'div'> = Omit<
         p?: Responsive<GapToken>;
         m?: Responsive<GapToken>;
       }
-    : {}),
+    : // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+      {}),
   'direction'
 > &
   Omit<
@@ -28,6 +29,7 @@ export const VStack = <T extends ElementType = 'div'>(
   props: VStackProps<T>,
 ) => (
   <Flex
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     {...(props as any)}
     direction="column"
     align={props.align ?? 'stretch'}

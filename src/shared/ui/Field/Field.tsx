@@ -29,6 +29,7 @@ export const Field = ({
   type = 'text',
   icon: Icon,
   fullWidth = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
   defaultValue,
   ...props
 }: FieldProps) => {

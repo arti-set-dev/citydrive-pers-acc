@@ -10,7 +10,6 @@ export const buildPlugins = (
   paths: BuildPaths,
   env: BuildEnv,
 ): webpack.WebpackPluginInstance[] => {
-  const isProd = env.mode === 'production';
   const plugins: webpack.WebpackPluginInstance[] = [
     new HtmlWebpackPlugin({
       template: paths.html,

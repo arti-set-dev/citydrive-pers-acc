@@ -9,8 +9,10 @@ import clsx from 'clsx';
 
 export const Grid = ({ cols, gap, children, className }: GridProps) => {
   const getResponsiveVars = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prop: Responsive<any> | undefined,
     name: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mapper?: (v: any) => string | number,
   ) => {
     if (!prop) return {};

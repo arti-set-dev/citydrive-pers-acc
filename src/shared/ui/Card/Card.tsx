@@ -54,8 +54,10 @@ type PolymorphicCardProps<T extends ElementType> = CardProps<T> &
   Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>;
 
 const getResponsiveVars = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prop: Responsive<any> | undefined,
   name: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mapper?: (v: any) => string | number,
 ) => {
   if (prop === undefined || prop === null) return {};

@@ -5,7 +5,10 @@ import { dirname } from '../../scripts/dirname.ts';
 const __dirname = dirname(import.meta.url);
 
 const config: StorybookConfig = {
-  stories: ['../../src/**/*.mdx', '../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../../src/**/*.mdx',
+    '../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-a11y',
@@ -22,6 +25,7 @@ const config: StorybookConfig = {
       };
     }
     if (config.module?.rules) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       config.module.rules = config.module.rules.filter((rule: any) => {
         const test = rule.test?.toString();
         if (!test) return true;

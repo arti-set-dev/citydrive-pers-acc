@@ -12,7 +12,15 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default defineConfig([
   {
-    ignores: ['build/**', 'node_modules/**', '*.config.js'],
+    ignores: [
+      'build/**',
+      'node_modules/**',
+      'jest-report',
+      '*.config.js',
+      '*.config.mjs',
+      'storybook-static/**',
+      'scripts/*.js',
+    ],
   },
   js.configs.recommended,
   tseslint.configs.recommended,

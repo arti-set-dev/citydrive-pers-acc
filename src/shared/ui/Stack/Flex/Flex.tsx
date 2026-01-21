@@ -34,7 +34,9 @@ export const Flex = <T extends ElementType = 'div'>({
   ...restProps
 }: FlexComponentProps<T>) => {
   const getSafeValue = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prop: Responsive<any> | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mapper?: (v: any) => string,
   ) => {
     if (prop === undefined) return null;
@@ -76,12 +78,15 @@ export const Flex = <T extends ElementType = 'div'>({
   const isListElement = Component === 'ul' || Component === 'ol';
 
   const paddingVal = isListElement
-    ? getSafeValue((restProps as any).p, (v) => GAP_VALUES[v as GapToken])
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      getSafeValue((restProps as any).p, (v) => GAP_VALUES[v as GapToken])
     : null;
   const marginVal = isListElement
-    ? getSafeValue((restProps as any).m, (v) => GAP_VALUES[v as GapToken])
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      getSafeValue((restProps as any).m, (v) => GAP_VALUES[v as GapToken])
     : null;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const style: React.CSSProperties & Record<string, any> = {
     // Gap
     '--df-gap': typeof gapVal === 'object' ? gapVal?.base : gapVal,

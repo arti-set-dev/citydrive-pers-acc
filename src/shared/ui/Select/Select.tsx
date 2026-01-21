@@ -28,6 +28,7 @@ interface SelectOptions<T extends IOption> {
   placeholder?: string;
   className?: string;
   selected?: T | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange?: (e: T | null | any) => void;
   disabled?: boolean;
   variant?: ButtonVariant;

@@ -16,7 +16,8 @@ type HStackProps<T extends ElementType = 'div'> = Omit<
         p?: Responsive<GapToken>;
         m?: Responsive<GapToken>;
       }
-    : {}),
+    : // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+      {}),
   'direction'
 > &
   Omit<
@@ -27,5 +28,6 @@ type HStackProps<T extends ElementType = 'div'> = Omit<
 export const HStack = <T extends ElementType = 'div'>(
   props: HStackProps<T>,
 ) => (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <Flex {...(props as any)} direction="row" align={props.align ?? 'center'} />
 );

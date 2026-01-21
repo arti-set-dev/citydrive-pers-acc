@@ -3,8 +3,10 @@ import cls from './Grid.module.scss';
 
 export function getGrid(options: Omit<GridProps, 'children'> = {}) {
   const { cols, gap } = options;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const styles: React.CSSProperties & Record<string, any> = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setVars = (prefix: string, value: any, isToken = false) => {
     if (!value) return;
 

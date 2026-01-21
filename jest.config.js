@@ -9,13 +9,16 @@ export default {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
   reporters: [
-    "default",
-    ["jest-html-reporters", {
-      "publicPath": "./jest-report",
-      "filename": "report.html",     
-      "openReport": process.env.GENERATE_REPORT === 'true' ?? false,           
-      "pageTitle": "Ситидрайв личный кабинет - тесты",
-      "expand": true                
-    }]
-  ]
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: './jest-report',
+        filename: 'report.html',
+        openReport: process.env.GENERATE_REPORT === 'true' ?? false,
+        pageTitle: 'Ситидрайв личный кабинет - тесты',
+        expand: true,
+      },
+    ],
+  ],
 };

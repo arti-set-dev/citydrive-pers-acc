@@ -20,7 +20,10 @@
     "config",
     "src",
     "eslint.config.ts",
+    "lostpixel.config.ts",
     "stylelint.config.mjs",
-    "config/.storybook/**/*.ts"
-, "scripts/dirname.ts", "config/.storybook/preview.tsx"  ]
+    "config/.storybook/**/*.ts",
+    "scripts/dirname.ts",
+    "config/.storybook/preview.tsx"
+  ]
 }

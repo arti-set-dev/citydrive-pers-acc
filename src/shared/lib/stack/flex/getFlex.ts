@@ -4,8 +4,10 @@ import cls from './Flex.module.scss';
 export function getFlex(options: Omit<FlexProps, 'children'> = {}) {
   const { direction, align, gap, justify } = options;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const styles: React.CSSProperties & Record<string, any> = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setVars = (prefix: string, value: any, isToken = false) => {
     if (value === undefined || value === null) return;
 
