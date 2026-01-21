@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 const GlobalErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
