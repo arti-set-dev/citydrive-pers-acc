@@ -22,7 +22,7 @@
     "screen-test:update": "npx lost-pixel update",
     "reg-cli": "reg-cli .lostpixel/current .lostpixel/baseline .lostpixel/difference -R ./.lostpixel/report.html",
     "screen-test:report": "run-s -c screen-test reg-cli",
-    "npm run generate-reports": "node scripts/generate-reports.js",
+    "generate-reports": "node scripts/generate-reports.js",
     "prepare": "husky"
   },
   "keywords": [],
