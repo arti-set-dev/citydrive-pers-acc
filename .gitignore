@@ -2,9 +2,8 @@
 node_modules
 .idea
 /storybook-static
-.loki/report.html
-.loki/report.json
 /reports/unit
+/jest-report
 .lostpixel
 .lostpixel/report.html
 
@@ -20,7 +19,6 @@ yarn-error.log*
 
 /coverage
 /reports
-/.loki
 .nyc_output
 
 .env

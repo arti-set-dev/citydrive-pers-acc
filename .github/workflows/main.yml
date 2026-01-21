@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Production Build
+        run: npm run build # Если упадет здесь - пайплайн встанет
+
+      - name: Linting
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Prettier
+        run: npm run prettier
+        continue-on-error: true
+
+      - name: Unit Tests
+        run: npm run test:report
+        continue-on-error: true
+
+      - name: Storybook Build
+        run: npm run storybook:build
+        continue-on-error: true
+
+      - name: Screenshot Tests
+        run: npm run screen-test:report
+        continue-on-error: true
+
+      - name: Generate Global Report
+        run: npm run generate-reports
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./reports
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

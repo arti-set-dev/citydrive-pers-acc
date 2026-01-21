@@ -11,7 +11,7 @@ export default {
   reporters: [
     "default",
     ["jest-html-reporters", {
-      "publicPath": "./html-report",
+      "publicPath": "./jest-report",
       "filename": "report.html",     
       "openReport": process.env.GENERATE_REPORT === 'true' ?? false,           
       "pageTitle": "Ситидрайв личный кабинет - тесты",
