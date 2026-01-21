@@ -16,6 +16,7 @@ export default defineConfig([
       'build/**',
       'node_modules/**',
       'jest-report',
+      'json-server/**',
       '*.config.js',
       '*.config.mjs',
       'storybook-static/**',

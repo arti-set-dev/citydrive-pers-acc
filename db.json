@@ -1,0 +1,208 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Костин Герман Феликсович",
+      "role": "admin",
+      "department": "Отдел продаж",
+      "balance": 15000,
+      "limit": 100000,
+      "spent": 2000,
+      "status": "active",
+      "phone": "+79999999999",
+      "email": "email@mail.com",
+      "experimental_features": true,
+      "notifications": {
+        "new_employees": false
+      },
+      "department_id": "1",
+      "time": {
+        "start": "12:00",
+        "end": "18:00"
+      },
+      "days": [1, 2, 3, 4, 5, 6, 7],
+      "cars": ["comfort", "economy", "premium"],
+      "city": [1, 2, 15, 23]
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "name": "Отдел продаж",
+      "limit": 1000000,
+      "spent": 10000,
+      "employees_ids": ["1"]
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "employee_id": "1",
+      "date": "2024-05",
+      "number": 123,
+      "legal_entity": "ООО Ситидрайв",
+      "INN": 6473743637,
+      "current_account": 6463636,
+      "bank": "ПАО Сьербанк",
+      "BIC": 3838482929,
+      "period": {
+        "from": "2024-05",
+        "to": "2025-07"
+      },
+      "price": 100000,
+      "VAT": 22
+    },
+    {
+      "id": "2",
+      "employee_id": "1",
+      "date": "2024-05",
+      "number": 123,
+      "legal_entity": "ООО Ситидрайв",
+      "INN": 6473743637,
+      "current_account": 6463636,
+      "bank": "ПАО Сьербанк",
+      "BIC": 3838482929,
+      "period": {
+        "from": "2024-05",
+        "to": "2025-07"
+      },
+      "price": 200000,
+      "VAT": 22
+    }
+  ],
+  "notifications": [
+    {
+      "employee_id": "1",
+      "message": "Ваш сотрудник был уволен"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "role": "employer"
+    }
+  ],
+  "routes": [
+    {
+      "id": "1",
+      "employee_id": "1",
+      "time_start": "15:32",
+      "distance": 24,
+      "date": "2024-09-18",
+      "price": 2186,
+      "promocode_id": "1",
+      "status": "active",
+      "car_id": "1",
+      "rate_id": "1",
+      "parking": 10,
+      "fines_id": "1",
+      "start": {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва"
+      },
+      "end": {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва"
+      }
+    }
+  ],
+  "routPaths": {
+    "1": [
+      {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва",
+        "time": "15:32",
+        "coords": [55.75, 37.58]
+      },
+      {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва",
+        "time": "15:32",
+        "coords": [55.75, 37.58]
+      },
+      {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва",
+        "time": "15:32",
+        "coords": [55.75, 37.58]
+      },
+      {
+        "address": "Ул. Пенькова, 28",
+        "city": "Москва",
+        "time": "15:32",
+        "coords": [55.75, 37.58]
+      }
+    ]
+  },
+  "rate": [
+    {
+      "id": "1",
+      "name": "minute",
+      "price": 6
+    },
+    {
+      "id": "2",
+      "name": "hour",
+      "price": 150
+    }
+  ],
+  "fines": [
+    {
+      "route_id": "1",
+      "value": 2400,
+      "count": 2
+    }
+  ],
+  "promocodes": [
+    {
+      "id": "1",
+      "value": "text1",
+      "discount": 500
+    },
+    {
+      "id": "2",
+      "value": "text2",
+      "discount": 1000
+    }
+  ],
+  "cars": [
+    {
+      "id": "1",
+      "model": "Mercedes-Benz E-Class",
+      "number": "M309KP197",
+      "category": "premium"
+    },
+    {
+      "id": "2",
+      "model": "Kia Rio",
+      "number": "M309KP197",
+      "category": "economy"
+    },
+    {
+      "id": "3",
+      "model": "Skoda Yeti",
+      "number": "M309KP197",
+      "category": "comfort"
+    }
+  ],
+  "stats": [
+    {
+      "employee_id": "1",
+      "date": "2024-06",
+      "trips": 36,
+      "spent": 768,
+      "remaining": 3368
+    },
+    {
+      "employee_id": "1",
+      "date": "2024-05",
+      "trips": 42,
+      "spent": 900,
+      "remaining": 2500
+    }
+  ]
+}
