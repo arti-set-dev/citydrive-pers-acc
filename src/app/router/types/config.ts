@@ -1,4 +1,3 @@
-import { DepartmentEditPage } from '@/pages/DepartmentEditPage';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
@@ -18,68 +17,101 @@ import { TripsPage } from '@/pages/TripsPage';
 import { PATHS } from '@/shared/lib/router/paths';
 import { ComponentType, LazyExoticComponent } from 'react';
 
-type RoutePath =
-  | '/'
-  | 'auth'
-  | 'authForgot'
-  | 'authReset'
-  | 'employees'
-  | 'employee'
-  | 'employeeNew'
-  | 'employeeEdit'
-  | 'departments'
-  | 'departmentNew'
-  | 'departmentId'
-  | 'departmentEdit'
-  | 'trips'
-  | 'trip'
-  | 'invoices'
-  | 'promocodes'
-  | 'settings';
-
-type PageComponent =
-  | ComponentType<object>
-  | LazyExoticComponent<ComponentType<object>>;
-
-const routeConfig: Record<RoutePath, PageComponent> = {
-  '/': HomePage,
-  auth: LoginPage,
-  authForgot: ForgotPasswordPage,
-  authReset: ResetPasswordPage,
-  departmentId: DepartmentPage,
-  departments: DepartmentsPage,
-  employees: EmployeesPage,
-  employee: EmployeePage,
-  employeeEdit: EmployeeEditPage,
-  employeeNew: NewEmployeePage,
-  departmentNew: NewDepartmentPage,
-  departmentEdit: DepartmentEditPage,
-  invoices: InvoicesPage,
-  promocodes: PromocodesPage,
-  settings: SettingsPage,
-  trip: TripPage,
-  trips: TripsPage,
+export type AppRouteProps = {
+  path: string;
+  element: ComponentType<object> | LazyExoticComponent<ComponentType<object>>;
+  authOnly?: boolean;
+  guestOnly?: boolean;
 };
 
-const routePathMap: Record<RoutePath, string> = {
-  '/': PATHS.home,
-  auth: PATHS.auth,
-  authForgot: PATHS.forgotPassword,
-  authReset: PATHS.resetPassword,
-  employees: PATHS.employees,
-  employee: PATHS.employee,
-  employeeEdit: PATHS.employeeEdit,
-  employeeNew: PATHS.employeeNew,
-  departments: PATHS.departments,
-  departmentId: PATHS.department,
-  departmentEdit: PATHS.departmentEdit,
-  departmentNew: PATHS.departmentNew,
-  invoices: PATHS.invoices,
-  promocodes: PATHS.promocodes,
-  trip: PATHS.trip,
-  trips: PATHS.trips,
-  settings: PATHS.settings,
+export type AppRouteNames = keyof typeof PATHS;
+
+const routeConfig: Record<AppRouteNames, AppRouteProps> = {
+  auth: {
+    path: PATHS.auth,
+    element: LoginPage,
+    guestOnly: true,
+  },
+  home: {
+    path: PATHS.home,
+    element: HomePage,
+    authOnly: true,
+  },
+  forgotPassword: {
+    path: PATHS.forgotPassword,
+    element: ForgotPasswordPage,
+    guestOnly: true,
+  },
+  resetPassword: {
+    path: PATHS.resetPassword,
+    element: ResetPasswordPage,
+    guestOnly: true,
+  },
+  department: {
+    path: PATHS.department,
+    element: DepartmentPage,
+    authOnly: true,
+  },
+  departments: {
+    path: PATHS.departments,
+    element: DepartmentsPage,
+    authOnly: true,
+  },
+  employees: {
+    path: PATHS.employees,
+    element: EmployeePage,
+    authOnly: true,
+  },
+  employee: {
+    path: PATHS.employees,
+    element: EmployeesPage,
+    authOnly: true,
+  },
+  employeeEdit: {
+    path: PATHS.employeeEdit,
+    element: EmployeeEditPage,
+    authOnly: true,
+  },
+  employeeNew: {
+    path: PATHS.employeeNew,
+    element: NewEmployeePage,
+    authOnly: true,
+  },
+  departmentNew: {
+    path: PATHS.departmentNew,
+    element: NewDepartmentPage,
+    authOnly: true,
+  },
+  departmentEdit: {
+    path: PATHS.employeeEdit,
+    element: EmployeeEditPage,
+    authOnly: true,
+  },
+  invoices: {
+    path: PATHS.invoices,
+    element: InvoicesPage,
+    authOnly: true,
+  },
+  promocodes: {
+    path: PATHS.promocodes,
+    element: PromocodesPage,
+    authOnly: true,
+  },
+  settings: {
+    path: PATHS.settings,
+    element: SettingsPage,
+    authOnly: true,
+  },
+  trip: {
+    path: PATHS.trip,
+    element: TripPage,
+    authOnly: true,
+  },
+  trips: {
+    path: PATHS.trips,
+    element: TripsPage,
+    authOnly: true,
+  },
 };
 
-export { routeConfig, routePathMap };
-export type { RoutePath };
+export { routeConfig };

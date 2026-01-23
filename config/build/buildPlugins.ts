@@ -24,6 +24,9 @@ export const buildPlugins = (
       allowAsyncCycles: false,
       cwd: process.cwd(),
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
   ];
 
   if (env.analyze) {

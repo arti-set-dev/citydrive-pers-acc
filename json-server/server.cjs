@@ -14,7 +14,19 @@ server.use((req, res, next) => {
 });
 
 // Авторизация
+server.post('/auth', (req, res) => {
+  const { email, password } = req.body;
+  // Имитируем проверку базы данных
+  if (email === 'admin@mail.ru' && password === '123') {
+    return res.json({ token: 'my-secret-token' });
+  }
+  return res.status(401).json({ error: 'Неверный логин или пароль' });
+});
+
+// Middleware проверки токена (оставляем для других роутов)
 server.use((req, res, next) => {
+  if (req.path === '/auth') return next(); // Пропускаем логин
+
   if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) {
     const authHeader = req.headers['authorization'];
     if (authHeader === 'Bearer my-secret-token') {

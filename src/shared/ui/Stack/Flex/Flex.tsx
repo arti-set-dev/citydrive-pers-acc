@@ -152,7 +152,12 @@ export const Flex = <T extends ElementType = 'div'>({
   };
 
   return (
-    <Component ref={ref} className={clsx(styles.Flex, className)} style={style}>
+    <Component
+      ref={ref}
+      className={clsx(styles.Flex, className)}
+      style={style}
+      {...restProps}
+    >
       {children}
     </Component>
   );

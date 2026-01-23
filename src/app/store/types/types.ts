@@ -1,5 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+import { LoginSchema } from '@/features/login';
+
 export interface StateSchema {
   // Статические редюсеры
-  // Асинхронные редюсеры (делаем их необязательными)
+  // Асинхронные редюсеры
+  login?: LoginSchema;
 }

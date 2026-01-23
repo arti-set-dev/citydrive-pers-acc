@@ -1,15 +1,24 @@
-import { ComponentType, InputHTMLAttributes, SVGProps, useState } from 'react';
+import {
+  ChangeEvent,
+  ComponentType,
+  InputHTMLAttributes,
+  SVGProps,
+  useState,
+} from 'react';
 import styles from './Field.module.scss';
 import clsx from 'clsx';
 import { IOption, Select } from '../Select/Select';
 import { HStack } from '../Stack';
 import { PatternFormat } from 'react-number-format';
 
-interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface FieldProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'onChange'
+> {
   value: string;
   placeholder?: string;
   readOnly?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: string) => void;
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   type?: 'text' | 'search' | 'number' | 'tel' | 'password' | 'email';
   fullWidth?: boolean;
@@ -37,12 +46,16 @@ export const Field = ({
     PHONE_CODES[0] ?? null,
   );
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e.target.value);
+  };
+
   const inputEl = (
     <input
       value={value}
       type={type}
       readOnly={readOnly}
-      onChange={onChange}
+      onChange={handleChange}
       placeholder={placeholder}
       className={styles.Field}
       {...props}
@@ -68,7 +81,7 @@ export const Field = ({
               const event = {
                 target: { value: values.value },
               } as React.ChangeEvent<HTMLInputElement>;
-              onChange(event);
+              handleChange(event);
             }
           }}
           className={styles.Field}
@@ -84,7 +97,7 @@ export const Field = ({
           value={value}
           type={type}
           readOnly={readOnly}
-          onChange={onChange}
+          onChange={handleChange}
           placeholder={placeholder}
           className={clsx(styles.Field, { [styles.fullWidth]: fullWidth })}
           {...props}

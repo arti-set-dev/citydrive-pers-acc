@@ -23,3 +23,6 @@ declare module '*.webp' {
   const content: string;
   export default content;
 }
+
+type RootState = import('../store/store').RootState;
+type AppDispatch = import('../store/store').AppDispatch;

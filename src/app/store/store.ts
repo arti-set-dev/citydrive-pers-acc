@@ -7,12 +7,16 @@ const staticReducers = {
   [baseApi.reducerPath]: baseApi.reducer,
 };
 
-export const reducerManager = createReducerManager(staticReducers);
+const reducerManager = createReducerManager(staticReducers);
 
 export const store = configureStore({
   reducer: reducerManager.reduce as Reducer,
   middleware: (getDefault) => getDefault().concat(baseApi.middleware),
 });
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+store.reducerManager = reducerManager;
 
 export type RootState = StateSchema;
 export type AppDispatch = typeof store.dispatch;
