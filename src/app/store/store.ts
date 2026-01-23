@@ -1,10 +1,14 @@
-import { configureStore, Reducer } from '@reduxjs/toolkit';
+import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { createReducerManager } from './reducerManager';
 import { baseApi } from '@/shared/api/baseApi';
 import { StateSchema } from './types/types';
+import { employeeReducer } from '@/entities/Employee';
+import { loginReducer } from '@/features/login';
 
-const staticReducers = {
+const staticReducers: ReducersMapObject<StateSchema> = {
   [baseApi.reducerPath]: baseApi.reducer,
+  employee: employeeReducer,
+  login: loginReducer,
 };
 
 const reducerManager = createReducerManager(staticReducers);

@@ -59,12 +59,12 @@ const routeConfig: Record<AppRouteNames, AppRouteProps> = {
   },
   employees: {
     path: PATHS.employees,
-    element: EmployeePage,
+    element: EmployeesPage,
     authOnly: true,
   },
   employee: {
-    path: PATHS.employees,
-    element: EmployeesPage,
+    path: PATHS.employee,
+    element: EmployeePage,
     authOnly: true,
   },
   employeeEdit: {

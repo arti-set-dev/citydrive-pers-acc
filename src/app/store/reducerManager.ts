@@ -14,16 +14,17 @@ export interface ReducerManager {
 }
 
 export function createReducerManager(
-  initialReducers: ReducersMapObject,
+  initialReducers: ReducersMapObject<StateSchema>,
 ): ReducerManager {
-  const reducers = { ...initialReducers };
+  const reducers: ReducersMapObject<StateSchema> = { ...initialReducers };
+
   let combinedReducer = combineReducers(reducers);
-  let keysToRemove: string[] = [];
+  let keysToRemove: Array<keyof StateSchema> = [];
 
   return {
     getReducerMap: () => reducers,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    reduce: (state: any, action: any) => {
+
+    reduce: (state: StateSchema, action: UnknownAction) => {
       if (keysToRemove.length > 0) {
         state = { ...state };
         for (const key of keysToRemove) {
@@ -31,15 +32,23 @@ export function createReducerManager(
         }
         keysToRemove = [];
       }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       return combinedReducer(state, action);
     },
-    add: (key: string, reducer: Reducer) => {
+
+    add: (key: keyof StateSchema, reducer: Reducer) => {
       if (!key || reducers[key]) return;
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       reducers[key] = reducer;
       combinedReducer = combineReducers(reducers);
     },
-    remove: (key: string) => {
+
+    remove: (key: keyof StateSchema) => {
       if (!key || !reducers[key]) return;
+
       delete reducers[key];
       keysToRemove.push(key);
       combinedReducer = combineReducers(reducers);

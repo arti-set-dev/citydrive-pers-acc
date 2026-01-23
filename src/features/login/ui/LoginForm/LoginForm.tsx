@@ -1,14 +1,10 @@
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch/useAppDispatch';
-import { useAsyncReducer } from '@/shared/hooks/useAsyncReducer/useAsyncReducer';
 import { Button } from '@/shared/ui/Button/Button';
 import { Field } from '@/shared/ui/Field/Field';
 import { Logo } from '@/shared/ui/Logo/Logo';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
-import {
-  loginActions,
-  loginReducer,
-} from '../../model/slices/loginSlice/loginSlice';
+import { loginActions } from '../../model/slices/loginSlice/loginSlice';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import {
   getLoginEmail,
@@ -19,10 +15,10 @@ import { useLoginMutation } from '../../api/loginApi/loginApi';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getRouteHome } from '@/shared/lib/router/paths';
+import { employeeActions } from '@/entities/Employee';
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
-  useAsyncReducer('login', loginReducer, { removeAfterUnmount: false });
   const userName = useAppSelector(getLoginName);
   const userEmail = useAppSelector(getLoginEmail);
   const userPassword = useAppSelector(getLoginPassword);
@@ -52,7 +48,9 @@ export const LoginForm = () => {
         isAuth: true,
       }).unwrap();
       localStorage.setItem('token', result.token);
+      localStorage.setItem('userId', result.id);
       dispatch(loginActions.setIsAuth(true));
+      dispatch(employeeActions.setEmployeeData(result));
       const from = location.state?.from?.pathname || getRouteHome();
       navigate(from, { replace: true });
     } catch (err) {

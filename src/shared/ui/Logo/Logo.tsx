@@ -11,7 +11,18 @@ interface LogoProps {
 
 export const Logo = ({ className }: LogoProps) => {
   const { pathname } = useLocation();
-  const isHomePage = pathname === PATHS.home;
+  let withoutLink;
+
+  switch (pathname) {
+    case PATHS.home:
+    case PATHS.auth:
+    case PATHS.resetPassword:
+    case PATHS.forgotPassword:
+      withoutLink = true;
+      break;
+    default:
+      withoutLink = false;
+  }
 
   const content = (
     <VStack as="span" align="center" gap={8} className={className}>
@@ -21,7 +32,7 @@ export const Logo = ({ className }: LogoProps) => {
       </Text>
     </VStack>
   );
-  return isHomePage ? (
+  return withoutLink ? (
     content
   ) : (
     <Link className={styles.LogoLink} to="/">

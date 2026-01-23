@@ -5,8 +5,14 @@ import { Text } from '@/shared/ui/Text/Text';
 import { useState } from 'react';
 import { AddBalanceForm } from '../AddBalanceForm/AddBalanceForm';
 import { BrowserView, MobileView } from 'react-device-detect';
+import { useGetBalanceQuery } from '../../api/balanceApi';
+import { skipToken } from '@reduxjs/toolkit/query';
 
-export const AddBalance = () => {
+interface AddBalanceProps {
+  id?: string;
+}
+
+export const AddBalance = ({ id }: AddBalanceProps) => {
   const [isOpenModalFormWithAddBalance, setIsOpenModalFormWithAddBalance] =
     useState(false);
   const onOpenModalFormWithAddBalance = () => {
@@ -16,6 +22,7 @@ export const AddBalance = () => {
   const onCloseModalFormWithAddBalance = () => {
     setIsOpenModalFormWithAddBalance(false);
   };
+  const { data, isLoading } = useGetBalanceQuery(id ?? skipToken);
   return (
     <HStack gap={4}>
       <Flex direction={{ base: 'row', sm: 'column' }}>
@@ -23,7 +30,7 @@ export const AddBalance = () => {
           Баланс:
         </Text>
         <Text size={18} weight="bold">
-          15450 р
+          {isLoading ? 'Загрузка...' : `${data?.balance} р`}
         </Text>
       </Flex>
       <MobileView>
