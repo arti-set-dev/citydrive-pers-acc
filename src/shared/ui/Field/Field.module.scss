@@ -17,6 +17,17 @@
     cursor: not-allowed;
     opacity: var(--opacity-50);
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 
 .Wrapper {

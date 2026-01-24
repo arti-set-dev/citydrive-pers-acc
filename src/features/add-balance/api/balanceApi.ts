@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/baseApi';
-import { Balance } from '../model/types/types';
+import { AddBalanceRequest, Balance } from '../model/types/types';
 
 export const balanceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,8 +8,21 @@ export const balanceApi = baseApi.injectEndpoints({
         url: `/employees/${userId}`,
         method: 'get',
       }),
+      providesTags: (result, error, userId) => [
+        { type: 'Balance', id: userId },
+      ],
+    }),
+    addBalance: builder.mutation<void, AddBalanceRequest>({
+      query: (body) => ({
+        url: '/invoices',
+        method: 'POST',
+        data: body,
+      }),
+      invalidatesTags: (result, error, { employeeId }) => [
+        { type: 'Balance', id: employeeId },
+      ],
     }),
   }),
 });
 
-export const { useGetBalanceQuery } = balanceApi;
+export const { useGetBalanceQuery, useAddBalanceMutation } = balanceApi;

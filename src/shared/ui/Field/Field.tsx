@@ -8,8 +8,9 @@ import {
 import styles from './Field.module.scss';
 import clsx from 'clsx';
 import { IOption, Select } from '../Select/Select';
-import { HStack } from '../Stack';
+import { HStack, VStack } from '../Stack';
 import { PatternFormat } from 'react-number-format';
+import { Text } from '../Text/Text';
 
 interface FieldProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -22,6 +23,7 @@ interface FieldProps extends Omit<
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   type?: 'text' | 'search' | 'number' | 'tel' | 'password' | 'email';
   fullWidth?: boolean;
+  error?: string;
 }
 
 const PHONE_CODES: IOption[] = [
@@ -38,6 +40,7 @@ export const Field = ({
   type = 'text',
   icon: Icon,
   fullWidth = false,
+  error,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
   defaultValue,
   ...props
@@ -50,47 +53,40 @@ export const Field = ({
     onChange?.(e.target.value);
   };
 
-  const inputEl = (
-    <input
-      value={value}
-      type={type}
-      readOnly={readOnly}
-      onChange={handleChange}
-      placeholder={placeholder}
-      className={styles.Field}
-      {...props}
-    />
-  );
+  const inputClass = clsx(styles.Field, {
+    [styles.fullWidth]: fullWidth,
+  });
 
-  if (type === 'tel') {
-    return (
-      <HStack gap={0}>
-        <Select
-          selected={selectCountry as IOption}
-          onChange={setSelectCountry}
-          options={PHONE_CODES}
-          className={styles.Select}
-        />
-        <PatternFormat
-          {...props}
-          format={selectCountry?.format ?? '(###) ###-##-##'}
-          mask="_"
-          value={value}
-          onValueChange={(values) => {
-            if (onChange) {
-              const event = {
-                target: { value: values.value },
-              } as React.ChangeEvent<HTMLInputElement>;
-              handleChange(event);
-            }
-          }}
-          className={styles.Field}
-          placeholder={placeholder || '(999) 000-00-00'}
-        />
-      </HStack>
-    );
-  }
-  if (Icon) {
+  const renderInput = () => {
+    if (type === 'tel') {
+      return (
+        <HStack gap={0} className={clsx({ [styles.errorWrapper]: !!error })}>
+          <Select
+            selected={selectCountry as IOption}
+            onChange={setSelectCountry}
+            options={PHONE_CODES}
+            className={styles.Select}
+          />
+          <PatternFormat
+            {...props}
+            format={selectCountry?.format ?? '(###) ###-##-##'}
+            mask="_"
+            value={value}
+            onValueChange={(values) => {
+              if (onChange) {
+                const event = {
+                  target: { value: values.value },
+                } as React.ChangeEvent<HTMLInputElement>;
+                handleChange(event);
+              }
+            }}
+            className={inputClass}
+            placeholder={placeholder || '(999) 000-00-00'}
+          />
+        </HStack>
+      );
+    }
+
     return (
       <div className={clsx(styles.Wrapper, { [styles.fullWidth]: fullWidth })}>
         <input
@@ -99,12 +95,22 @@ export const Field = ({
           readOnly={readOnly}
           onChange={handleChange}
           placeholder={placeholder}
-          className={clsx(styles.Field, { [styles.fullWidth]: fullWidth })}
+          className={inputClass}
           {...props}
         />
-        <Icon className={styles.Icon} />
+        {Icon && <Icon className={styles.Icon} />}
       </div>
     );
-  }
-  return inputEl;
+  };
+
+  return (
+    <VStack gap={4} align="start">
+      {renderInput()}
+      {error && (
+        <Text size={12} color="danger">
+          {error}
+        </Text>
+      )}
+    </VStack>
+  );
 };

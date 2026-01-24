@@ -10,14 +10,21 @@ import CalendarIcon from '@/shared/assets/icons/calendar-minus.svg';
 
 interface DatePickerProps {
   fullWidth?: boolean;
+  value?: DateRange;
+  onChange?: (range: DateRange | undefined) => void;
+  error?: string;
 }
 
-export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
-  const [range, setRange] = useState<DateRange | undefined>();
+export const DatePicker = ({
+  fullWidth = false,
+  onChange,
+  value,
+  error,
+}: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const startDisplay = range?.from ? format(range.from, 'dd.MM.yyyy') : '';
-  const endDisplay = range?.to ? format(range.to, 'dd.MM.yyyy') : '';
+  const startDisplay = value?.from ? format(value.from, 'dd.MM.yyyy') : '';
+  const endDisplay = value?.to ? format(value.to, 'dd.MM.yyyy') : '';
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,26 +37,14 @@ export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
         setIsOpen(false);
       }
     };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleKeyDown);
     }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
   return (
-    <VStack ref={containerRef}>
+    <VStack ref={containerRef} gap={4} align="start">
       <Flex direction={{ base: 'row', lg: 'row' }} gap={0}>
         <Field
           fullWidth={fullWidth}
@@ -59,6 +54,7 @@ export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
           placeholder="За период с"
           value={startDisplay}
           onClick={() => setIsOpen(true)}
+          error={error ? ' ' : undefined}
         />
         <Field
           name="end-date"
@@ -67,23 +63,28 @@ export const DatePicker = ({ fullWidth = false }: DatePickerProps) => {
           placeholder="По"
           value={endDisplay}
           readOnly
-          disabled={!range?.from}
+          disabled={!value?.from}
           onClick={() => setIsOpen(true)}
+          error={error ? ' ' : undefined}
         />
       </Flex>
 
+      {error && <span className={styles.ErrorMessage}>{error}</span>}
+
       {isOpen && (
-        <DayPicker
-          locale={ru}
-          mode="range"
-          selected={range}
-          onSelect={(newRange) => {
-            setRange(newRange);
-            if (newRange?.from && newRange?.to) setIsOpen(false);
-          }}
-          className={styles.DatePicker}
-          disabled={{ before: new Date() }}
-        />
+        <div className={styles.Popover}>
+          <DayPicker
+            locale={ru}
+            mode="range"
+            selected={value}
+            onSelect={(newRange) => {
+              onChange?.(newRange);
+              if (newRange?.from && newRange?.to) setIsOpen(false);
+            }}
+            className={styles.DatePicker}
+            disabled={{ before: new Date() }}
+          />
+        </div>
       )}
     </VStack>
   );
