@@ -2,15 +2,40 @@ import { HStack, VStack } from '@/shared/ui/Stack';
 import { InvoiceItem } from '../InvoiceItem/InvoiceItem';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { Text } from '@/shared/ui/Text/Text';
+import { useGetInvoicesQuery } from '../../api/invoiceApi';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
-export const InvoiceList = () => {
+export const InvoiceList = ({ employeeID }: { employeeID?: string }) => {
+  const {
+    data: invoices,
+    isLoading,
+    isError,
+  } = useGetInvoicesQuery(employeeID ?? '', {
+    skip: !employeeID,
+  });
+
+  if (isLoading) {
+    return (
+      <VStack gap={16}>
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} width="full" height={84} borderRadius={16} />
+        ))}
+      </VStack>
+    );
+  }
+  if (isError) {
+    return (
+      <Text color="danger">
+        Ошибка при загрузке счетов. Обратитесь в техподдержку
+      </Text>
+    );
+  }
   return (
     <VStack>
       <VStack>
-        <InvoiceItem />
-        <InvoiceItem />
-        <InvoiceItem />
-        <InvoiceItem />
+        {invoices?.map((invoice) => (
+          <InvoiceItem key={invoice.id} invoice={invoice} />
+        ))}
       </VStack>
       <HStack justify="space-between">
         <Pagination currentPage="3" totalPages={10} />

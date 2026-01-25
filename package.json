@@ -14,6 +14,8 @@
     "lint:fix": "npx eslint . --fix",
     "prettier": "prettier --check \"**/*.{js,ts,jsx,tsx,scss,json5,json}\"",
     "prettier:fix": "prettier --write \"**/*.{js,ts,jsx,tsx,scss,json5,json}\"",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:report": "cross-env GENERATE_REPORT=true jest",

@@ -5,7 +5,7 @@ import styles from './AppLink.module.scss';
 
 type AppLinkVariant = 'brand' | 'outline' | 'regular' | 'bg-primary';
 
-interface AppLinkProps {
+interface AppLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   to: string;
   className?: string;

@@ -1,14 +1,35 @@
 import { getHStack } from '@/shared/lib/stack/flex/getHStack';
-import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
 import { Text } from '@/shared/ui/Text/Text';
+import { Invoice } from '../../model/types/invoice';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
+
+interface InvoiceItemProps {
+  invoice: Invoice;
+}
 
 const stack = getHStack({
   gap: 16,
   justify: 'space-between',
 });
 
-export const InvoiceItem = () => {
+export const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
+  const onDownload = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    try {
+      const [{ pdf }, { InvoiceDocument }, { saveAs }] = await Promise.all([
+        import('@react-pdf/renderer'),
+        import('@/entities/Invoice'),
+        import('file-saver'),
+      ]);
+
+      const blob = await pdf(<InvoiceDocument payload={invoice} />).toBlob();
+      saveAs(blob, `${invoice.title}.pdf`);
+    } catch (error) {
+      console.error('Ошибка при скачивании PDF:', error);
+    }
+  };
   return (
     <Card
       p={16}
@@ -18,9 +39,11 @@ export const InvoiceItem = () => {
       r={16}
     >
       <Text weight="medium" size={28}>
-        Отчёт от 09.02.2024
+        {invoice.title}
       </Text>
-      <Button offset={8}>Скачать отчёт</Button>
+      <AppLink to="#" variant="brand" onClick={onDownload}>
+        Скачать отчёт
+      </AppLink>
     </Card>
   );
 };
