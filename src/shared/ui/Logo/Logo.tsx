@@ -7,9 +7,10 @@ import { PATHS } from '@/shared/lib/router/paths';
 
 interface LogoProps {
   className?: string;
+  companyName?: string;
 }
 
-export const Logo = ({ className }: LogoProps) => {
+export const Logo = ({ className, companyName }: LogoProps) => {
   const { pathname } = useLocation();
   let withoutLink;
 
@@ -30,6 +31,7 @@ export const Logo = ({ className }: LogoProps) => {
       <Text as="span" className={styles.LogoText}>
         для бизнеса
       </Text>
+      {companyName && <Text color="text-tertiary">{companyName}</Text>}
     </VStack>
   );
   return withoutLink ? (

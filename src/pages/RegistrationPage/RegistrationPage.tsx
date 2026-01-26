@@ -1,8 +1,5 @@
-import { LoginForm } from '@/features/login';
-import {
-  getRouteForgotAuthPassword,
-  getRouteRegistration,
-} from '@/shared/lib/router/paths';
+import { RegistrationForm } from '@/features/login';
+import { getRouteAuth } from '@/shared/lib/router/paths';
 import { getFlex } from '@/shared/lib/stack/flex/getFlex';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Card } from '@/shared/ui/Card/Card';
@@ -14,17 +11,14 @@ const stack = getFlex({
   gap: 16,
 });
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <Card p={0} width={540}>
-        <LoginForm />
+        <RegistrationForm />
         <HStack justify="space-between">
-          <AppLink variant="regular" to={getRouteForgotAuthPassword()}>
-            Забыли пароль
-          </AppLink>
-          <AppLink variant="regular" to={getRouteRegistration()}>
-            Регистрация
+          <AppLink variant="regular" to={getRouteAuth()}>
+            Уже есть аккаунт? Войти
           </AppLink>
         </HStack>
       </Card>
@@ -32,4 +26,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegistrationPage;

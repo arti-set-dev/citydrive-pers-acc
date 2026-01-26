@@ -12,9 +12,13 @@ export const ResetPasswordForm = () => {
         Сброс пароля
       </Text>
       <VStack gap={16}>
-        <Field value="" placeholder="Введите 6 значный код из письма" />
+        <Field
+          fullWidth
+          value=""
+          placeholder="Введите 6 значный код из письма"
+        />
       </VStack>
-      <Button offset={8}>Войти</Button>
+      <Button offset={8}>Отправить</Button>
     </VStack>
   );
 };

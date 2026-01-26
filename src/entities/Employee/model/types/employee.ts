@@ -1,7 +1,9 @@
 export interface Employee {
   id: string;
   name: string;
-  role: string;
+  companyName: string;
+  companyId: string;
+  role: 'admin' | 'user';
   department: string;
   balance: number;
   limit: number;

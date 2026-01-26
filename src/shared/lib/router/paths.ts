@@ -1,6 +1,7 @@
 export const PATHS = {
   home: '/',
   auth: '/auth',
+  registration: '/auth/registration',
   forgotPassword: '/auth/forgot-password',
   resetPassword: '/auth/reset-password',
   employees: '/employees',
@@ -20,6 +21,7 @@ export const PATHS = {
 
 export const getRouteHome = (): string => PATHS.home;
 export const getRouteAuth = (): string => PATHS.auth;
+export const getRouteRegistration = (): string => PATHS.registration;
 export const getRouteForgotAuthPassword = (): string => PATHS.forgotPassword;
 export const getRouteResetAuthPassword = (): string => PATHS.resetPassword;
 export const getRouteEmployees = (): string => PATHS.employees;

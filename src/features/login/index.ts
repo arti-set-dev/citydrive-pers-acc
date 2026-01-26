@@ -1,6 +1,7 @@
 export { LogoutButton } from './ui/LogoutButton/LogoutButton';
 export { LoginForm } from './ui/LoginForm/LoginForm';
 export { ForgotPasswordForm } from './ui/ForgotPasswordForm/ForgotPasswordForm';
+export { RegistrationForm } from './ui/RegistrationForm/RegistrationForm';
 export { ResetPasswordForm } from './ui/ResetPasswordForm/ResetPasswordForm';
 export type { LoginSchema } from './model/types/login';
 export { getIsAuth } from './model/selectors/loginSelectors';

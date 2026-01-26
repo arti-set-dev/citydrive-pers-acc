@@ -12,7 +12,7 @@ export const ForgotPasswordForm = () => {
         Восстановление пароля
       </Text>
       <VStack gap={16}>
-        <Field type="email" value="" placeholder="Email" />
+        <Field fullWidth type="email" value="" placeholder="Email" />
       </VStack>
       <Button offset={8}>Восстановить пароль</Button>
     </VStack>

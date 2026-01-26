@@ -26,10 +26,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const onChangeUserName = (value: string) => {
-    dispatch(loginActions.setLoginName(value));
-  };
-
   const onChangeUserEmail = (value: string) => {
     dispatch(loginActions.setLoginEmail(value));
   };
@@ -66,18 +62,14 @@ export const LoginForm = () => {
       </Text>
       <VStack gap={16}>
         <Field
-          type="text"
-          value={userName}
-          onChange={onChangeUserName}
-          placeholder="Имя"
-        />
-        <Field
+          fullWidth
           type="email"
           value={userEmail}
           onChange={onChangeUserEmail}
           placeholder="Email"
         />
         <Field
+          fullWidth
           type="password"
           value={userPassword}
           onChange={onChangeUserPassword}

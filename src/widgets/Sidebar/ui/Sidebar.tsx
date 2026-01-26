@@ -18,6 +18,8 @@ import MoreIcon from '@/shared/assets/icons/ellipsis-vertical.svg';
 import { isMobile } from 'react-device-detect';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { Button } from '@/shared/ui/Button/Button';
+import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import { getEmployeeData } from '@/entities/Employee';
 
 interface SidebarItemOptions {
   path: string;
@@ -80,6 +82,7 @@ const hiddenRouts = isMobile
   : [];
 
 export const Sidebar = () => {
+  const employeeData = useAppSelector(getEmployeeData);
   return (
     <Card
       width={{ base: 280, lg: 'full' }}
@@ -89,7 +92,9 @@ export const Sidebar = () => {
       className={clsx(stack.className, styles.Sidebar, styles.Sidebar)}
       style={stack.style}
     >
-      {!isMobile && <Logo className={styles.Logo} />}
+      {!isMobile && (
+        <Logo companyName={employeeData?.companyName} className={styles.Logo} />
+      )}
       <Flex
         as="ul"
         gap={4}

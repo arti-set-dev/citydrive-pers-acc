@@ -10,6 +10,7 @@ import { LoginPage } from '@/pages/LoginPage';
 import { NewDepartmentPage } from '@/pages/NewDepartmentPage';
 import { NewEmployeePage } from '@/pages/NewEmployeePage';
 import { PromocodesPage } from '@/pages/PromocodesPage';
+import { RegistrationPage } from '@/pages/RegistrationPage';
 import { ResetPasswordPage } from '@/pages/ResetPasswordPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { TripPage } from '@/pages/TripPage';
@@ -30,6 +31,11 @@ const routeConfig: Record<AppRouteNames, AppRouteProps> = {
   auth: {
     path: PATHS.auth,
     element: LoginPage,
+    guestOnly: true,
+  },
+  registration: {
+    path: PATHS.registration,
+    element: RegistrationPage,
     guestOnly: true,
   },
   home: {

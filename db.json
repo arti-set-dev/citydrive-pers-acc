@@ -1,7 +1,14 @@
 {
+  "auth-data": [
+    {
+      "id": "1"
+    }
+  ],
   "employees": [
     {
       "id": "1",
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
       "name": "Костин Герман Феликсович",
       "role": "admin",
       "department": "Отдел продаж",
@@ -11,11 +18,11 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "email@mail.com",
-      "experimental_features": true,
+      "experimentalFeatures": true,
       "notifications": {
-        "new_employees": false
+        "newEmployees": false
       },
-      "department_id": "1",
+      "departmentId": "1",
       "time": {
         "start": "12:00",
         "end": "18:00"
@@ -27,16 +34,12 @@
   ],
   "departments": [
     {
-      "id": "1",
-      "name": "Отдел продаж",
-      "limit": 1000000,
-      "spent": 10000,
-      "employees_ids": ["1"]
+      "id": "1"
     }
   ],
   "notifications": [
     {
-      "employee_id": "1",
+      "employeeId": "1",
       "message": "Ваш сотрудник был уволен"
     }
   ],
@@ -53,17 +56,17 @@
   "routes": [
     {
       "id": "1",
-      "employee_id": "1",
-      "time_start": "15:32",
+      "employeeId": "1",
+      "timeStart": "15:32",
       "distance": 24,
       "date": "2024-09-18",
       "price": 2186,
-      "promocode_id": "1",
+      "promocodeId": "1",
       "status": "active",
-      "car_id": "1",
-      "rate_id": "1",
+      "carId": "1",
+      "rateId": "1",
       "parking": 10,
-      "fines_id": "1",
+      "finesId": "1",
       "start": {
         "address": "Ул. Пенькова, 28",
         "city": "Москва"

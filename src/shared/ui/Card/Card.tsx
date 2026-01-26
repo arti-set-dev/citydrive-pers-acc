@@ -32,7 +32,8 @@ type CardElement =
   | 'header'
   | 'form'
   | 'ul'
-  | 'li';
+  | 'li'
+  | 'label';
 
 interface CardProps<T extends ElementType = 'div'> {
   as?: T extends CardElement ? T : CardElement;

@@ -1,5 +1,5 @@
 import { Card } from '@/shared/ui/Card/Card';
-import { Grid, HStack } from '@/shared/ui/Stack';
+import { Grid, HStack, VStack } from '@/shared/ui/Stack';
 import { Stat } from '@/widgets/Stat';
 import IdCardLanyardIcon from '@/shared/assets/icons/id-card-lanyard.svg';
 import CarFrontIcon from '@/shared/assets/icons/car-front.svg';
@@ -7,9 +7,14 @@ import { Text } from '@/shared/ui/Text/Text';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { getRouteTrips } from '@/shared/lib/router/paths';
-import { EmployeeList } from '@/entities/Employee';
+import { EmployeeList, getEmployeeData } from '@/entities/Employee';
 // eslint-disable-next-line boundaries/entry-point
 import type { IEmployee } from '@/entities/Employee/ui/EmployeeList/EmployeeList';
+import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import {
+  ImportDataAboutCompanyButton,
+  useGetCompanyEmployeesQuery,
+} from '@/features/import-data-about-company';
 
 const data: IEmployee[] = [
   {
@@ -61,6 +66,11 @@ const stack = getVStack({
 });
 
 const HomePage = () => {
+  const employeeData = useAppSelector(getEmployeeData);
+  const { data: employees = [] } = useGetCompanyEmployeesQuery(
+    employeeData?.companyId ?? '',
+  );
+
   return (
     <Card p={16} className={stack.className} style={stack.style} isOverflowAuto>
       <Text as="h1" size={32} weight="bold">
@@ -87,6 +97,14 @@ const HomePage = () => {
         </Text>
         <AppLink to={getRouteTrips()}>Смотреть все {'>'}</AppLink>
       </HStack>
+      {employees.length === 1 && (
+        <VStack gap={8}>
+          <Text size={16} weight="medium" align="center">
+            Похоже вы ещё не добавили сотрудников. Приступим?
+          </Text>
+          <ImportDataAboutCompanyButton companyId={employeeData?.companyId} />
+        </VStack>
+      )}
       <EmployeeList data={data} />
     </Card>
   );
