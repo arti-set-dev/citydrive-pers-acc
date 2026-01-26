@@ -1,9 +1,11 @@
+export type Role = 'admin' | 'user';
+
 export interface Employee {
   id: string;
   name: string;
   companyName: string;
   companyId: string;
-  role: 'admin' | 'user';
+  role: Role;
   department: string;
   balance: number;
   limit: number;

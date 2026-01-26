@@ -1,3 +1,4 @@
+import { Role } from '@/entities/Employee';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
@@ -23,6 +24,7 @@ export type AppRouteProps = {
   element: ComponentType<object> | LazyExoticComponent<ComponentType<object>>;
   authOnly?: boolean;
   guestOnly?: boolean;
+  roles?: Role[];
 };
 
 export type AppRouteNames = keyof typeof PATHS;
@@ -57,41 +59,49 @@ const routeConfig: Record<AppRouteNames, AppRouteProps> = {
     path: PATHS.department,
     element: DepartmentPage,
     authOnly: true,
+    roles: ['admin'],
   },
   departments: {
     path: PATHS.departments,
     element: DepartmentsPage,
     authOnly: true,
+    roles: ['admin'],
   },
   employees: {
     path: PATHS.employees,
     element: EmployeesPage,
     authOnly: true,
+    roles: ['admin'],
   },
   employee: {
     path: PATHS.employee,
     element: EmployeePage,
     authOnly: true,
+    roles: ['admin'],
   },
   employeeEdit: {
     path: PATHS.employeeEdit,
     element: EmployeeEditPage,
     authOnly: true,
+    roles: ['admin'],
   },
   employeeNew: {
     path: PATHS.employeeNew,
     element: NewEmployeePage,
     authOnly: true,
+    roles: ['admin'],
   },
   departmentNew: {
     path: PATHS.departmentNew,
     element: NewDepartmentPage,
     authOnly: true,
+    roles: ['admin'],
   },
   departmentEdit: {
     path: PATHS.employeeEdit,
     element: EmployeeEditPage,
     authOnly: true,
+    roles: ['admin'],
   },
   invoices: {
     path: PATHS.invoices,

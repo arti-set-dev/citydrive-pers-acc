@@ -73,16 +73,30 @@ const stack = getVStack({
   gap: 16,
 });
 
-const visibleRouts = routs.filter(
-  (item) => !isMobile || item.mobileVisible !== false,
-);
-
-const hiddenRouts = isMobile
-  ? routs.filter((item) => item.mobileVisible === false)
-  : [];
-
 export const Sidebar = () => {
   const employeeData = useAppSelector(getEmployeeData);
+  const role = employeeData?.role;
+  const userPaths: string[] = [
+    PATHS.home,
+    PATHS.trips,
+    PATHS.invoices,
+    PATHS.promocodes,
+    PATHS.settings,
+  ];
+
+  const hiddenRouts = isMobile
+    ? routs.filter((item) => item.mobileVisible === false)
+    : [];
+
+  const filteredRouts = routs.filter((route) => {
+    if (role === 'admin') return true;
+    return userPaths.includes(route.path);
+  });
+
+  const visibleRouts = filteredRouts.filter(
+    (item) => !isMobile || item.mobileVisible !== false,
+  );
+
   return (
     <Card
       width={{ base: 280, lg: 'full' }}

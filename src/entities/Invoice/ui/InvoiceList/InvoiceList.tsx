@@ -5,13 +5,17 @@ import { Text } from '@/shared/ui/Text/Text';
 import { useGetInvoicesQuery } from '../../api/invoiceApi';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
-export const InvoiceList = ({ employeeID }: { employeeID?: string }) => {
+interface InvoiceListProps {
+  targetIds: string[];
+}
+
+export const InvoiceList = ({ targetIds }: InvoiceListProps) => {
   const {
     data: invoices,
     isLoading,
     isError,
-  } = useGetInvoicesQuery(employeeID ?? '', {
-    skip: !employeeID,
+  } = useGetInvoicesQuery(targetIds, {
+    skip: targetIds.length === 0,
   });
 
   if (isLoading) {

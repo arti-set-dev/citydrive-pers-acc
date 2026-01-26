@@ -99,6 +99,10 @@ export const ImportDataAboutCompanyButton = ({
           departmentId: deptId,
           status: 'active',
           spent: 0,
+          experimentalFeatures: false,
+          notifications: {
+            newEmployees: false,
+          },
         }).unwrap();
 
         if (deptId) {
