@@ -87,6 +87,14 @@
   "departments": [
     {
       "id": "1"
+    },
+    {
+      "name": "eteryty",
+      "limit": 33333,
+      "companyId": "1",
+      "spent": 0,
+      "employeesIds": [],
+      "id": "mxQVai8"
     }
   ],
   "notifications": [

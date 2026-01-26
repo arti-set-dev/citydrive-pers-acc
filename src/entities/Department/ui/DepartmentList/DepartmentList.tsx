@@ -2,8 +2,32 @@ import { Flex, Grid, VStack } from '@/shared/ui/Stack';
 import { DepartmentItem } from '../DepartmentItem/DepartmentItem';
 import { Card } from '@/shared/ui/Card/Card';
 import { Text } from '@/shared/ui/Text/Text';
+import { useGetDepartmentsQuery } from '../../api/departmentApi';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
-export const DepartmentList = () => {
+export const DepartmentList = ({ companyId }: { companyId?: string }) => {
+  const {
+    data: departments,
+    isLoading,
+    isError,
+  } = useGetDepartmentsQuery(companyId ?? '', { skip: !companyId });
+
+  if (isLoading) {
+    return (
+      <VStack gap={16}>
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} width="full" height={84} borderRadius={16} />
+        ))}
+      </VStack>
+    );
+  }
+  if (isError) {
+    return (
+      <Text color="danger">
+        Ошибка при загрузке отделов. Обратитесь в техподдержку
+      </Text>
+    );
+  }
   return (
     <Card p={0} isOverflowAuto>
       <Card minWidth={770}>
@@ -39,11 +63,15 @@ export const DepartmentList = () => {
           </Grid>
         </VStack>
         <VStack gap={0}>
-          <DepartmentItem />
-          <DepartmentItem />
-          <DepartmentItem />
-          <DepartmentItem />
-          <DepartmentItem />
+          {departments?.map((department) => (
+            <DepartmentItem key={department.id} department={department} />
+          ))}
+
+          {departments?.length === 0 && (
+            <Card p={16}>
+              <Text>Отделы еще не созданы</Text>
+            </Card>
+          )}
         </VStack>
       </Card>
     </Card>

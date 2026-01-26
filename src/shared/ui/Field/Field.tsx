@@ -16,7 +16,7 @@ interface FieldProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'onChange'
 > {
-  value: string;
+  value?: string;
   placeholder?: string;
   readOnly?: boolean;
   onChange?: (value: string) => void;

@@ -3,23 +3,28 @@ import { Card } from '@/shared/ui/Card/Card';
 import { ActionPopover } from '@/shared/ui/Popover/Popover';
 import { Flex, Grid } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
+import { Department } from '../../model/types/department';
 
-export const DepartmentItem = () => {
+interface DepartmentItemProps {
+  department: Department;
+}
+
+export const DepartmentItem = ({ department }: DepartmentItemProps) => {
   return (
     <Grid cols={5}>
       <Card p={16} borderLine="bottom">
         <Text weight="medium" size={18}>
-          Отдел продаж
+          {department.name}
         </Text>
       </Card>
       <Card p={16} borderLine="bottom">
-        <Text color="text-tertiary">8</Text>
+        <Text color="text-tertiary">{department.employeesIds.length}</Text>
       </Card>
       <Card p={16} borderLine="bottom">
-        <Text>500 000 р/мес</Text>
+        <Text>{department.limit}</Text>
       </Card>
       <Card p={16} borderLine="bottom">
-        <Text>9 500 р</Text>
+        <Text>{department.spent}</Text>
       </Card>
       <Card p={16} borderLine="bottom">
         <Flex align="end">

@@ -1,5 +1,7 @@
 import { DepartmentList } from '@/entities/Department';
+import { getEmployeeData } from '@/entities/Employee';
 import { SearchDepartmentForm } from '@/features/search-department';
+import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getRouteDepartmentNew } from '@/shared/lib/router/paths';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
@@ -13,6 +15,8 @@ const stack = getVStack({
 });
 
 const DepartmentsPage = () => {
+  const employeeData = useAppSelector(getEmployeeData);
+
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <HStack justify="space-between">
@@ -24,7 +28,7 @@ const DepartmentsPage = () => {
         </AppLink>
       </HStack>
       <SearchDepartmentForm />
-      <DepartmentList />
+      <DepartmentList companyId={employeeData?.companyId} />
       <HStack justify="space-between">
         <Pagination currentPage="3" totalPages={10} />
         <Text color="text-tertiary">1-50 из 883</Text>
