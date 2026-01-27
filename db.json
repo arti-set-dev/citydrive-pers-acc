@@ -56,32 +56,6 @@
       "days": [1, 2, 3, 4, 5, 6, 7],
       "cars": ["comfort", "economy", "premium"],
       "city": [1, 2, 15, 23]
-    },
-    {
-      "id": "3",
-      "companyName": "ООО Ромашка",
-      "companyId": "2",
-      "name": "Костин Герман Феликсович",
-      "role": "admin",
-      "department": "Отдел продаж",
-      "balance": 15000,
-      "limit": 100000,
-      "spent": 2000,
-      "status": "active",
-      "phone": "+79999999999",
-      "email": "rom@mail.com",
-      "experimentalFeatures": true,
-      "notifications": {
-        "newEmployees": false
-      },
-      "departmentId": "10",
-      "time": {
-        "start": "12:00",
-        "end": "18:00"
-      },
-      "days": [1, 2, 3, 4, 5, 6, 7],
-      "cars": ["comfort", "economy", "premium"],
-      "city": [1, 2, 15, 23]
     }
   ],
   "departments": [
@@ -89,12 +63,12 @@
       "id": "1"
     },
     {
-      "name": "eteryty",
-      "limit": 33333,
+      "name": "отдел продаж",
+      "limit": 3646363,
       "companyId": "1",
       "spent": 0,
       "employeesIds": [],
-      "id": "mxQVai8"
+      "id": "_JhiIgB"
     }
   ],
   "notifications": [
@@ -113,30 +87,7 @@
       "role": "employer"
     }
   ],
-  "routes": [
-    {
-      "id": "1",
-      "employeeId": "1",
-      "timeStart": "15:32",
-      "distance": 24,
-      "date": "2024-09-18",
-      "price": 2186,
-      "promocodeId": "1",
-      "status": "active",
-      "carId": "1",
-      "rateId": "1",
-      "parking": 10,
-      "finesId": "1",
-      "start": {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва"
-      },
-      "end": {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва"
-      }
-    }
-  ],
+  "routes": [],
   "routPaths": {
     "1": [
       {
@@ -226,21 +177,6 @@
       },
       "title": "Счёт от 26.01.2026",
       "id": "2"
-    },
-    {
-      "bank": "ПАО Сбербанк",
-      "BIC": 3838482929,
-      "INN": 6473743637,
-      "legalEntity": "ООО Ситидрайв",
-      "VAT": 22,
-      "amount": "222",
-      "employeeId": "3",
-      "period": {
-        "from": "2026-01-26T21:00:00.000Z",
-        "to": "2026-01-30T21:00:00.000Z"
-      },
-      "title": "Счёт от 26.01.2026",
-      "id": "3"
     }
   ],
   "cars": [

@@ -1,4 +1,5 @@
 import { Role } from '@/entities/Employee';
+import { DepartmentEditPage } from '@/pages/DepartmentEditPage';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
@@ -98,8 +99,8 @@ const routeConfig: Record<AppRouteNames, AppRouteProps> = {
     roles: ['admin'],
   },
   departmentEdit: {
-    path: PATHS.employeeEdit,
-    element: EmployeeEditPage,
+    path: PATHS.departmentEdit,
+    element: DepartmentEditPage,
     authOnly: true,
     roles: ['admin'],
   },

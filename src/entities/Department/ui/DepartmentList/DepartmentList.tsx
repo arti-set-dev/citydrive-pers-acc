@@ -4,8 +4,15 @@ import { Card } from '@/shared/ui/Card/Card';
 import { Text } from '@/shared/ui/Text/Text';
 import { useGetDepartmentsQuery } from '../../api/departmentApi';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Department } from '../../model/types/department';
 
-export const DepartmentList = ({ companyId }: { companyId?: string }) => {
+export const DepartmentList = ({
+  companyId,
+  renderActions,
+}: {
+  companyId?: string;
+  renderActions?: (department: Department) => React.ReactNode;
+}) => {
   const {
     data: departments,
     isLoading,
@@ -64,7 +71,11 @@ export const DepartmentList = ({ companyId }: { companyId?: string }) => {
         </VStack>
         <VStack gap={0}>
           {departments?.map((department) => (
-            <DepartmentItem key={department.id} department={department} />
+            <DepartmentItem
+              key={department.id}
+              department={department}
+              actions={renderActions?.(department)}
+            />
           ))}
 
           {departments?.length === 0 && (
