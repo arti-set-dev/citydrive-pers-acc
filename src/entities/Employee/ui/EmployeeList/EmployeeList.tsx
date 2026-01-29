@@ -15,19 +15,30 @@ import { COLUMN_MAP } from '../../model/types/columns';
 
 interface EmployeeListProps {
   activeKeys: Array<keyof Employee>;
+  filters?: {
+    name?: string;
+    role?: string;
+    department?: string;
+    status?: string;
+  };
 }
 
-export const EmployeeList = ({ activeKeys }: EmployeeListProps) => {
+export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
   const employeeData = useAppSelector(getEmployeeData);
 
   const {
     data: employees,
     isLoading,
+    isFetching,
     isError,
   } = useGetEmployeesListQuery(
     {
       fields: activeKeys,
       companyId: employeeData?.companyId,
+      name_like: filters?.name,
+      role: filters?.role,
+      department: filters?.department,
+      status: filters?.status,
     },
     {
       skip: !employeeData?.companyId,
@@ -50,7 +61,7 @@ export const EmployeeList = ({ activeKeys }: EmployeeListProps) => {
 
   const directionStack = getFlex({ direction: 'column', gap: 16 });
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <VStack gap={16}>
         {[...Array(4)].map((_, i) => (

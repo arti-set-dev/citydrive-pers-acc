@@ -4,6 +4,10 @@ import { Employee } from '../model/types/employee';
 export interface GetEmployeesArgs {
   fields?: Array<keyof Employee>;
   companyId?: string;
+  name_like?: string;
+  role?: string;
+  department?: string;
+  status?: string;
 }
 
 export const employeeApi = baseApi.injectEndpoints({
@@ -20,13 +24,22 @@ export const employeeApi = baseApi.injectEndpoints({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const params: Record<string, any> = {};
 
-        if (args?.fields) {
-          params._fields = args.fields.join(',');
-        }
+        if (args?.fields) params._fields = args.fields.join(',');
+        if (args?.companyId) params.companyId = args.companyId;
+        if (args?.name_like) params.name_like = args.name_like;
 
-        if (args?.companyId) {
-          params.companyId = args.companyId;
-        }
+        const filterFields: Array<keyof GetEmployeesArgs> = [
+          'role',
+          'department',
+          'status',
+        ];
+
+        filterFields.forEach((field) => {
+          const value = args?.[field];
+          if (value && value !== 'all') {
+            params[field] = value;
+          }
+        });
 
         return {
           url: '/employees',

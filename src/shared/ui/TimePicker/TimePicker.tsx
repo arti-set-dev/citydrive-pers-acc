@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { HStack, VStack } from '../Stack';
-import { IOption, Select } from '../Select/Select';
+import { Select } from '../Select/Select';
 import { Card } from '../Card/Card';
 import { Text } from '../Text/Text';
 
-const TIME_OPTIONS: IOption[] = Array.from({ length: 48 }, (_, i) => {
+const TIME_OPTIONS = Array.from({ length: 48 }, (_, i) => {
   const hours = Math.floor(i / 2)
     .toString()
     .padStart(2, '0');
@@ -29,7 +29,8 @@ export const TimePicker = ({ value, onChange, error }: TimePickerProps) => {
     return TIME_OPTIONS.filter((opt) => opt.name > startTime.name);
   }, [startTime]);
 
-  const handleStartChange = (opt: IOption | null) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleStartChange = (opt: any | null) => {
     if (!opt) return;
 
     onChange?.({
@@ -38,7 +39,8 @@ export const TimePicker = ({ value, onChange, error }: TimePickerProps) => {
     });
   };
 
-  const handleEndChange = (opt: IOption | null) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleEndChange = (opt: any | null) => {
     if (!opt || !value?.start) return;
 
     onChange?.({

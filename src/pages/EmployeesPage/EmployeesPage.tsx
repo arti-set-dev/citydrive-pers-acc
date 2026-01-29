@@ -1,4 +1,3 @@
-import { Employee, EmployeeList } from '@/entities/Employee';
 import { EmployeesFilter } from '@/features/employees-filter';
 import { PATHS } from '@/shared/lib/router/paths';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
@@ -12,15 +11,6 @@ const stack = getVStack({
 });
 
 const EmployeesPage = () => {
-  const activeKeys: Array<keyof Employee> = [
-    'name',
-    'email',
-    'role',
-    'status',
-    'spent',
-    'limit',
-  ];
-
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <HStack justify="space-between">
@@ -32,7 +22,6 @@ const EmployeesPage = () => {
         </AppLink>
       </HStack>
       <EmployeesFilter />
-      <EmployeeList activeKeys={activeKeys} />
     </Card>
   );
 };

@@ -17,19 +17,14 @@ import { VStack } from '../Stack';
 import ArrowDown from '@/shared/assets/icons/chevron-down.svg';
 import { Card } from '../Card/Card';
 
-export interface IOption {
-  id: number;
-  name: string;
-  format?: string;
-}
-
 interface SelectOptions<T> {
   options: T[];
   placeholder?: string;
   className?: string;
-  selected?: T | null;
-
-  onChange?: (value: T | null) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  selected?: T | any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange?: (value: any) => void;
   disabled?: boolean;
   variant?: ButtonVariant;
   offset?: ButtonOffset;
@@ -56,6 +51,23 @@ export const Select = <T,>({
   getOptionKey = (opt: any) => opt?.id || String(opt),
 }: SelectOptions<T>) => {
   const [query, setQuery] = useState('');
+
+  // Находим объект для корректного отображения, если в selected передан ID/строка
+  const activeOption = useMemo(() => {
+    if (selected === null || selected === undefined) return null;
+    if (typeof selected === 'object' && !Array.isArray(selected))
+      return selected as T;
+    return (
+      options.find((opt) => String(getOptionKey(opt)) === String(selected)) ||
+      null
+    );
+  }, [selected, options, getOptionKey]);
+
+  // Приводим onChange к типу, который ожидает Headless UI (T | null)
+  const handleChange = (val: T | null) => {
+    if (onChange) onChange(val);
+  };
+
   const filteredOptions = useMemo(
     () =>
       query === ''
@@ -75,12 +87,12 @@ export const Select = <T,>({
   if (placeholder) {
     return (
       <Combobox
-        value={selected}
-        onChange={onChange}
+        value={activeOption}
+        onChange={handleChange}
         onClose={() => setQuery('')}
         disabled={disabled}
       >
-        <VStack gap={0} className={styles.Select}>
+        <VStack gap={0} className={clsx(styles.Select, className)}>
           <ComboboxInput
             className={styles.Input}
             displayValue={(opt: T) => (opt ? getOptionLabel(opt) : '')}
@@ -109,11 +121,15 @@ export const Select = <T,>({
   }
 
   return (
-    <Listbox disabled={disabled} value={selected} onChange={onChange}>
+    <Listbox
+      disabled={disabled}
+      value={activeOption ?? undefined}
+      onChange={handleChange}
+    >
       <VStack gap={0} className={clsx(styles.Select, className)}>
         <ListboxButton as={Button} variant={variant} offset={offset}>
-          {selected
-            ? getOptionLabel(selected)
+          {activeOption
+            ? getOptionLabel(activeOption)
             : desc || (options[0] ? getOptionLabel(options[0]) : '')}
           <ArrowDown />
         </ListboxButton>
