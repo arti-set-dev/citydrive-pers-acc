@@ -72,6 +72,7 @@ export const ImportDataAboutCompanyButton = ({
           companyId,
           limit: 1000000,
           spent: 0,
+          lastTimeTrip: 'Нет поездок',
           employeesIds: [],
         }).unwrap();
         deptMap[name] = res.id;

@@ -23,20 +23,23 @@ export interface IOption {
   format?: string;
 }
 
-interface SelectOptions<T extends IOption> {
+interface SelectOptions<T> {
   options: T[];
   placeholder?: string;
   className?: string;
   selected?: T | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange?: (e: T | null | any) => void;
+
+  onChange?: (value: T | null) => void;
   disabled?: boolean;
   variant?: ButtonVariant;
   offset?: ButtonOffset;
   desc?: string;
+  error?: string;
+  getOptionLabel?: (option: T) => string;
+  getOptionKey?: (option: T) => string | number;
 }
 
-export const Select = <T extends IOption>({
+export const Select = <T,>({
   options,
   placeholder,
   className,
@@ -46,6 +49,11 @@ export const Select = <T extends IOption>({
   disabled = false,
   desc = '',
   offset,
+  error,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getOptionLabel = (opt: any) => opt?.name || String(opt),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getOptionKey = (opt: any) => opt?.id || String(opt),
 }: SelectOptions<T>) => {
   const [query, setQuery] = useState('');
   const filteredOptions = useMemo(
@@ -53,9 +61,15 @@ export const Select = <T extends IOption>({
       query === ''
         ? options
         : options.filter((option) =>
-            option.name.toLowerCase().includes(query.toLowerCase()),
+            getOptionLabel(option).toLowerCase().includes(query.toLowerCase()),
           ),
-    [query, options],
+    [query, options, getOptionLabel],
+  );
+
+  const errorElement = error && (
+    <Text color="danger" size={12}>
+      {error}
+    </Text>
   );
 
   if (placeholder) {
@@ -69,28 +83,26 @@ export const Select = <T extends IOption>({
         <VStack gap={0} className={styles.Select}>
           <ComboboxInput
             className={styles.Input}
-            displayValue={(option: IOption) => option?.name || ''}
+            displayValue={(opt: T) => (opt ? getOptionLabel(opt) : '')}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />
-
           <Card p={0}>
             <ComboboxOptions modal={false} className={styles.Options}>
               {filteredOptions.map((option) => (
                 <ComboboxOption
-                  key={option.id}
+                  key={getOptionKey(option)}
                   value={option}
                   className={({ focus }) =>
-                    clsx(styles.Option, {
-                      [styles.focus]: focus,
-                    })
+                    clsx(styles.Option, { [styles.focus]: focus })
                   }
                 >
-                  <Text>{option.name}</Text>
+                  <Text>{getOptionLabel(option)}</Text>
                 </ComboboxOption>
               ))}
             </ComboboxOptions>
           </Card>
+          {errorElement}
         </VStack>
       </Combobox>
     );
@@ -100,24 +112,27 @@ export const Select = <T extends IOption>({
     <Listbox disabled={disabled} value={selected} onChange={onChange}>
       <VStack gap={0} className={clsx(styles.Select, className)}>
         <ListboxButton as={Button} variant={variant} offset={offset}>
-          {selected?.name || desc || options[0].name}
+          {selected
+            ? getOptionLabel(selected)
+            : desc || (options[0] ? getOptionLabel(options[0]) : '')}
           <ArrowDown />
         </ListboxButton>
         <Card p={0}>
           <ListboxOptions modal={false} className={styles.Options}>
             {options.map((opt) => (
               <ListboxOption
-                key={opt.id}
+                key={getOptionKey(opt)}
                 value={opt}
                 className={({ focus }) =>
                   clsx(styles.Option, { [styles.focus]: focus })
                 }
               >
-                <Text>{opt.name}</Text>
+                <Text>{getOptionLabel(opt)}</Text>
               </ListboxOption>
             ))}
           </ListboxOptions>
         </Card>
+        {errorElement}
       </VStack>
     </Listbox>
   );

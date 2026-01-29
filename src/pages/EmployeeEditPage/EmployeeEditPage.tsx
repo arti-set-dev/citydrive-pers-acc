@@ -15,7 +15,7 @@ const EmployeeEditPage = () => {
       <Text as="h1" weight="bold" size={32}>
         Редактировать информацмю о сотруднике {id}
       </Text>
-      <EditEmployeeForm />
+      <EditEmployeeForm id={id} />
     </Card>
   );
 };

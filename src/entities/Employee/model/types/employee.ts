@@ -1,18 +1,22 @@
 export type Role = 'admin' | 'user';
+export type Status = 'active' | 'inactive';
+export type Cars = 'comfort' | 'economy' | 'premium';
 
 export interface Employee {
   id: string;
   name: string;
+  lastTimeTrip?: string;
+  phone?: string;
+  role?: string;
+  department?: string;
+  limit?: number;
+  spent?: number;
+  email?: string;
+  status?: Status;
+
   companyName: string;
   companyId: string;
-  role: Role;
-  department: string;
   balance: number;
-  limit: number;
-  spent: number;
-  status: 'active' | 'inactive';
-  phone: string;
-  email: string;
   experimentalFeatures: boolean;
   notifications: {
     newEmployees: boolean;
@@ -22,9 +26,9 @@ export interface Employee {
     start: string;
     end: string;
   };
-  days: [1, 2, 3, 4, 5, 6, 7];
-  cars: 'comfort' | 'economy' | 'premium';
-  city: [1, 2, 15, 23];
+  days: number[];
+  cars: [Cars];
+  city: number[];
 }
 
 export interface EmployeeSchema {

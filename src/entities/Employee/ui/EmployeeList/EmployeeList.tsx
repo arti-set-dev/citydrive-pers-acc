@@ -1,112 +1,75 @@
+import { useMemo } from 'react';
 import { getFlex } from '@/shared/lib/stack/flex/getFlex';
 import { Card } from '@/shared/ui/Card/Card';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { Grid, HStack, VStack } from '@/shared/ui/Stack';
-import { Status } from '@/shared/ui/Status/Status';
 import { Text } from '@/shared/ui/Text/Text';
-import React from 'react';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 
-type StatusEmployee = 'active' | 'inactive';
-
-export interface IEmployee {
-  id: string;
-  lastTimeTrip?: string;
-  name: string;
-  email?: string;
-  phone?: string;
-  price?: string;
-  status?: StatusEmployee;
-  role?: string;
-  spent?: string;
-  monthLimit?: string;
-  department?: string;
-}
+import { Employee } from '../../model/types/employee';
+import { useGetEmployeesListQuery } from '../../api/employeeApi';
+import { getEmployeeData } from '../../model/selectors/employeeSelectors';
+import { EmployeeItem } from '../EmployeeItem/EmployeeItem';
+import { COLUMN_MAP } from '../../model/types/columns';
 
 interface EmployeeListProps {
-  data: IEmployee[];
+  activeKeys: Array<keyof Employee>;
 }
 
-const COLUMN_MAP: Record<
-  string,
-  {
-    header: string;
-    render: (item: IEmployee) => React.ReactNode;
-    align?: 'start' | 'end';
-  }
-> = {
-  lastTimeTrip: {
-    header: 'Время',
-    render: (item) => (
-      <HStack gap={8}>
-        {item.status && <Status status={item.status} />}
+export const EmployeeList = ({ activeKeys }: EmployeeListProps) => {
+  const employeeData = useAppSelector(getEmployeeData);
 
-        <Text>{item.lastTimeTrip}</Text>
-      </HStack>
-    ),
-  },
-  name: {
-    header: 'Сотрудник',
-    render: (item) => (
-      <HStack gap={8}>
-        {item.status && <Status status={item.status} />}
-
-        <VStack gap={4}>
-          <Text>{item.name}</Text>
-          {item.email && (
-            <Text color="text-tertiary" size={14}>
-              {item.email}
-            </Text>
-          )}
-        </VStack>
-      </HStack>
-    ),
-  },
-  phone: {
-    header: 'Телефон',
-    render: (item) => <Text>{item.phone}</Text>,
-  },
-  role: {
-    header: 'Роль',
-    render: (item) => <Text>{item.role}</Text>,
-  },
-  department: {
-    header: 'Отдел',
-    render: (item) => <Text>{item.department}</Text>,
-  },
-  monthLimit: {
-    header: 'Лимит',
-    render: (item) => <Text>{item.monthLimit}</Text>,
-  },
-  spent: {
-    header: 'Потрачено',
-    render: (item) => <Text>{item.spent}</Text>,
-    align: 'end',
-  },
-  price: {
-    header: 'Стоимость',
-    align: 'end',
-    render: (item) => <Text>{item.price}</Text>,
-  },
-};
-
-export const EmployeeList = ({ data }: EmployeeListProps) => {
-  if (!data.length) return <Text>Нет данных</Text>;
-
-  const activeColumns = Object.keys(COLUMN_MAP).filter(
-    (key) => key in data[0] && data[0][key as keyof IEmployee] !== undefined,
+  const {
+    data: employees,
+    isLoading,
+    isError,
+  } = useGetEmployeesListQuery(
+    {
+      fields: activeKeys,
+      companyId: employeeData?.companyId,
+    },
+    {
+      skip: !employeeData?.companyId,
+    },
   );
 
-  const colsCount = activeColumns.length;
-  const gridCols = (colsCount <= 6 ? colsCount : 6) as
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5
-    | 6
-    | 12;
+  const activeColumns = useMemo(() => {
+    if (!employees?.length) return [];
+    return Object.keys(COLUMN_MAP).filter(
+      (key) =>
+        key in employees[0] &&
+        employees[0][key as keyof Employee] !== undefined,
+    );
+  }, [employees]);
+
+  const gridCols = useMemo(() => {
+    const count = activeColumns.length;
+    return (count <= 6 ? count : 6) as 1 | 2 | 3 | 4 | 5 | 6 | 12;
+  }, [activeColumns]);
 
   const directionStack = getFlex({ direction: 'column', gap: 16 });
+
+  if (isLoading) {
+    return (
+      <VStack gap={16}>
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} width="full" height={84} borderRadius={16} />
+        ))}
+      </VStack>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Text color="danger">
+        Ошибка при загрузке сотрудников. Обратитесь в техподдержку
+      </Text>
+    );
+  }
+
+  if (!employees?.length) return <Text>Нет данных</Text>;
+
   return (
     <VStack>
       <Card p={0} isOverflowAuto>
@@ -137,29 +100,18 @@ export const EmployeeList = ({ data }: EmployeeListProps) => {
           </Grid>
 
           {/* Данные */}
-          <Grid cols={gridCols}>
-            {data.map((item) => (
-              <React.Fragment key={item.id}>
-                {activeColumns.map((key) => {
-                  const config = COLUMN_MAP[key];
-                  const align = getFlex({ align: config.align || 'start' });
-                  return (
-                    <Card
-                      key={key + item.id}
-                      p={16}
-                      borderLine="bottom"
-                      className={align.className}
-                      style={align.style}
-                    >
-                      {config.render(item)}
-                    </Card>
-                  );
-                })}
-              </React.Fragment>
-            ))}
-          </Grid>
+          {employees.map((item) => (
+            <EmployeeItem
+              key={item.id}
+              item={item}
+              activeColumns={activeColumns}
+              columnMap={COLUMN_MAP}
+              gridCols={gridCols}
+            />
+          ))}
         </Card>
       </Card>
+
       <HStack justify="space-between">
         <Pagination currentPage="3" totalPages={10} />
         <Text color="text-tertiary">1-50 из 883</Text>

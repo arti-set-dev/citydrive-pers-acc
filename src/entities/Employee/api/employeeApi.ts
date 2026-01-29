@@ -1,6 +1,11 @@
 import { baseApi } from '@/shared/api/baseApi';
 import { Employee } from '../model/types/employee';
 
+export interface GetEmployeesArgs {
+  fields?: Array<keyof Employee>;
+  companyId?: string;
+}
+
 export const employeeApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getEmployeeData: build.query<Employee, string | null>({
@@ -9,7 +14,48 @@ export const employeeApi = baseApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+
+    getEmployeesList: build.query<Employee[], GetEmployeesArgs | void>({
+      query: (args) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const params: Record<string, any> = {};
+
+        if (args?.fields) {
+          params._fields = args.fields.join(',');
+        }
+
+        if (args?.companyId) {
+          params.companyId = args.companyId;
+        }
+
+        return {
+          url: '/employees',
+          method: 'GET',
+          params,
+        };
+      },
+      transformResponse: (response: Employee[], meta, args) => {
+        if (!args?.fields) return response;
+
+        return response.map((employee) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const picked: any = { id: employee.id };
+          args.fields?.forEach((key) => {
+            picked[key] = employee[key];
+          });
+          return picked as Employee;
+        });
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Employee' as const, id })),
+              { type: 'Employee', id: 'LIST' },
+            ]
+          : [{ type: 'Employee', id: 'LIST' }],
+    }),
   }),
 });
 
-export const { useGetEmployeeDataQuery } = employeeApi;
+export const { useGetEmployeeDataQuery, useGetEmployeesListQuery } =
+  employeeApi;

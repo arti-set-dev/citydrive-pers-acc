@@ -9,14 +9,14 @@
       "id": "1",
       "companyName": "ООО Рога и Копыта",
       "companyId": "1",
-      "name": "Костин Герман Феликсович",
+      "name": "Костин 1 Герман Феликсович",
       "role": "admin",
       "department": "Отдел продаж",
       "balance": 15000,
       "limit": 100000,
       "spent": 2000,
       "status": "active",
-      "phone": "+79999999999",
+      "phone": "79999999999",
       "email": "email@mail.com",
       "experimentalFeatures": true,
       "notifications": {
@@ -44,6 +44,32 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "emailtest@mail.com",
+      "experimentalFeatures": true,
+      "notifications": {
+        "newEmployees": false
+      },
+      "departmentId": "1",
+      "time": {
+        "start": "12:00",
+        "end": "18:00"
+      },
+      "days": [1, 2, 3, 4, 5, 6, 7],
+      "cars": ["comfort", "economy", "premium"],
+      "city": [1, 2, 15, 23]
+    },
+    {
+      "id": "3",
+      "companyName": "ООО Ромашка",
+      "companyId": "2",
+      "name": "Костин Герман Феликсович",
+      "role": "admin",
+      "department": "Отдел продаж",
+      "balance": 15000,
+      "limit": 100000,
+      "spent": 2000,
+      "status": "active",
+      "phone": "+79999999999",
+      "email": "rom@mail.com",
       "experimentalFeatures": true,
       "notifications": {
         "newEmployees": false

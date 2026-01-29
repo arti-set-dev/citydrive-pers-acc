@@ -8,58 +8,11 @@ import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { getRouteTrips } from '@/shared/lib/router/paths';
 import { EmployeeList, getEmployeeData } from '@/entities/Employee';
-// eslint-disable-next-line boundaries/entry-point
-import type { IEmployee } from '@/entities/Employee/ui/EmployeeList/EmployeeList';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import {
   ImportDataAboutCompanyButton,
   useGetCompanyEmployeesQuery,
 } from '@/features/import-data-about-company';
-
-const data: IEmployee[] = [
-  {
-    id: '1',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'active',
-  },
-  {
-    id: '2',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'active',
-  },
-  {
-    id: '3',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'active',
-  },
-  {
-    id: '4',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'active',
-  },
-  {
-    id: '5',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'active',
-  },
-  {
-    id: '6',
-    lastTimeTrip: '15:32',
-    name: 'Константин Герман Феликсовыич',
-    price: '3000 р',
-    status: 'inactive',
-  },
-];
 
 const stack = getVStack({
   gap: 16,
@@ -105,7 +58,7 @@ const HomePage = () => {
           <ImportDataAboutCompanyButton companyId={employeeData?.companyId} />
         </VStack>
       )}
-      <EmployeeList data={data} />
+      <EmployeeList activeKeys={['time', 'name', 'email', 'spent']} />
     </Card>
   );
 };

@@ -68,8 +68,8 @@ const data: IRoute[] = [
 ];
 
 export const TripsFilter = () => {
-  const [dateSelected, setDateSelected] = useState(null);
-  const [priceSelected, setPriceSelected] = useState(null);
+  const [dateSelected] = useState(null);
+  const [priceSelected] = useState(null);
   return (
     <VStack>
       <Grid cols={3}>
@@ -78,7 +78,7 @@ export const TripsFilter = () => {
             offset={0}
             desc="Дата"
             selected={dateSelected}
-            onChange={setDateSelected}
+            // onChange={setDateSelected}
             variant="clear"
             options={days}
           />
@@ -90,7 +90,7 @@ export const TripsFilter = () => {
           <Select
             desc="Стоимость"
             selected={priceSelected}
-            onChange={setPriceSelected}
+            // onChange={setPriceSelected}
             variant="clear"
             offset={0}
             options={price}

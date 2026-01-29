@@ -1,4 +1,4 @@
-import { getEmployeeData, getEmployeeInited, Role } from '@/entities/Employee';
+import { getEmployeeData, getEmployeeInited } from '@/entities/Employee';
 import { getIsAuth } from '@/features/login';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getRouteAuth, getRouteHome } from '@/shared/lib/router/paths';
@@ -10,7 +10,7 @@ interface RequireAuthProps {
   children: React.ReactElement;
   guestOnly?: boolean;
   authOnly?: boolean;
-  roles?: Role[];
+  roles?: string[];
 }
 
 export const RequireAuth = ({

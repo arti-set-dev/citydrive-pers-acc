@@ -25,7 +25,7 @@ export const getRouteRegistration = (): string => PATHS.registration;
 export const getRouteForgotAuthPassword = (): string => PATHS.forgotPassword;
 export const getRouteResetAuthPassword = (): string => PATHS.resetPassword;
 export const getRouteEmployees = (): string => PATHS.employees;
-export const getRouteEmployee = (id: string): string => PATHS.employee + id;
+export const getRouteEmployee = (id: string): string => `/employees/${id}`;
 export const getRouteEmployeeEdit = (id: string): string =>
   `/employees/${id}/edit`;
 export const getRouteEmployeeNew = (): string => PATHS.employeeNew;

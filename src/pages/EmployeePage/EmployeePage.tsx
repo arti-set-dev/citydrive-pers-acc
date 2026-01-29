@@ -11,12 +11,17 @@ import { EmployeeInfo } from '@/widgets/EmployeeInfo';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { TripsInfoByMonth } from '@/widgets/TripsInfoByMonth';
 import { SortTripsByMonth, TripsFilter } from '@/features/sort-employee-trips';
+import { useParams } from 'react-router-dom';
+import { DeleteEmployeeButton } from '@/features/delete-employee';
 
 const stack = getVStack({
   gap: 16,
 });
 
 const EmployeePage = () => {
+  const { id } = useParams<{ id: string }>();
+  if (!id) return null;
+
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <HStack justify="space-between">
@@ -29,9 +34,12 @@ const EmployeePage = () => {
           </Text>
         </HStack>
 
-        <AppLink to={getRouteEmployeeEdit('1')} variant="outline">
-          Редактировать
-        </AppLink>
+        <HStack>
+          <AppLink to={getRouteEmployeeEdit(id)} variant="outline">
+            Редактировать
+          </AppLink>
+          <DeleteEmployeeButton id={id} />
+        </HStack>
       </HStack>
       <Flex
         direction={{ base: 'row', lg: 'column' }}
