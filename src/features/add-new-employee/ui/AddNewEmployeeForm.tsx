@@ -33,7 +33,12 @@ export const AddNewEmployeeForm = () => {
   const formData = useAppSelector(getAddNewEmployeeData);
   const employeeData = useAppSelector(getEmployeeData);
   const { data: departmentsList } = useGetDepartmentsQuery(
-    employeeData?.id ?? '',
+    {
+      companyId: employeeData?.companyId,
+    },
+    {
+      skip: !employeeData?.companyId,
+    },
   );
   const [createEmployee, { isLoading }] = useCreateEmployeeMutation();
 

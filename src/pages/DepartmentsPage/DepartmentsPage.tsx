@@ -1,11 +1,9 @@
-import { Department, DepartmentList } from '@/entities/Department';
-import { getEmployeeData } from '@/entities/Employee';
+import { Department } from '@/entities/Department';
 import {
   DeleteDepartmentButton,
   DeleteDepartmentModal,
 } from '@/features/delete-department';
-import { SearchDepartmentForm } from '@/features/search-department';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import { DepartmentSearchContainer } from '@/features/search-department';
 import {
   getRouteDepartmentEdit,
   getRouteDepartmentNew,
@@ -14,7 +12,6 @@ import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
-import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { ActionPopover } from '@/shared/ui/Popover/Popover';
 import { HStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
@@ -26,7 +23,6 @@ const stack = getVStack({
 });
 
 const DepartmentsPage = () => {
-  const employeeData = useAppSelector(getEmployeeData);
   const navigate = useNavigate();
   const [deletingDept, setDeletingDept] = useState<Department | null>(null);
 
@@ -40,9 +36,7 @@ const DepartmentsPage = () => {
           Добавить отдел
         </AppLink>
       </HStack>
-      <SearchDepartmentForm />
-      <DepartmentList
-        companyId={employeeData?.companyId}
+      <DepartmentSearchContainer
         renderActions={(department) => (
           <ActionPopover>
             <Button
@@ -57,10 +51,6 @@ const DepartmentsPage = () => {
           </ActionPopover>
         )}
       />
-      <HStack justify="space-between">
-        <Pagination currentPage="3" totalPages={10} />
-        <Text color="text-tertiary">1-50 из 883</Text>
-      </HStack>
 
       <DeleteDepartmentModal
         department={deletingDept}

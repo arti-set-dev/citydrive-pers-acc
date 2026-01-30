@@ -33,7 +33,10 @@ export const EditEmployeeForm = ({ id }: EditEmployeeFormProps) => {
     useGetEmployeeByIdQuery(id ?? '');
   const employeeData = useAppSelector(getEmployeeData);
   const { data: departmentsList } = useGetDepartmentsQuery(
-    employeeData?.id ?? '',
+    {
+      companyId: employeeData?.companyId,
+    },
+    { skip: !employeeData?.companyId },
   );
   const [updateEmployee, { isLoading: isUpdating }] =
     useUpdateEmployeeMutation();

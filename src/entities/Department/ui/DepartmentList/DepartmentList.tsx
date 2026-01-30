@@ -8,18 +8,21 @@ import { Department } from '../../model/types/department';
 
 export const DepartmentList = ({
   companyId,
+  search,
   renderActions,
 }: {
   companyId?: string;
+  search?: string;
   renderActions?: (department: Department) => React.ReactNode;
 }) => {
   const {
     data: departments,
     isLoading,
+    isFetching,
     isError,
-  } = useGetDepartmentsQuery(companyId ?? '', { skip: !companyId });
+  } = useGetDepartmentsQuery({ companyId, name: search }, { skip: !companyId });
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <VStack gap={16}>
         {[...Array(4)].map((_, i) => (
@@ -80,7 +83,11 @@ export const DepartmentList = ({
 
           {departments?.length === 0 && (
             <Card p={16}>
-              <Text>Отделы еще не созданы</Text>
+              <Text>
+                {search
+                  ? 'По вашему запросу отделов с таким названием не найдено'
+                  : 'Отделы еще не созданы'}
+              </Text>
             </Card>
           )}
         </VStack>
