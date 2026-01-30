@@ -1,7 +1,6 @@
 import { getEmployeeData } from '@/entities/Employee';
-import { InvoiceList } from '@/entities/Invoice';
 import { useGetCompanyEmployeesQuery } from '@/features/import-data-about-company';
-import { SearchInvoicesForm } from '@/features/search-invoices';
+import { SearchInvoicesContainer } from '@/features/search-invoices';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { Card } from '@/shared/ui/Card/Card';
@@ -32,8 +31,7 @@ const InvoicesPage = () => {
       <Text as="h1" weight="bold" size={32}>
         Счета
       </Text>
-      <SearchInvoicesForm />
-      <InvoiceList targetIds={targetIds} />
+      <SearchInvoicesContainer targetIds={targetIds} />
     </Card>
   );
 };

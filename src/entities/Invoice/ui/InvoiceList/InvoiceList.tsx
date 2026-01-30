@@ -7,18 +7,21 @@ import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 interface InvoiceListProps {
   targetIds: string[];
+  search?: string;
 }
 
-export const InvoiceList = ({ targetIds }: InvoiceListProps) => {
+export const InvoiceList = ({ targetIds, search }: InvoiceListProps) => {
   const {
     data: invoices,
     isLoading,
+    isFetching,
     isError,
-  } = useGetInvoicesQuery(targetIds, {
-    skip: targetIds.length === 0,
-  });
+  } = useGetInvoicesQuery(
+    { targetIds, search },
+    { skip: targetIds.length === 0 },
+  );
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <VStack gap={16}>
         {[...Array(4)].map((_, i) => (
@@ -31,6 +34,15 @@ export const InvoiceList = ({ targetIds }: InvoiceListProps) => {
     return (
       <Text color="danger">
         Ошибка при загрузке счетов. Обратитесь в техподдержку
+      </Text>
+    );
+  }
+  if (!invoices || invoices.length === 0) {
+    return (
+      <Text align="center">
+        {search
+          ? `По вашему запросу "${search}" счетов с таким названием не найдено`
+          : 'Сейчас никаких счетов нет'}
       </Text>
     );
   }
