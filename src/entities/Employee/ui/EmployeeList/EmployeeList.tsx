@@ -18,7 +18,7 @@ interface EmployeeListProps {
   filters?: {
     name?: string;
     role?: string;
-    department?: string;
+    departmentId?: string;
     status?: string;
   };
 }
@@ -37,7 +37,7 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
       companyId: employeeData?.companyId,
       name_like: filters?.name,
       role: filters?.role,
-      department: filters?.department,
+      departmentId: filters?.departmentId,
       status: filters?.status,
     },
     {

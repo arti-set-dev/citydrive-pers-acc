@@ -6,7 +6,7 @@ export interface GetEmployeesArgs {
   companyId?: string;
   name_like?: string;
   role?: string;
-  department?: string;
+  departmentId?: string;
   status?: string;
 }
 
@@ -30,7 +30,7 @@ export const employeeApi = baseApi.injectEndpoints({
 
         const filterFields: Array<keyof GetEmployeesArgs> = [
           'role',
-          'department',
+          'departmentId',
           'status',
         ];
 

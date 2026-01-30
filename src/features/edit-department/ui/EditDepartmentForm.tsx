@@ -7,12 +7,10 @@ import { Card } from '@/shared/ui/Card/Card';
 import { VStack } from '@/shared/ui/Stack';
 import { Field } from '@/shared/ui/Field/Field';
 import { Button } from '@/shared/ui/Button/Button';
-import {
-  useGetDepartmentByIdQuery,
-  useUpdateDepartmentMutation,
-} from '../api/editDepartmentApi';
+import { useUpdateDepartmentMutation } from '../api/editDepartmentApi';
 import { getRouteDepartments } from '@/shared/lib/router/paths';
 import { Loader } from '@/shared/ui/Loader/Loader';
+import { useGetDepartmentByIdQuery } from '@/entities/Department';
 
 interface FormValues {
   name: string;

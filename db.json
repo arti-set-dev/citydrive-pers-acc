@@ -22,7 +22,7 @@
       "notifications": {
         "newEmployees": false
       },
-      "departmentId": "1",
+      "departmentId": "_JhiIgB",
       "time": {
         "start": "12:00",
         "end": "18:00"
@@ -48,7 +48,7 @@
       "notifications": {
         "newEmployees": false
       },
-      "departmentId": "1",
+      "departmentId": "_JhiIgB",
       "time": {
         "start": "12:00",
         "end": "18:00"
@@ -82,6 +82,58 @@
       "days": [1, 2, 3, 4, 5, 6, 7],
       "cars": ["comfort", "economy", "premium"],
       "city": [1, 2, 15, 23]
+    },
+    {
+      "id": "4",
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
+      "name": "Сотрудник из отдела логистики",
+      "role": "user",
+      "department": "Отдел логистики",
+      "balance": 15000,
+      "limit": 100000,
+      "spent": 2000,
+      "status": "active",
+      "phone": "+79999999999",
+      "email": "emailtest@mail.com",
+      "experimentalFeatures": true,
+      "notifications": {
+        "newEmployees": false
+      },
+      "departmentId": "3",
+      "time": {
+        "start": "12:00",
+        "end": "18:00"
+      },
+      "days": [1, 2, 3, 4, 5, 6, 7],
+      "cars": ["comfort", "economy", "premium"],
+      "city": [1, 2, 15, 23]
+    },
+    {
+      "id": "5",
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
+      "name": "Сотрудник 2",
+      "role": "user",
+      "department": "Отдел логистики",
+      "balance": 15000,
+      "limit": 100000,
+      "spent": 2000,
+      "status": "active",
+      "phone": "+79999999999",
+      "email": "emailtest@mail.com",
+      "experimentalFeatures": true,
+      "notifications": {
+        "newEmployees": false
+      },
+      "departmentId": "3",
+      "time": {
+        "start": "12:00",
+        "end": "18:00"
+      },
+      "days": [1, 2, 3, 4, 5, 6, 7],
+      "cars": ["comfort", "economy", "premium"],
+      "city": [1, 2, 15, 23]
     }
   ],
   "departments": [
@@ -93,8 +145,16 @@
       "limit": 3646363,
       "companyId": "1",
       "spent": 0,
-      "employeesIds": [],
+      "employeesIds": ["1", "2"],
       "id": "_JhiIgB"
+    },
+    {
+      "name": "отдел логистикии",
+      "limit": 3333,
+      "companyId": "1",
+      "spent": 0,
+      "employeesIds": ["4", "5"],
+      "id": "3"
     }
   ],
   "notifications": [

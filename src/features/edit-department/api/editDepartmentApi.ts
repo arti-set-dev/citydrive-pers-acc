@@ -3,13 +3,6 @@ import { baseApi } from '@/shared/api/baseApi';
 
 export const editDepartmentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getDepartmentById: builder.query<Department, string>({
-      query: (id) => ({
-        url: `/departments/${id}`,
-        method: 'get',
-      }),
-      providesTags: (_, __, id) => [{ type: 'Department', id }],
-    }),
     updateDepartment: builder.mutation<
       Department,
       Partial<Department> & { id: string }
@@ -27,5 +20,4 @@ export const editDepartmentApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useUpdateDepartmentMutation, useGetDepartmentByIdQuery } =
-  editDepartmentApi;
+export const { useUpdateDepartmentMutation } = editDepartmentApi;

@@ -3,6 +3,13 @@ import { Department } from '../model/types/department';
 
 export const departmentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getDepartmentById: builder.query<Department, string>({
+      query: (id) => ({
+        url: `/departments/${id}`,
+        method: 'GET',
+      }),
+      providesTags: (_, __, id) => [{ type: 'Department', id }],
+    }),
     getDepartments: builder.query<
       Department[],
       { companyId?: string; name?: string }
@@ -23,4 +30,5 @@ export const departmentApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetDepartmentsQuery } = departmentApi;
+export const { useGetDepartmentsQuery, useGetDepartmentByIdQuery } =
+  departmentApi;
