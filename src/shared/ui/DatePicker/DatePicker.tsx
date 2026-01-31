@@ -13,6 +13,7 @@ interface DatePickerProps {
   value?: DateRange;
   onChange?: (range: DateRange | undefined) => void;
   error?: string;
+  disabledBefore?: Date;
 }
 
 export const DatePicker = ({
@@ -20,6 +21,7 @@ export const DatePicker = ({
   onChange,
   value,
   error,
+  disabledBefore,
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -82,7 +84,11 @@ export const DatePicker = ({
               if (newRange?.from && newRange?.to) setIsOpen(false);
             }}
             className={styles.DatePicker}
-            disabled={{ before: new Date() }}
+            disabled={
+              disabledBefore
+                ? { before: disabledBefore }
+                : { before: new Date() }
+            }
           />
         </div>
       )}

@@ -10,7 +10,7 @@ import ArrowLeft from '@/shared/assets/icons/arrow-left.svg';
 import { EmployeeInfo } from '@/widgets/EmployeeInfo';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { TripsInfoByMonth } from '@/widgets/TripsInfoByMonth';
-import { SortTripsByMonth, TripsFilter } from '@/features/sort-employee-trips';
+import { TripsSortContainer } from '@/features/sort-employee-trips';
 import { useParams } from 'react-router-dom';
 import { DeleteEmployeeButton } from '@/features/delete-employee';
 
@@ -48,16 +48,15 @@ const EmployeePage = () => {
         gap={16}
       >
         <Card width={770} p={0}>
-          <EmployeeInfo />
+          <EmployeeInfo id={id} />
         </Card>
         <Card width="full" p={0}>
           <VStack>
-            <TripsInfoByMonth />
+            <TripsInfoByMonth employeeId={id} date="2024-06" />
             <Text weight="bold" size={28}>
               Информация о поедках
             </Text>
-            <SortTripsByMonth />
-            <TripsFilter />
+            <TripsSortContainer employeeId={id} />
           </VStack>
         </Card>
       </Flex>

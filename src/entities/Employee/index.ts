@@ -13,4 +13,5 @@ export {
 export {
   useGetEmployeeDataQuery,
   useGetEmployeesListQuery,
+  useGetStatsQuery,
 } from './api/employeeApi';

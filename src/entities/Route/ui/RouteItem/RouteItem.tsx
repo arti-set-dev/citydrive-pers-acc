@@ -2,13 +2,12 @@ import { Flex, HStack, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
 import clsx from 'clsx';
 import styles from './RouteItem.module.scss';
-import { IRoute } from '../RouteList/RouteList';
 import { Card } from '@/shared/ui/Card/Card';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
+import { IRoute } from '../../model/route';
 
 interface RouteItemProps {
   route: IRoute;
-  reverse?: boolean;
 }
 
 const stack = getVStack({
@@ -16,7 +15,7 @@ const stack = getVStack({
 });
 
 export const RouteItem = (props: RouteItemProps) => {
-  const { route, reverse } = props;
+  const { route } = props;
   const { price, stops, routeEnd, routeStart } = route;
 
   const abbreviatedRoute = routeEnd && routeStart && !stops;
@@ -63,7 +62,6 @@ export const RouteItem = (props: RouteItemProps) => {
         <Flex
           key={stop.id}
           justify="space-between"
-          direction={reverse ? 'row-reverse' : 'row'}
           as="li"
           className={clsx(styles.RoutePath, {
             [styles.RoutePathStart]: stop.isStart,

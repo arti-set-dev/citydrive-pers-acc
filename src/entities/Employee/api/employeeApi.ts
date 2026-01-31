@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/baseApi';
-import { Employee } from '../model/types/employee';
+import { Employee, EmployeeStats } from '../model/types/employee';
 
 export interface GetEmployeesArgs {
   fields?: Array<keyof Employee>;
@@ -67,8 +67,21 @@ export const employeeApi = baseApi.injectEndpoints({
             ]
           : [{ type: 'Employee', id: 'LIST' }],
     }),
+    getStats: build.query<
+      EmployeeStats[],
+      { employeeId: string; date?: string }
+    >({
+      query: ({ employeeId, date }) => ({
+        url: '/stats',
+        method: 'get',
+        params: { employeeId, date },
+      }),
+    }),
   }),
 });
 
-export const { useGetEmployeeDataQuery, useGetEmployeesListQuery } =
-  employeeApi;
+export const {
+  useGetEmployeeDataQuery,
+  useGetEmployeesListQuery,
+  useGetStatsQuery,
+} = employeeApi;

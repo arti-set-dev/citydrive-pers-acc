@@ -52,7 +52,6 @@ export const Select = <T,>({
 }: SelectOptions<T>) => {
   const [query, setQuery] = useState('');
 
-  // Находим объект для корректного отображения, если в selected передан ID/строка
   const activeOption = useMemo(() => {
     if (selected === null || selected === undefined) return null;
     if (typeof selected === 'object' && !Array.isArray(selected))
@@ -63,7 +62,6 @@ export const Select = <T,>({
     );
   }, [selected, options, getOptionKey]);
 
-  // Приводим onChange к типу, который ожидает Headless UI (T | null)
   const handleChange = (val: T | null) => {
     if (onChange) onChange(val);
   };
@@ -87,7 +85,7 @@ export const Select = <T,>({
   if (placeholder) {
     return (
       <Combobox
-        value={activeOption}
+        value={activeOption ?? null}
         onChange={handleChange}
         onClose={() => setQuery('')}
         disabled={disabled}
@@ -123,7 +121,7 @@ export const Select = <T,>({
   return (
     <Listbox
       disabled={disabled}
-      value={activeOption ?? undefined}
+      value={activeOption ?? null}
       onChange={handleChange}
     >
       <VStack gap={0} className={clsx(styles.Select, className)}>

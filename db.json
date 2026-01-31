@@ -174,34 +174,80 @@
     }
   ],
   "routes": [],
-  "routPaths": {
-    "1": [
-      {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва",
-        "time": "15:32",
-        "coords": [55.75, 37.58]
-      },
-      {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва",
-        "time": "15:32",
-        "coords": [55.75, 37.58]
-      },
-      {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва",
-        "time": "15:32",
-        "coords": [55.75, 37.58]
-      },
-      {
-        "address": "Ул. Пенькова, 28",
-        "city": "Москва",
-        "time": "15:32",
-        "coords": [55.75, 37.58]
-      }
-    ]
-  },
+  "routPaths": [
+    {
+      "id": "1",
+      "employeeId": "1",
+      "price": 3200,
+      "date": "2024-05",
+      "stopsIds": ["1", "2", "3", "4"]
+    },
+    {
+      "id": "2",
+      "employeeId": "1",
+      "price": 3500,
+      "date": "2025-05",
+      "stopsIds": ["5", "6", "7"]
+    }
+  ],
+  "stops": [
+    {
+      "id": "1",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "2",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "3",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "4",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "5",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "6",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    },
+    {
+      "id": "7",
+      "employeeId": "1",
+      "address": "Ул. Пенькова, 28",
+      "city": "Москва",
+      "time": "15:32",
+      "coords": [55.75, 37.58]
+    }
+  ],
   "rate": [
     {
       "id": "1",
@@ -287,14 +333,28 @@
   ],
   "stats": [
     {
-      "employee_id": "1",
+      "employeeId": "1",
       "date": "2024-06",
       "trips": 36,
       "spent": 768,
       "remaining": 3368
     },
     {
-      "employee_id": "1",
+      "employeeId": "1",
+      "date": "2024-05",
+      "trips": 42,
+      "spent": 900,
+      "remaining": 2500
+    },
+    {
+      "employeeId": "1",
+      "date": "2024-05",
+      "trips": 42,
+      "spent": 900,
+      "remaining": 2500
+    },
+    {
+      "employeeId": "1",
       "date": "2024-05",
       "trips": 42,
       "spent": 900,

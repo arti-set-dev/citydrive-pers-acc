@@ -1,6 +1,4 @@
-import { RouteItem } from '@/entities/Route';
-// eslint-disable-next-line boundaries/entry-point
-import { IRoute } from '@/entities/Route/ui/RouteList/RouteList';
+import { IRoute, RouteItem } from '@/entities/Route';
 
 export const RoutePath = () => {
   const route: IRoute = {

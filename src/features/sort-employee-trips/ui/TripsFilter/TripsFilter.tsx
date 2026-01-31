@@ -1,103 +1,103 @@
-import { RouteList } from '@/entities/Route';
-// eslint-disable-next-line boundaries/entry-point
-import { IRoute } from '@/entities/Route/ui/RouteList/RouteList';
+import { RouteList, useGetRoutesQuery } from '@/entities/Route';
+
 import { Select } from '@/shared/ui/Select/Select';
 import { Flex, Grid, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { DateRange } from 'react-day-picker';
+import { format } from 'date-fns';
 
-const days = [
-  { id: 1, name: '1' },
-  { id: 2, name: '2' },
-];
+interface SelectOption {
+  id: number | string;
+  name: string;
+}
 
-const price = [
+const priceOptions = [
   { id: 1, name: 'По убыванию' },
   { id: 2, name: 'По возростанию' },
 ];
 
-const data: IRoute[] = [
-  {
-    id: '1',
-    price: '2 186 р',
-    routeStart: {
-      id: '1',
-      address: 'Ул. Пенькова, 28',
-      city: 'Москва',
-      date: '18 сентября',
-      time: '15:32',
-    },
-    routeEnd: {
-      id: '2',
-      address: 'Ул. Рассольникова, 28',
-      city: 'Санкт-Петербург',
-    },
-  },
-  {
-    id: '2',
-    price: '2 186 р',
-    routeStart: {
-      id: '1',
-      address: 'Ул. Пенькова, 28',
-      city: 'Москва',
-      date: '18 сентября',
-      time: '15:32',
-    },
-    routeEnd: {
-      id: '2',
-      address: 'Ул. Бакинских Комиссаров, 3',
-      city: 'Санкт-Петербург',
-    },
-  },
-  {
-    id: '3',
-    price: '2 186 р',
-    routeStart: {
-      id: '1',
-      address: 'Ул. Пенькова, 28',
-      city: 'Москва',
-      date: '18 сентября',
-      time: '15:32',
-    },
-    routeEnd: {
-      id: '2',
-      address: 'Ул. Рассольникова, 28',
-      city: 'Санкт-Петербург',
-    },
-  },
-];
+interface TripsFilterProps {
+  employeeId: string;
+  dateRange?: DateRange;
+  priceSort?: SelectOption | null;
+  onPriceSortChange?: (value: SelectOption | null) => void;
+}
 
-export const TripsFilter = () => {
-  const [dateSelected] = useState(null);
-  const [priceSelected] = useState(null);
+export const TripsFilter = ({
+  employeeId,
+  dateRange,
+  priceSort,
+  onPriceSortChange,
+}: TripsFilterProps) => {
+  const [dateSelected, setDateSelected] = useState<SelectOption | null>(null);
+
+  const { data: routes } = useGetRoutesQuery({ employeeId });
+
+  const dateOptions = useMemo(() => {
+    if (!routes || !Array.isArray(routes)) return [];
+
+    const uniqueDates = Array.from(new Set(routes.map((r) => r.date))).sort(
+      (a, b) => b.localeCompare(a),
+    );
+
+    const options = uniqueDates.map((date, index) => ({
+      id: index + 1,
+      name: date,
+    }));
+
+    return [{ id: 'all', name: 'Все' }, ...options];
+  }, [routes]);
+
+  const {
+    data: filteredRoutes,
+    isLoading,
+    isFetching,
+  } = useGetRoutesQuery({
+    employeeId,
+    date:
+      dateSelected?.id === 'all' || !dateSelected
+        ? undefined
+        : dateSelected.name,
+    sort: priceSort?.id === 1 ? '-price' : 'price',
+    startDate: dateRange?.from
+      ? format(dateRange.from, 'yyyy-MM-dd')
+      : undefined,
+    endDate: dateRange?.to ? format(dateRange.to, 'yyyy-MM-dd') : undefined,
+  });
+
   return (
-    <VStack>
+    <VStack gap={16}>
       <Grid cols={3}>
         <Flex align="start">
           <Select
-            offset={0}
             desc="Дата"
             selected={dateSelected}
-            // onChange={setDateSelected}
+            onChange={setDateSelected}
             variant="clear"
-            options={days}
+            options={dateOptions}
           />
         </Flex>
-        <Flex align="center">
-          <Text color="text-tertiary">Откуда - куда</Text>
+        <Flex justify="center">
+          <Text color="text-tertiary" align="center">
+            Откуда — куда
+          </Text>
         </Flex>
-        <Flex align="end">
+        <Flex justify="end">
           <Select
             desc="Стоимость"
-            selected={priceSelected}
-            // onChange={setPriceSelected}
+            selected={priceSort}
+            onChange={onPriceSortChange}
             variant="clear"
-            offset={0}
-            options={price}
+            options={priceOptions}
           />
         </Flex>
       </Grid>
-      <RouteList data={data} reverse />
+
+      <RouteList
+        routes={filteredRoutes || []}
+        isLoading={isLoading || isFetching}
+      />
     </VStack>
   );
 };

@@ -1,47 +1,38 @@
 import { Flex, VStack } from '@/shared/ui/Stack';
-import { RouteItem } from '../RouteItem/RouteItem';
 import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { Text } from '@/shared/ui/Text/Text';
-
-interface IBaseRoute {
-  id: string;
-  price?: string;
-}
-
-interface IStop {
-  id: string;
-  address: string;
-  city: string;
-  time?: string;
-  date?: string;
-  isStart?: boolean;
-  isEnd?: boolean;
-}
-
-interface IDirectRoute extends IBaseRoute {
-  routeStart: IStop;
-  routeEnd: IStop;
-  stops?: never;
-}
-
-interface IStopsRoute extends IBaseRoute {
-  stops: IStop[];
-  routeStart?: never;
-  routeEnd?: never;
-}
-
-export type IRoute = IDirectRoute | IStopsRoute;
+import { RoutePathResponse } from '../../api/routeApi';
+import { RouteItemSkeleton } from '../RouteItem/RouteItemSkeleton';
+import { SmartRouteItem } from '../SmartRouteItem/SmartRouteItem';
 
 interface RouteListProps {
-  data: IRoute[];
-  reverse?: boolean;
+  routes?: RoutePathResponse[];
+  isLoading?: boolean;
+  totalCount?: number;
 }
 
-export const RouteList = ({ data, reverse }: RouteListProps) => {
+export const RouteList = (props: RouteListProps) => {
+  const { routes, isLoading } = props;
+  if (isLoading)
+    return (
+      <VStack gap={8}>
+        {[...Array(3)].map((_, i) => (
+          <RouteItemSkeleton key={i} />
+        ))}
+      </VStack>
+    );
+
+  if (!routes || routes.length === 0) {
+    return (
+      <Text color="text-tertiary" align="center">
+        Поездок не найдено
+      </Text>
+    );
+  }
   return (
     <VStack>
-      {data.map((route) => (
-        <RouteItem key={route.id} reverse={reverse} route={route} />
+      {routes?.map((route) => (
+        <SmartRouteItem key={route.id} route={route} />
       ))}
       <Flex direction={{ base: 'row', lg: 'row' }} justify="space-between">
         <Pagination currentPage="3" totalPages={10} />

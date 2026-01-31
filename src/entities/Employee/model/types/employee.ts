@@ -31,6 +31,15 @@ export interface Employee {
   city: number[];
 }
 
+export interface EmployeeStats {
+  id?: string;
+  employeeId: string;
+  date: string;
+  trips: number;
+  spent: number;
+  remaining: number;
+}
+
 export interface EmployeeSchema {
   data?: Employee;
   _inited: boolean;
