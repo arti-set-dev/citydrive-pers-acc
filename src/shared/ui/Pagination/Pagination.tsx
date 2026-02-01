@@ -6,48 +6,59 @@ import ArrowRight from '@/shared/assets/icons/chevron-right.svg';
 import clsx from 'clsx';
 
 interface PaginationProps {
-  currentPage: string;
+  currentPage: number;
   totalPages: number;
 }
 
 export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
   const current = Number(currentPage);
 
-  const displayPagesCount = totalPages > 4 ? 3 : totalPages;
-  const pages = Array.from({ length: displayPagesCount }, (_, i) => i + 1);
-
-  const showNext = totalPages > 4;
-  const showPrev = current > 1;
+  const getPages = () => {
+    const delta = 2;
+    const range = [];
+    for (
+      let i = Math.max(2, current - delta);
+      i <= Math.min(totalPages - 1, current + delta);
+      i++
+    ) {
+      range.push(i);
+    }
+    if (current - delta > 2) range.unshift('...');
+    if (current + delta < totalPages - 1) range.push('...');
+    range.unshift(1);
+    if (totalPages > 1) range.push(totalPages);
+    return range;
+  };
 
   return (
-    <HStack as="ul" gap={4}>
-      {showPrev && (
-        <li>
-          <Link className={styles.PaginationLink} to={`?page=${current - 1}`}>
-            <ArrowLeft className={styles.Arrow} />
-          </Link>
-        </li>
+    <HStack as="ul" gap={4} className={styles.Container}>
+      {current > 1 && (
+        <Link to={`?page=${current - 1}`}>
+          <ArrowLeft />
+        </Link>
       )}
 
-      {pages.map((page) => (
-        <li key={page}>
-          <Link
-            to={`?page=${page}`}
-            className={clsx(styles.Button, {
-              [styles.current]: current === page,
-            })}
-          >
-            {page}
-          </Link>
+      {getPages().map((page, idx) => (
+        <li key={idx}>
+          {page === '...' ? (
+            <span>...</span>
+          ) : (
+            <Link
+              to={`?page=${page}`}
+              className={clsx(styles.Button, {
+                [styles.current]: current === page,
+              })}
+            >
+              {page}
+            </Link>
+          )}
         </li>
       ))}
 
-      {showNext && (
-        <li>
-          <Link to={`?page=${current + 1}`}>
-            <ArrowRight className={styles.Arrow} />
-          </Link>
-        </li>
+      {current < totalPages && (
+        <Link to={`?page=${current + 1}`}>
+          <ArrowRight />
+        </Link>
       )}
     </HStack>
   );

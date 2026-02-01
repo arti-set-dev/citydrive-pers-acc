@@ -4,11 +4,13 @@ import { useDebounce } from '@/shared/hooks/useDebounce/useDebounce';
 import { SearchInvoicesForm } from '../SearchInvoicesForm/SearchInvoicesForm';
 
 interface SearchInvoicesContainerProps {
-  targetIds: string[];
+  targetIds?: string[];
+  companyId?: string;
 }
 
 export const SearchInvoicesContainer = ({
   targetIds,
+  companyId,
 }: SearchInvoicesContainerProps) => {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 500);
@@ -16,7 +18,11 @@ export const SearchInvoicesContainer = ({
   return (
     <>
       <SearchInvoicesForm value={search} onChange={setSearch} />
-      <InvoiceList targetIds={targetIds} search={debouncedSearch} />
+      <InvoiceList
+        targetIds={targetIds}
+        companyId={companyId}
+        search={debouncedSearch}
+      />
     </>
   );
 };

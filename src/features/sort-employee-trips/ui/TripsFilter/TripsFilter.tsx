@@ -1,4 +1,4 @@
-import { RouteList, useGetRoutesQuery } from '@/entities/Route';
+import { RouteList, RouteListProps, useGetRoutesQuery } from '@/entities/Route';
 
 import { Select } from '@/shared/ui/Select/Select';
 import { Flex, Grid, VStack } from '@/shared/ui/Stack';
@@ -49,12 +49,7 @@ export const TripsFilter = ({
     return [{ id: 'all', name: 'Все' }, ...options];
   }, [routes]);
 
-  const {
-    data: filteredRoutes,
-    isLoading,
-    isFetching,
-  } = useGetRoutesQuery({
-    employeeId,
+  const activeFilters: RouteListProps['filters'] = {
     date:
       dateSelected?.id === 'all' || !dateSelected
         ? undefined
@@ -64,7 +59,7 @@ export const TripsFilter = ({
       ? format(dateRange.from, 'yyyy-MM-dd')
       : undefined,
     endDate: dateRange?.to ? format(dateRange.to, 'yyyy-MM-dd') : undefined,
-  });
+  };
 
   return (
     <VStack gap={16}>
@@ -94,10 +89,7 @@ export const TripsFilter = ({
         </Flex>
       </Grid>
 
-      <RouteList
-        routes={filteredRoutes || []}
-        isLoading={isLoading || isFetching}
-      />
+      <RouteList employeeId={employeeId} filters={activeFilters} />
     </VStack>
   );
 };

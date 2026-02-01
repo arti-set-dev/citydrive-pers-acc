@@ -1,14 +1,20 @@
-import { useMemo } from 'react';
-import { getFlex } from '@/shared/lib/stack/flex/getFlex';
+import { useMemo, useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
+
 import { Card } from '@/shared/ui/Card/Card';
-import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { Grid, HStack, VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { VirtualList } from '@/shared/ui/VirtualList/VirtualList';
+import { Pagination } from '@/shared/ui/Pagination/Pagination';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 
 import { Employee } from '../../model/types/employee';
-import { useGetEmployeesListQuery } from '../../api/employeeApi';
+import {
+  useGetEmployeesListQuery,
+  EmployeeArrayResponse,
+} from '../../api/employeeApi';
 import { getEmployeeData } from '../../model/selectors/employeeSelectors';
 import { EmployeeItem } from '../EmployeeItem/EmployeeItem';
 import { COLUMN_MAP } from '../../model/types/columns';
@@ -23,8 +29,19 @@ interface EmployeeListProps {
   };
 }
 
+const LIMIT = 10;
+
 export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
+  const [searchParams] = useSearchParams();
+  const [mobilePage, setMobilePage] = useState(1);
   const employeeData = useAppSelector(getEmployeeData);
+
+  const desktopPage = Number(searchParams.get('page')) || 1;
+  const currentPage = isMobile ? mobilePage : desktopPage;
+
+  useEffect(() => {
+    setMobilePage(1);
+  }, [filters]);
 
   const {
     data: employees,
@@ -39,29 +56,37 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
       role: filters?.role,
       departmentId: filters?.departmentId,
       status: filters?.status,
+      _page: currentPage,
+      _limit: LIMIT,
+      isMobile,
     },
     {
       skip: !employeeData?.companyId,
     },
   );
 
+  const totalPages = (employees as EmployeeArrayResponse)?.totalPages || 1;
+  const totalCount = (employees as EmployeeArrayResponse)?.totalCount || 0;
+  const isEmpty = employees?.length === 0;
+
   const activeColumns = useMemo(() => {
-    if (!employees?.length) return [];
-    return Object.keys(COLUMN_MAP).filter(
-      (key) =>
-        key in employees[0] &&
-        employees[0][key as keyof Employee] !== undefined,
+    return Object.keys(COLUMN_MAP).filter((key) =>
+      activeKeys.includes(key as keyof Employee),
     );
-  }, [employees]);
+  }, [activeKeys]);
 
   const gridCols = useMemo(() => {
     const count = activeColumns.length;
     return (count <= 6 ? count : 6) as 1 | 2 | 3 | 4 | 5 | 6 | 12;
   }, [activeColumns]);
 
-  const directionStack = getFlex({ direction: 'column', gap: 16 });
+  const handleLoadMore = () => {
+    if (employees && employees.length < totalCount && !isFetching) {
+      setMobilePage((prev) => prev + 1);
+    }
+  };
 
-  if (isLoading || isFetching) {
+  if (isLoading && !employees) {
     return (
       <VStack gap={16}>
         {[...Array(4)].map((_, i) => (
@@ -72,61 +97,85 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
   }
 
   if (isError) {
-    return (
-      <Text color="danger">
-        Ошибка при загрузке сотрудников. Обратитесь в техподдержку
-      </Text>
-    );
+    return <Text color="danger">Ошибка при загрузке сотрудников.</Text>;
   }
 
-  if (!employees?.length) return <Text>Нет данных</Text>;
+  const showDesktopSkeleton = !isMobile && isFetching;
+
+  const renderContent = isMobile ? (
+    <VirtualList
+      height="65vh"
+      items={employees || []}
+      isLoading={isLoading}
+      skeletonComponent={
+        <Skeleton width="full" height={84} borderRadius={16} />
+      }
+      isFetching={isFetching}
+      onLoadMore={handleLoadMore}
+      renderItem={(item) => (
+        <VStack gap={16} key={item.id}>
+          <EmployeeItem
+            item={item}
+            activeColumns={activeColumns}
+            columnMap={COLUMN_MAP}
+            gridCols={gridCols}
+          />
+        </VStack>
+      )}
+      emptyComponent={<Text>Сотрудники не найдены</Text>}
+    />
+  ) : (
+    <VStack gap={16}>
+      <VStack gap={0}>
+        {showDesktopSkeleton ? (
+          <VStack gap={16}>
+            {[...Array(4)].map((_, i) => (
+              <Skeleton key={i} width="full" height={60} />
+            ))}
+          </VStack>
+        ) : (
+          <>
+            {employees?.map((item) => (
+              <EmployeeItem
+                key={item.id}
+                item={item}
+                activeColumns={activeColumns}
+                columnMap={COLUMN_MAP}
+                gridCols={gridCols}
+              />
+            ))}
+
+            {isEmpty && <Text>Нет данных</Text>}
+          </>
+        )}
+      </VStack>
+      {!isEmpty && (
+        <HStack justify="space-between">
+          <Pagination currentPage={desktopPage} totalPages={totalPages} />
+          <Text color="text-tertiary" size={14}>
+            {`${(desktopPage - 1) * LIMIT + 1}-${Math.min(desktopPage * LIMIT, totalCount)} из ${totalCount}`}
+          </Text>
+        </HStack>
+      )}
+    </VStack>
+  );
 
   return (
-    <VStack>
-      <Card p={0} isOverflowAuto>
-        <Card
-          p={0}
-          className={directionStack.className}
-          style={directionStack.style}
-          minWidth={770}
-        >
-          {/* Шапка */}
+    <Card p={0} isOverflowAuto>
+      <Card p={0} minWidth={770}>
+        {!isMobile && (
           <Grid cols={gridCols}>
-            {activeColumns.map((key) => {
-              const config = COLUMN_MAP[key];
-              const align = getFlex({ align: config.align || 'start' });
-              return (
-                <Card
-                  key={key}
-                  p={16}
-                  color="text-tertiary"
-                  borderLine="bottom"
-                  className={align.className}
-                  style={align.style}
-                >
-                  <Text color="text-tertiary">{config.header}</Text>
-                </Card>
-              );
-            })}
+            {activeColumns.map((key) => (
+              <Card key={key} p={16} borderLine="bottom">
+                <Text color="text-tertiary" weight="medium">
+                  {COLUMN_MAP[key].header}
+                </Text>
+              </Card>
+            ))}
           </Grid>
-
-          {/* Данные */}
-          {employees.map((item) => (
-            <EmployeeItem
-              key={item.id}
-              item={item}
-              activeColumns={activeColumns}
-              columnMap={COLUMN_MAP}
-              gridCols={gridCols}
-            />
-          ))}
-        </Card>
+        )}
+        {renderContent}
       </Card>
-
-      <HStack justify="space-between">
-        <Pagination currentPage="3" totalPages={10} />
-        <Text color="text-tertiary">1-50 из 883</Text>
-      </HStack>
-    </VStack>
+    </Card>
   );
 };

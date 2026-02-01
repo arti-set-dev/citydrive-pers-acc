@@ -41,12 +41,18 @@ const DepartmentsPage = () => {
           <ActionPopover>
             <Button
               variant="clear"
-              onClick={() => navigate(getRouteDepartmentEdit(department.id))}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(getRouteDepartmentEdit(department.id));
+              }}
             >
               Edit
             </Button>
             <DeleteDepartmentButton
-              onClick={() => setDeletingDept(department)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeletingDept(department);
+              }}
             />
           </ActionPopover>
         )}

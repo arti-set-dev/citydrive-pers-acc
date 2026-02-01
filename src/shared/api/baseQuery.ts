@@ -11,8 +11,16 @@ export const axiosBaseQuery =
   }> =>
   async ({ url, method, data, params }) => {
     try {
-      const result = await $api({ url, method, data, params });
-      return { data: result.data };
+      const result = await $api({
+        url,
+        method,
+        data,
+        params,
+        paramsSerializer: {
+          indexes: null,
+        },
+      });
+      return { data: result.data, meta: { headers: result.headers } };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {

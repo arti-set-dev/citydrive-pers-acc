@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui/Button/Button';
 export const DeleteDepartmentButton = ({
   onClick,
 }: {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
 }) => {
   return (
     <Button variant="clear" onClick={onClick}>
