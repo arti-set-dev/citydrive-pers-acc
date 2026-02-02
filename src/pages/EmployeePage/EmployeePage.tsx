@@ -13,6 +13,8 @@ import { TripsInfoByMonth } from '@/widgets/TripsInfoByMonth';
 import { TripsSortContainer } from '@/features/sort-employee-trips';
 import { useParams } from 'react-router-dom';
 import { DeleteEmployeeButton } from '@/features/delete-employee';
+import { useGetEmployeeDataQuery } from '@/entities/Employee';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 const stack = getVStack({
   gap: 16,
@@ -22,6 +24,8 @@ const EmployeePage = () => {
   const { id } = useParams<{ id: string }>();
   if (!id) return null;
 
+  const { data: employee, isLoading } = useGetEmployeeDataQuery(id);
+
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <HStack justify="space-between">
@@ -29,9 +33,14 @@ const EmployeePage = () => {
           <AppLink variant="regular" to={getRouteEmployees()}>
             <ArrowLeft />
           </AppLink>
-          <Text as="h1" weight="bold" size={{ base: 32, sm: 18 }}>
-            Костин Герман Феликсович
-          </Text>
+
+          {isLoading ? (
+            <Skeleton width={400} height={23} />
+          ) : (
+            <Text as="h1" weight="bold" size={{ base: 32, sm: 18 }}>
+              {employee?.name}
+            </Text>
+          )}
         </HStack>
 
         <HStack>

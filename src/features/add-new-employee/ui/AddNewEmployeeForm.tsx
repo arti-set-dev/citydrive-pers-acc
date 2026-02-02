@@ -20,6 +20,7 @@ import { useCreateEmployeeMutation } from '../api/addNewEmployeeApi';
 import { Controller, useForm } from 'react-hook-form';
 import { Cars, Employee, getEmployeeData } from '@/entities/Employee';
 import { useGetDepartmentsQuery } from '@/entities/Department';
+import { useCreateNotificationMutation } from '@/entities/Notification';
 
 const stack = getVStack({
   gap: 16,
@@ -53,6 +54,8 @@ export const AddNewEmployeeForm = () => {
     };
   }, [dispatch, getValues]);
 
+  const [createNotification] = useCreateNotificationMutation();
+
   const onSubmit = async (data: Employee) => {
     const finalData: Employee = {
       ...data,
@@ -76,7 +79,14 @@ export const AddNewEmployeeForm = () => {
       balance: Number(data.balance),
     };
     try {
-      await createEmployee(finalData).unwrap();
+      const newEmployee = await createEmployee(finalData).unwrap();
+      if (employeeData?.notifications?.newEmployees) {
+        await createNotification({
+          employeeId: newEmployee.id,
+          message: `Был добавлен сотрудник "${newEmployee.name}"`,
+          read: false,
+        });
+      }
       dispatch(addNewEmployeeActions.clearForm());
       reset(initialState.form);
     } catch (e) {

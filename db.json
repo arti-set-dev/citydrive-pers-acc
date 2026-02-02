@@ -20,7 +20,7 @@
       "email": "email@mail.com",
       "experimentalFeatures": true,
       "notifications": {
-        "newEmployees": false
+        "newEmployees": true
       },
       "departmentId": "_JhiIgB",
       "time": {
@@ -758,6 +758,87 @@
       "days": [1, 2, 3, 4, 5, 6, 7],
       "cars": ["comfort", "economy", "premium"],
       "city": [1, 2, 15, 23]
+    },
+    {
+      "name": "Roman Kovtun",
+      "email": "email@mail.com",
+      "phone": "7999999999",
+      "balance": 2,
+      "role": "Менеджер",
+      "department": "отдел логистикии",
+      "limit": 20,
+      "time": {
+        "start": "01:00",
+        "end": "02:30"
+      },
+      "city": [3],
+      "cars": ["Economy"],
+      "days": [2],
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
+      "spent": 0,
+      "status": "inactive",
+      "experimentalFeatures": false,
+      "notifications": {
+        "newEmployees": false
+      },
+      "lastTimeTrip": "",
+      "departmentId": "3",
+      "id": "aBrKLml"
+    },
+    {
+      "id": "kntH4WN",
+      "name": "Roman Kovtun",
+      "email": "email@mail.com",
+      "phone": "7999999999",
+      "role": "Юрист",
+      "status": "inactive",
+      "department": "отдел продаж",
+      "departmentId": "_JhiIgB",
+      "limit": 1109,
+      "spent": 0,
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
+      "balance": 111,
+      "experimentalFeatures": false,
+      "notifications": {
+        "newEmployees": false
+      },
+      "time": {
+        "start": "09:00",
+        "end": "18:00"
+      },
+      "days": [2],
+      "cars": ["Premium"],
+      "city": [3],
+      "lastTimeTrip": ""
+    },
+    {
+      "name": "Roman Kovtun",
+      "email": "email@mail.com",
+      "phone": "7999999999",
+      "balance": 2222,
+      "role": "Менеджер",
+      "department": "отдел логистикии",
+      "limit": 1222,
+      "time": {
+        "start": "00:30",
+        "end": "01:30"
+      },
+      "city": [2],
+      "cars": ["Economy"],
+      "days": [2],
+      "companyName": "ООО Рога и Копыта",
+      "companyId": "1",
+      "spent": 0,
+      "status": "inactive",
+      "experimentalFeatures": false,
+      "notifications": {
+        "newEmployees": false
+      },
+      "lastTimeTrip": "",
+      "departmentId": "3",
+      "id": "MxtRORP"
     }
   ],
   "departments": [
@@ -1151,8 +1232,14 @@
   ],
   "notifications": [
     {
-      "employeeId": "1",
-      "message": "Ваш сотрудник был уволен"
+      "id": "1",
+      "read": true
+    },
+    {
+      "employeeId": "MxtRORP",
+      "message": "Был добавлен сотрудник \"Roman Kovtun\"",
+      "read": true,
+      "id": "K0yLRlg"
     }
   ],
   "roles": [
