@@ -1,15 +1,17 @@
+import { getEmployeeData } from '@/entities/Employee';
 import { SearchEmployeeContainer } from '@/features/search-employee';
+import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { Card } from '@/shared/ui/Card/Card';
 import { Text } from '@/shared/ui/Text/Text';
-import { useParams } from 'react-router-dom';
 
 const stack = getVStack({
   gap: 16,
 });
 
 const TripsPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const employeeData = useAppSelector(getEmployeeData);
+  const id = employeeData?.departmentId;
 
   if (!id) return <Text color="danger">Отдел не найден</Text>;
   return (

@@ -1,16 +1,20 @@
+import { useEffect } from 'react';
 import {
   MapContainer,
   TileLayer,
   Marker,
   Polyline,
   Popup,
+  useMap,
 } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
-// Фикс для иконок (Leaflet в React часто теряет пути к картинкам маркеров)
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { useGetStopsQuery } from '@/entities/Route';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -20,37 +24,72 @@ const DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export const RouteMap = () => {
-  // В Leaflet: [Широта, Долгота]
-  const points: [number, number][] = [
-    [55.75, 37.58],
-    [55.76, 37.62],
-    [55.74, 37.64],
-  ];
+interface RouteMapProps {
+  stopsIds?: string[];
+  isLoading?: boolean;
+}
 
-  const center = points[1];
+const ChangeView = ({ points }: { points: [number, number][] }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (points.length > 0) {
+      const bounds = L.latLngBounds(points);
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [points, map]);
+  return null;
+};
+
+export const RouteMap = ({
+  stopsIds,
+  isLoading: isTripLoading,
+}: RouteMapProps) => {
+  const { data: stops, isLoading: isStopsLoading } = useGetStopsQuery(
+    stopsIds ?? skipToken,
+  );
+
+  const isLoading = isTripLoading || isStopsLoading;
+
+  if (isLoading) {
+    return <Skeleton width="full" height={500} borderRadius={16} />;
+  }
+
+  const points = stops?.map((stop) => stop.coords) || [];
+
+  const defaultCenter: [number, number] = [55.75, 37.58];
 
   return (
     <MapContainer
-      center={center}
+      center={points[0] || defaultCenter}
       zoom={12}
-      style={{ width: '100%', height: '500px' }}
+      style={{ width: '100%', height: '500px', borderRadius: '16px' }}
     >
-      {/* Бесплатные карты OpenStreetMap */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Линия маршрута */}
-      <Polyline positions={points} pathOptions={{ color: 'red', weight: 5 }} />
-
-      {/* Маркеры с балунами */}
-      {points.map((coords, index) => (
-        <Marker key={index} position={coords}>
-          <Popup>Остановка №{index + 1}</Popup>
-        </Marker>
-      ))}
+      {points.length > 0 && (
+        <>
+          <Polyline
+            positions={points}
+            pathOptions={{ color: 'red', weight: 5 }}
+          />
+          {stops?.map((stop, index) => (
+            <Marker key={stop.id} position={stop.coords}>
+              <Popup>
+                {index === 0
+                  ? 'Старт: '
+                  : index === stops.length - 1
+                    ? 'Финиш: '
+                    : `Остановка №${index + 1}: `}
+                {stop.address}
+              </Popup>
+            </Marker>
+          ))}
+          <ChangeView points={points} />
+        </>
+      )}
     </MapContainer>
   );
 };

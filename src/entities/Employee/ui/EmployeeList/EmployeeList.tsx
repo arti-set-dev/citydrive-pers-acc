@@ -18,6 +18,7 @@ import {
 import { getEmployeeData } from '../../model/selectors/employeeSelectors';
 import { EmployeeItem } from '../EmployeeItem/EmployeeItem';
 import { COLUMN_MAP } from '../../model/types/columns';
+import { getFlex } from '@/shared/lib/stack/flex/getFlex';
 
 interface EmployeeListProps {
   activeKeys: Array<keyof Employee>;
@@ -163,17 +164,26 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
   return (
     <Card p={0} isOverflowAuto>
       <Card p={0} minWidth={770}>
-        {!isMobile && (
-          <Grid cols={gridCols}>
-            {activeColumns.map((key) => (
-              <Card key={key} p={16} borderLine="bottom">
+        <Grid cols={gridCols}>
+          {activeColumns.map((key) => {
+            const config = COLUMN_MAP[key];
+            const align = getFlex({ align: config.align || 'start' });
+
+            return (
+              <Card
+                key={key}
+                p={16}
+                borderLine="bottom"
+                className={align.className}
+                style={align.style}
+              >
                 <Text color="text-tertiary" weight="medium">
-                  {COLUMN_MAP[key].header}
+                  {config.header}
                 </Text>
               </Card>
-            ))}
-          </Grid>
-        )}
+            );
+          })}
+        </Grid>
         {renderContent}
       </Card>
     </Card>

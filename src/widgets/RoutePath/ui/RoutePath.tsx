@@ -1,40 +1,47 @@
-import { IRoute, RouteItem } from '@/entities/Route';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { IRoute, RouteItem, useGetStopsQuery } from '@/entities/Route';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { VStack } from '@/shared/ui/Stack';
 
-export const RoutePath = () => {
+interface RoutePathProps {
+  tripId?: string;
+  stopsIds?: string[];
+  isLoading?: boolean;
+}
+
+export const RoutePath = ({
+  tripId,
+  stopsIds,
+  isLoading: isTripLoading,
+}: RoutePathProps) => {
+  const { data: stops, isLoading: isStopsLoading } = useGetStopsQuery(
+    stopsIds ?? skipToken,
+  );
+
+  const isLoading = isTripLoading || isStopsLoading;
+
+  if (isLoading) {
+    return (
+      <VStack gap={16}>
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} width="full" height={60} borderRadius={8} />
+        ))}
+      </VStack>
+    );
+  }
+
+  if (!stops || stops.length === 0) {
+    return null;
+  }
+
   const route: IRoute = {
-    id: '1',
-    stops: [
-      {
-        id: '1',
-        address: 'Ул. Пенькова, 28',
-        city: 'Москва',
-        date: '18 сентября',
-        time: '15:32',
-        isStart: true,
-      },
-      {
-        id: '2',
-        address: 'Ул. Новолесная, 2',
-        city: 'Москва',
-        date: '18 сентября',
-        time: '15:32',
-      },
-      {
-        id: '3',
-        address: 'Ул. Бретская, 44',
-        city: 'Москва',
-        date: '18 сентября',
-        time: '15:32',
-      },
-      {
-        id: '4',
-        address: 'Ул. Рассольникова, 1',
-        city: 'Москва',
-        date: '18 сентября',
-        time: '15:32',
-        isEnd: true,
-      },
-    ],
+    id: tripId || '',
+    stops: stops.map((stop, index) => ({
+      ...stop,
+      isStart: index === 0,
+      isEnd: index === stops.length - 1,
+    })),
   };
+
   return <RouteItem route={route} />;
 };

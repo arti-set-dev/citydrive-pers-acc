@@ -1,11 +1,42 @@
 import { baseApi } from '@/shared/api/baseApi';
 
+export interface BillingInfo {
+  id: string;
+  tripId: string;
+  rateId: string;
+  usageCost: number;
+  parkingCost: number;
+  transferCost: number;
+  fines: {
+    amount: number;
+    count: number;
+  };
+  transponder: number;
+  promoDiscount: number;
+  totalPrice: number;
+}
+
+export interface Car {
+  id: string;
+  model: string;
+  number: string;
+  category: 'economy' | 'comfort' | 'premium';
+}
+
+export interface RateType {
+  id: string;
+  name: 'minute' | 'hour';
+  price: number;
+}
+
 export interface RoutePathResponse {
   id: string;
   price: number;
   date: string;
   stopsIds: string[];
   employeeId: string;
+  carId: string;
+  duration: number;
 }
 
 export interface StopResponse {
@@ -34,6 +65,32 @@ export type RouteArrayResponse = RoutePathResponse[] & {
 
 export const routeApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    getRouteById: build.query<RoutePathResponse, string>({
+      query: (id) => ({
+        url: `/routPaths/${id}`,
+        method: 'GET',
+      }),
+    }),
+    getBillingInfo: build.query<BillingInfo, string>({
+      query: (tripId) => ({
+        url: '/trip-billing-info',
+        method: 'GET',
+        params: { tripId },
+      }),
+      transformResponse: (response: BillingInfo[]) => response[0],
+    }),
+    getRateById: build.query<RateType, string>({
+      query: (id) => ({
+        url: `/rate/${id}`,
+        method: 'GET',
+      }),
+    }),
+    getCarById: build.query<Car, string>({
+      query: (id) => ({
+        url: `/cars/${id}`,
+        method: 'GET',
+      }),
+    }),
     getRoutes: build.query<RouteArrayResponse, GetRoutesArgs>({
       query: ({
         employeeId,
@@ -99,4 +156,11 @@ export const routeApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetRoutesQuery, useGetStopsQuery } = routeApi;
+export const {
+  useGetRoutesQuery,
+  useGetStopsQuery,
+  useGetRouteByIdQuery,
+  useGetBillingInfoQuery,
+  useGetRateByIdQuery,
+  useGetCarByIdQuery,
+} = routeApi;

@@ -34,7 +34,7 @@ export const getRouteDepartment = (id: string): string => `/departments/${id}`;
 export const getRouteDepartmentNew = (): string => PATHS.departmentNew;
 export const getRouteDepartmentEdit = (id: string): string =>
   `/departments/${id}/edit`;
-export const getRouteTrip = (id: string): string => PATHS.trip + id;
+export const getRouteTrip = (id: string): string => `/trips/${id}`;
 export const getRouteTrips = (): string => PATHS.trips;
 export const getRouteInvoices = (): string => PATHS.invoices;
 export const getRoutePromocodes = (): string => PATHS.promocodes;

@@ -1,3 +1,4 @@
+import { useGetRouteByIdQuery } from '@/entities/Route';
 import { getVStack } from '@/shared/lib/stack/flex/getVStack';
 import { Card } from '@/shared/ui/Card/Card';
 import { Grid, VStack } from '@/shared/ui/Stack';
@@ -7,35 +8,60 @@ import { RideInfo } from '@/widgets/RideInfo';
 import { RouteDetails } from '@/widgets/RouteDitails';
 import { RouteMap } from '@/widgets/RouteMap';
 import { RoutePath } from '@/widgets/RoutePath';
+import { useParams } from 'react-router-dom';
 
 const stack = getVStack({
   gap: 16,
 });
 
 const TripPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const {
+    data: route,
+    isLoading: isRouteLoading,
+    error,
+  } = useGetRouteByIdQuery(id ?? '');
+
+  if (error) {
+    return <Text color="danger">Ошибка при загрузке данных поездки</Text>;
+  }
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <Text as="h1" weight="bold" size={32}>
         Поездка
       </Text>
-      <RideInfo />
+      <RideInfo
+        tripId={id}
+        employeeId={route?.employeeId}
+        carId={route?.carId}
+        isLoading={isRouteLoading}
+      />
       <Grid cols={{ base: 2, lg: 1 }} gap={16}>
         <VStack>
           <Text as="h2" size={24} weight="bold">
             Путь
           </Text>
-          <RoutePath />
+          <RoutePath
+            tripId={id}
+            stopsIds={route?.stopsIds}
+            isLoading={isRouteLoading}
+          />
           <Text as="h2" size={24} weight="bold">
             Детали поездки
           </Text>
-          <RouteDetails />
+          <RouteDetails
+            employeeId={route?.employeeId}
+            date={route?.date}
+            duration={route?.duration}
+            isLoading={isRouteLoading}
+          />
           <Text as="h2" size={24} weight="bold">
             Тариф
           </Text>
-          <Rate />
+          <Rate tripId={id} isLoading={isRouteLoading} />
         </VStack>
         <VStack>
-          <RouteMap />
+          <RouteMap stopsIds={route?.stopsIds} isLoading={isRouteLoading} />
         </VStack>
       </Grid>
     </Card>
