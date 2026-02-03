@@ -18,7 +18,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": false
+      },
       "notifications": {
         "newEmployees": true
       },
@@ -44,7 +46,9 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "emailtest@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -70,7 +74,9 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "rom@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -96,7 +102,9 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "emailtest@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -122,7 +130,9 @@
       "status": "active",
       "phone": "+79999999999",
       "email": "emailtest@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -148,7 +158,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -174,7 +186,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -200,7 +214,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -226,7 +242,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -252,7 +270,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -278,7 +298,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -304,7 +326,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -330,7 +354,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -356,7 +382,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -382,7 +410,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -408,7 +438,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -434,7 +466,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -460,7 +494,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -486,7 +522,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -512,7 +550,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -538,7 +578,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -564,7 +606,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -590,7 +634,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -616,7 +662,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -642,7 +690,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -668,7 +718,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -694,7 +746,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -720,7 +774,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -746,7 +802,9 @@
       "status": "active",
       "phone": "79999999999",
       "email": "email@mail.com",
-      "experimentalFeatures": true,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -778,7 +836,9 @@
       "companyId": "1",
       "spent": 0,
       "status": "inactive",
-      "experimentalFeatures": false,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -800,7 +860,9 @@
       "companyName": "ООО Рога и Копыта",
       "companyId": "1",
       "balance": 111,
-      "experimentalFeatures": false,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },
@@ -832,7 +894,9 @@
       "companyId": "1",
       "spent": 0,
       "status": "inactive",
-      "experimentalFeatures": false,
+      "features": {
+        "isExperimental": true
+      },
       "notifications": {
         "newEmployees": false
       },

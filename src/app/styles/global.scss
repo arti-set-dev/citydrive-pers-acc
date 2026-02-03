@@ -14,9 +14,13 @@ body {
 /* stylelint-disable-next-line selector-max-id */
 #root {
   display: flex;
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-primary);
 }
 
 * {
   box-sizing: border-box;
+}
+
+svg {
+  color: var(--text-primary);
 }

@@ -46,16 +46,16 @@
   }
 
   @include hover {
-    background-color: var(--primitive-gray-300);
+    background-color: var(--control-placeholder);
   }
 
   &:focus-visible {
-    background-color: var(--primitive-gray-300);
+    background-color: var(--control-placeholder);
   }
 
   &.SidebarLinkActive {
     position: relative;
-    background-color: var(--primitive-gray-300);
+    background-color: var(--control-placeholder);
 
     &::before {
       content: '';

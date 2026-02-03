@@ -64,7 +64,9 @@ export const AddNewEmployeeForm = () => {
 
       spent: 0,
       status: 'inactive',
-      experimentalFeatures: false,
+      features: {
+        isExperimental: false,
+      },
       notifications: {
         newEmployees: false,
       },

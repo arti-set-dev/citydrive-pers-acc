@@ -18,7 +18,14 @@ const stack = getVStack({
 export const Stat = (props: StatProps) => {
   const { desc, icon: Icon, subject, statMain } = props;
   return (
-    <Card shadow p={16} r={16} className={stack.className} style={stack.style}>
+    <Card
+      shadow
+      p={16}
+      r={16}
+      variant="bg-tertiary"
+      className={stack.className}
+      style={stack.style}
+    >
       <Text color="text-tertiary">{subject}</Text>
       <Text weight="medium" size={32}>
         {statMain}

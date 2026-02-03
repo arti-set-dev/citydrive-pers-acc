@@ -1,6 +1,6 @@
 import { PATHS } from '@/shared/lib/router/paths';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Flex } from '@/shared/ui/Stack';
+import { Flex, VStack } from '@/shared/ui/Stack';
 import React from 'react';
 import HouseIcon from '@/shared/assets/icons/house.svg';
 import IdCardLanyardIcon from '@/shared/assets/icons/id-card-lanyard.svg';
@@ -20,6 +20,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { Button } from '@/shared/ui/Button/Button';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getEmployeeData } from '@/entities/Employee';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 
 interface SidebarItemOptions {
   path: string;
@@ -71,6 +72,7 @@ const routs: SidebarItemOptions[] = [
 
 const stack = getVStack({
   gap: 16,
+  justify: 'space-between',
 });
 
 export const Sidebar = () => {
@@ -106,55 +108,61 @@ export const Sidebar = () => {
       className={clsx(stack.className, styles.Sidebar, styles.Sidebar)}
       style={stack.style}
     >
-      {!isMobile && (
-        <Logo companyName={employeeData?.companyName} className={styles.Logo} />
-      )}
-      <Flex
-        as="ul"
-        gap={4}
-        direction={{ base: 'column', sm: 'row' }}
-        justify="space-between"
-      >
-        {visibleRouts.map((item) => (
-          <li key={item.path} className={styles.ListItem}>
-            <AppLink
-              className={styles.SidebarLink}
-              activeClassName={styles.SidebarLinkActive}
-              to={item.path}
-            >
-              {item.icon && <item.icon />}
-              <span className={styles.LinkName}>{item.name}</span>
-            </AppLink>
-          </li>
-        ))}
-
-        {isMobile && hiddenRouts.length > 0 && (
-          <li>
-            <Popover className="relative">
-              <PopoverButton as={Button} className={styles.SidebarLink}>
-                <MoreIcon />
-                <span>Еще</span>
-              </PopoverButton>
-
-              <PopoverPanel
-                anchor="top end"
-                className={clsx(styles.PopoverPanel)}
-              >
-                {hiddenRouts.map((item) => (
-                  <AppLink
-                    key={item.path}
-                    to={item.path}
-                    className={styles.SidebarLink}
-                  >
-                    {item.icon && <item.icon />}
-                    {item.name}
-                  </AppLink>
-                ))}
-              </PopoverPanel>
-            </Popover>
-          </li>
+      <VStack gap={16}>
+        {!isMobile && (
+          <Logo
+            companyName={employeeData?.companyName}
+            className={styles.Logo}
+          />
         )}
-      </Flex>
+        <Flex
+          as="ul"
+          gap={4}
+          direction={{ base: 'column', sm: 'row' }}
+          justify="space-between"
+        >
+          {visibleRouts.map((item) => (
+            <li key={item.path} className={styles.ListItem}>
+              <AppLink
+                className={styles.SidebarLink}
+                activeClassName={styles.SidebarLinkActive}
+                to={item.path}
+              >
+                {item.icon && <item.icon />}
+                <span className={styles.LinkName}>{item.name}</span>
+              </AppLink>
+            </li>
+          ))}
+
+          {isMobile && hiddenRouts.length > 0 && (
+            <li>
+              <Popover className="relative">
+                <PopoverButton as={Button} className={styles.SidebarLink}>
+                  <MoreIcon />
+                  <span>Еще</span>
+                </PopoverButton>
+
+                <PopoverPanel
+                  anchor="top end"
+                  className={clsx(styles.PopoverPanel)}
+                >
+                  {hiddenRouts.map((item) => (
+                    <AppLink
+                      key={item.path}
+                      to={item.path}
+                      className={styles.SidebarLink}
+                    >
+                      {item.icon && <item.icon />}
+                      {item.name}
+                    </AppLink>
+                  ))}
+                </PopoverPanel>
+              </Popover>
+            </li>
+          )}
+        </Flex>
+      </VStack>
+      <ThemeSwitcher />
     </Card>
   );
 };

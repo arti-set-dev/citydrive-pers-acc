@@ -17,7 +17,9 @@ export const initialState: AddNewEmployeeSchema = {
     companyName: '',
     companyId: '',
     balance: 0,
-    experimentalFeatures: false,
+    features: {
+      isExperimental: false,
+    },
     notifications: {
       newEmployees: true,
     },

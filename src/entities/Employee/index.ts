@@ -14,4 +14,5 @@ export {
   useGetEmployeeDataQuery,
   useGetEmployeesListQuery,
   useGetStatsQuery,
+  useUpdateFeatureFlagsMutation,
 } from './api/employeeApi';

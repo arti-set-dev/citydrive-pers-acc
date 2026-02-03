@@ -20,7 +20,7 @@ export default defineConfig([
       '*.config.js',
       '*.config.mjs',
       'storybook-static/**',
-      'scripts/*.js',
+      'scripts/*.{js,ts}',
     ],
   },
   js.configs.recommended,

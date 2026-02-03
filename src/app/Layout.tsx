@@ -1,7 +1,12 @@
-import { employeeActions, useGetEmployeeDataQuery } from '@/entities/Employee';
+import {
+  employeeActions,
+  getEmployeeData,
+  useGetEmployeeDataQuery,
+} from '@/entities/Employee';
 import { getIsAuth } from '@/features/login';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch/useAppDispatch';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import { FeatureFlagContext } from '@/shared/lib/features/FeatureFlagContext';
 import { Card } from '@/shared/ui/Card/Card';
 import { Text } from '@/shared/ui/Text/Text';
 import { Navbar } from '@/widgets/Navbar';
@@ -14,6 +19,7 @@ export const Layout = () => {
   const dispatch = useAppDispatch();
   const isAuth =
     useAppSelector(getIsAuth) || Boolean(localStorage.getItem('token'));
+  const employeeData = useAppSelector(getEmployeeData);
 
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
@@ -49,18 +55,18 @@ export const Layout = () => {
   }
 
   return (
-    <>
+    <FeatureFlagContext.Provider value={employeeData?.features ?? {}}>
       {isAuth && <Sidebar />}
 
       <Card variant="bg-primary" fullWidth isOverflowAuto>
         {isAuth && <Navbar />}
 
         <Card as="main">
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={<PageLoader style={{ height: '92vh' }} />}>
             <Outlet />
           </Suspense>
         </Card>
       </Card>
-    </>
+    </FeatureFlagContext.Provider>
   );
 };

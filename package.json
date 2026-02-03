@@ -26,7 +26,8 @@
     "reg-cli": "reg-cli .lostpixel/current .lostpixel/baseline .lostpixel/difference -R ./.lostpixel/report.html",
     "screen-test:report": "run-s -c screen-test reg-cli",
     "generate-reports": "node scripts/generate-reports.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "remove-feature": "ts-node ./scripts/remove-feature.ts"
   },
   "keywords": [],
   "author": "",
@@ -123,6 +124,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.11.0",
     "react-virtuoso": "^4.18.1",
+    "ts-morph": "^27.0.2",
     "xlsx": "^0.18.5"
   }
 }

@@ -1,4 +1,7 @@
-import { getEmployeeData } from '@/entities/Employee';
+import {
+  getEmployeeData,
+  useUpdateFeatureFlagsMutation,
+} from '@/entities/Employee';
 import { useUpdateNotificationSettingsMutation } from '@/entities/Notification';
 import { ImportDataAboutCompanyButton } from '@/features/import-data-about-company';
 import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
@@ -11,8 +14,12 @@ import { useEffect, useState } from 'react';
 const SettingsPage = () => {
   const employeeData = useAppSelector(getEmployeeData);
   const [updateSettings] = useUpdateNotificationSettingsMutation();
+  const [updateFeatures] = useUpdateFeatureFlagsMutation();
   const [isEnabled, setIsEnabled] = useState(
     employeeData?.notifications?.newEmployees,
+  );
+  const [isExperimental, setIsExperimental] = useState(
+    employeeData?.features?.isExperimental,
   );
 
   useEffect(() => {
@@ -29,6 +36,26 @@ const SettingsPage = () => {
     } catch (e) {
       setIsEnabled(!checked);
       console.error('Ошибка при обновлении настроек:', e);
+    }
+  };
+
+  const onToggleExperimental = async (checked: boolean) => {
+    if (!employeeData?.id) return;
+    setIsExperimental(checked);
+
+    try {
+      await updateFeatures({
+        employeeId: employeeData.id,
+        features: {
+          ...employeeData.features,
+          isExperimental: checked,
+        },
+      }).unwrap();
+
+      window.location.reload();
+    } catch (e) {
+      setIsExperimental(!checked);
+      console.error('Failed to update features:', e);
     }
   };
 
@@ -54,7 +81,11 @@ const SettingsPage = () => {
         <Card borderLine="bottom">
           <HStack gap={16} as="label">
             <Text size={{ base: 28, sm: 18 }}>Эксперементальные фичи</Text>
-            <Switcher />
+            <Switcher
+              checked={isExperimental}
+              onChange={onToggleExperimental}
+              name="experimental-features"
+            />
           </HStack>
         </Card>
         <Card borderLine="bottom">

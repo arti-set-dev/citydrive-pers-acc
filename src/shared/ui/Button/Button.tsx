@@ -35,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
     return (
       <HStack gap={4}>
         <button
+          onClick={props.onClick}
           className={clsx(
             s.button,
             s.offset,

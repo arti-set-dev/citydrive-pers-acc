@@ -18,6 +18,11 @@ export type EmployeeArrayResponse = Employee[] & {
   totalPages?: number;
 };
 
+interface UpdateFeatureFlagsOptions {
+  employeeId: string;
+  features: Partial<NonNullable<Employee['features']>>;
+}
+
 export const employeeApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getEmployeeData: build.query<Employee, string | null>({
@@ -136,6 +141,15 @@ export const employeeApi = baseApi.injectEndpoints({
         params: { employeeId, date },
       }),
     }),
+    updateFeatureFlags: build.mutation<void, UpdateFeatureFlagsOptions>({
+      query: ({ employeeId, features }) => ({
+        url: `/employees/${employeeId}`,
+        method: 'PATCH',
+        data: {
+          features,
+        },
+      }),
+    }),
   }),
 });
 
@@ -143,4 +157,5 @@ export const {
   useGetEmployeeDataQuery,
   useGetEmployeesListQuery,
   useGetStatsQuery,
+  useUpdateFeatureFlagsMutation,
 } = employeeApi;

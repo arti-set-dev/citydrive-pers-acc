@@ -17,7 +17,9 @@ export interface Employee {
   companyName: string;
   companyId: string;
   balance: number;
-  experimentalFeatures: boolean;
+  features?: {
+    isExperimental?: boolean;
+  };
   notifications: {
     newEmployees: boolean;
   };
