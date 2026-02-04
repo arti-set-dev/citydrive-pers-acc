@@ -8,7 +8,10 @@ body {
   min-width: 360px;
   margin: 0;
   padding: 0;
+
   font-family: Roboto, sans-serif;
+
+  background-color: var(--bg-primary);
 }
 
 /* stylelint-disable-next-line selector-max-id */
@@ -23,4 +26,16 @@ body {
 
 svg {
   color: var(--text-primary);
+}
+
+[data-screenshot='true'] {
+  &,
+  & *,
+  & *::before,
+  & *::after {
+    caret-color: transparent;
+    transition: none;
+    animation-play-state: paused;
+    animation-delay: -1ms;
+  }
 }

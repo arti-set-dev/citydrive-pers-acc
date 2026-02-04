@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react-webpack5';
 import { MemoryRouter } from 'react-router-dom';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import { Theme } from '../../src/shared/lib/context/ThemeContext';
 import '../../src/app/styles/global.scss';
 
 const preview: Preview = {
@@ -12,11 +14,24 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
+    (Story, { parameters }) => {
+      const { router = {} } = parameters;
+      const { initialEntries = ['/'] } = router;
+
+      return (
+        <MemoryRouter initialEntries={initialEntries}>
+          <Story />
+        </MemoryRouter>
+      );
+    },
+    withThemeByClassName({
+      themes: {
+        light: Theme.LIGHT,
+        dark: Theme.DARK,
+      },
+      defaultTheme: 'light',
+      parentSelector: 'body',
+    }),
   ],
 };
 

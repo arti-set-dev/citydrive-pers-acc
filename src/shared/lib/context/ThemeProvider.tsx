@@ -11,12 +11,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(() => {
     return (localStorage.getItem('theme') as Theme) || fallbackTheme;
   });
-  const rootElement = document.getElementById('root');
 
   useEffect(() => {
-    if (rootElement) {
-      rootElement.className = theme;
-    }
+    document.body.className = theme;
   }, [theme]);
 
   const defaultProps = useMemo(

@@ -17,7 +17,7 @@ import { VStack } from '../Stack';
 import ArrowDown from '@/shared/assets/icons/chevron-down.svg';
 import { Card } from '../Card/Card';
 
-interface SelectOptions<T> {
+export interface SelectOptions<T> {
   options: T[];
   placeholder?: string;
   className?: string;
