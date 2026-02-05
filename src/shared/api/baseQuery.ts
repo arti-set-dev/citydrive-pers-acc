@@ -20,11 +20,16 @@ export const axiosBaseQuery =
           indexes: null,
         },
       });
+
       return { data: result.data, meta: { headers: result.headers } };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
+
       return {
-        error: { status: err.response?.status, data: err.response?.data },
+        error: {
+          status: err.response?.status || 'FETCH_ERROR',
+          data: err.response?.data || err.message,
+        },
       };
     }
   };

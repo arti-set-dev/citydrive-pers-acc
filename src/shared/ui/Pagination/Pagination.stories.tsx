@@ -8,6 +8,13 @@ const meta: Meta<typeof Pagination> = {
     currentPage: { control: 'number' },
     totalPages: { control: 'number' },
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

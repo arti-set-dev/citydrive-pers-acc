@@ -24,6 +24,7 @@ interface FieldProps extends Omit<
   type?: 'text' | 'search' | 'number' | 'tel' | 'password' | 'email';
   fullWidth?: boolean;
   error?: string;
+  'data-testid'?: string;
 }
 
 const PHONE_CODES = [
@@ -43,6 +44,7 @@ export const Field = ({
   error,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
   defaultValue,
+  'data-testid': dataTestId,
   ...props
 }: FieldProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,6 +60,9 @@ export const Field = ({
     [styles.fullWidth]: fullWidth,
   });
 
+  const finalTestId =
+    dataTestId || (type === 'tel' ? 'field-input-tel' : 'field-input');
+
   const renderInput = () => {
     if (type === 'tel') {
       return (
@@ -70,6 +75,7 @@ export const Field = ({
           />
           <PatternFormat
             {...props}
+            data-testid={finalTestId}
             format={selectCountry?.format ?? '(###) ###-##-##'}
             mask="_"
             value={value}
@@ -91,6 +97,7 @@ export const Field = ({
     return (
       <div className={clsx(styles.Wrapper, { [styles.fullWidth]: fullWidth })}>
         <input
+          data-testid={finalTestId}
           value={value}
           type={type}
           readOnly={readOnly}
@@ -99,7 +106,7 @@ export const Field = ({
           className={inputClass}
           {...props}
         />
-        {Icon && <Icon className={styles.Icon} />}
+        {Icon && <Icon className={styles.Icon} data-testid="field-icon" />}
       </div>
     );
   };

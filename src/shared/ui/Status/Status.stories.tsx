@@ -14,12 +14,16 @@ const meta: Meta<typeof Status> = {
   },
   decorators: [
     (Story, context) => (
-      <HStack gap={8} align="center">
-        <Story />
-        <Text>
-          {context.args.status === 'active' ? 'Пользователь в сети' : 'Оффлайн'}
-        </Text>
-      </HStack>
+      <div data-screenshot="true">
+        <HStack gap={8} align="center">
+          <Story />
+          <Text>
+            {context.args.status === 'active'
+              ? 'Пользователь в сети'
+              : 'Оффлайн'}
+          </Text>
+        </HStack>
+      </div>
     ),
   ],
 };

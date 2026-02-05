@@ -21,6 +21,8 @@ export default defineConfig([
       '*.config.mjs',
       'storybook-static/**',
       'scripts/*.{js,ts}',
+      'src/shared/utils/jest/providers/JestProvider.tsx',
+      'config/jest/EmptyMock.js',
     ],
   },
   js.configs.recommended,

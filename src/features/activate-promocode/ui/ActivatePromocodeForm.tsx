@@ -6,7 +6,7 @@ import { Modal } from '@/shared/ui/Modal/Modal';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
 import { useState } from 'react';
-import { useLazyCheckPromocodeQuery } from '../api/invoiceApi';
+import { useLazyCheckPromocodeQuery } from '../api/promocodeApi';
 
 const stack = getFlex({
   gap: 16,
@@ -50,8 +50,14 @@ export const ActivatePromocodeForm = () => {
           value={promoValue}
           onChange={(v) => setPromoValue(v)}
           placeholder="Активировать прокод"
+          data-testid="promo-input"
         />
-        <Button offset={8} type="submit" disabled={isFetching}>
+        <Button
+          offset={8}
+          type="submit"
+          disabled={isFetching}
+          data-testid="promo-submit-btn"
+        >
           {isFetching ? '...' : 'Отправить'}
         </Button>
       </Card>
@@ -60,7 +66,7 @@ export const ActivatePromocodeForm = () => {
           <Text as="h2" weight="medium">
             Статус активации
           </Text>
-          <Text>{modalMessage}</Text>
+          <Text data-testid="promo-result-message">{modalMessage}</Text>
           <Button onClick={() => setIsModalOpen(false)}>Отлично</Button>
         </VStack>
       </Modal>

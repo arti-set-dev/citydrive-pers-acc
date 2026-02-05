@@ -53,6 +53,13 @@ const meta: Meta<typeof Flex> = {
       <Box key="3" label="Item 3" />,
     ],
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

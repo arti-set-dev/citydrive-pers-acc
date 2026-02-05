@@ -2,7 +2,7 @@ import { Employee } from '@/entities/Employee';
 import { AddNewEmployeeSchema } from '../types/addNewEmployee';
 import { createSelector } from '@reduxjs/toolkit';
 
-interface StateWithEmployee {
+export interface StateWithEmployee {
   addNewEmployee?: AddNewEmployeeSchema;
 }
 

@@ -138,6 +138,7 @@ export const AddNewEmployeeForm = () => {
       p={0}
       width={770}
       className={stack.className}
+      data-testid="add-new-employee-form"
       style={stack.style}
     >
       <VStack as="fieldset">
@@ -153,6 +154,7 @@ export const AddNewEmployeeForm = () => {
               <Field
                 {...field}
                 value={field.value ?? ''}
+                data-testid="employee-name-field"
                 placeholder="Имя и фамилия"
                 error={error?.message}
               />
@@ -173,6 +175,7 @@ export const AddNewEmployeeForm = () => {
                 {...field}
                 value={field.value ?? ''}
                 placeholder="Email"
+                data-testid="employee-email-field"
                 type="email"
                 error={error?.message}
               />
@@ -273,6 +276,7 @@ export const AddNewEmployeeForm = () => {
                 value={String(value) || ''}
                 type="number"
                 placeholder="Безлимит"
+                data-testid="employee-limit-input"
                 error={error?.message}
               />
             )}
@@ -311,6 +315,7 @@ export const AddNewEmployeeForm = () => {
                 <Select
                   options={citiesOptions}
                   selected={selectedValue}
+                  data-testid="employee-city-select"
                   onChange={(selected) => {
                     field.onChange(selected ? [selected.id] : []);
                   }}
@@ -366,7 +371,12 @@ export const AddNewEmployeeForm = () => {
         </Card>
       </VStack>
       <Card p={0} width={200} className={stack.className} style={stack.style}>
-        <Button type="submit" offset={8} disabled={isLoading}>
+        <Button
+          type="submit"
+          offset={8}
+          disabled={isLoading}
+          data-testid="employee-submit-btn"
+        >
           {isLoading ? 'Создание...' : 'Создать сотрудника'}
         </Button>
       </Card>

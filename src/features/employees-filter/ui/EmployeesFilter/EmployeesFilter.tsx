@@ -77,6 +77,7 @@ export const EmployeesFilter = () => {
           value={filters.name}
           onChange={(val) => setFilters((prev) => ({ ...prev, name: val }))}
           placeholder="Имя или телефон сотрудника"
+          data-testid="filter-search-input"
         />
         <Grid gap={16} cols={{ base: 4, lg: 4, sm: 2 }}>
           <Select
@@ -104,12 +105,20 @@ export const EmployeesFilter = () => {
               setFilters((prev) => ({ ...prev, department: val?.id ?? 'all' }))
             }
           />
-          <Button onClick={handleReset} disabled={!isDirty}>
+          <Button
+            onClick={handleReset}
+            disabled={!isDirty}
+            data-testid="filter-reset-btn"
+          >
             Сбросить
           </Button>
         </Grid>
       </Grid>
-      <EmployeeList activeKeys={activeKeys} filters={activeFilters} />
+      <EmployeeList
+        activeKeys={activeKeys}
+        filters={activeFilters}
+        data-testid="employee-list"
+      />
     </>
   );
 };

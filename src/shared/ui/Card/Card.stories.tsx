@@ -17,7 +17,6 @@ const meta: Meta<typeof Card> = {
       control: 'select',
       options: ['div', 'section', 'article', 'header', 'form', 'ul', 'li'],
     },
-    // Управляем padding как числом/токеном для простоты в сторибуке
     p: { control: 'number' },
     r: { control: 'select', options: [0, 4, 8, 16, 24, 32] },
   },
@@ -27,6 +26,13 @@ const meta: Meta<typeof Card> = {
     p: 16,
     r: 8,
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

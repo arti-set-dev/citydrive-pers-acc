@@ -35,10 +35,18 @@ export const DeleteDepartmentModal = ({
           </Text>
         </VStack>
         <HStack gap={16} justify="end">
-          <Button variant="outline" onClick={onClose}>
+          <Button
+            variant="outline"
+            onClick={onClose}
+            data-testid="delete-dept-cancel"
+          >
             Отмена
           </Button>
-          <Button disabled={isLoading} onClick={onDelete}>
+          <Button
+            disabled={isLoading}
+            onClick={onDelete}
+            data-testid="delete-dept-confirm"
+          >
             {isLoading ? 'Удаление...' : 'Удалить'}
           </Button>
         </HStack>

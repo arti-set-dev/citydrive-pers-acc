@@ -96,6 +96,7 @@ export const Text = <T extends ElementType = 'div'>({
     <Component
       className={cl(s.Text, { [s.leader]: leader }, className)}
       style={{ ...responsiveStyles, ...style }}
+      data-testid="text"
       {...restProps}
     >
       {children}

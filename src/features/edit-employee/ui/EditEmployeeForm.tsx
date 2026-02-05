@@ -123,6 +123,7 @@ export const EditEmployeeForm = ({ id }: EditEmployeeFormProps) => {
       width={770}
       className={stack.className}
       style={stack.style}
+      data-testid="edit-employee-form"
     >
       <VStack as="fieldset">
         <VStack>
@@ -138,6 +139,7 @@ export const EditEmployeeForm = ({ id }: EditEmployeeFormProps) => {
                 {...field}
                 value={field.value ?? ''}
                 placeholder="Имя и фамилия"
+                data-testid="employee-name-input"
                 error={error?.message}
               />
             )}
@@ -256,6 +258,7 @@ export const EditEmployeeForm = ({ id }: EditEmployeeFormProps) => {
                 value={String(value) || ''}
                 type="number"
                 placeholder="Безлимит"
+                data-testid="employee-limit-input"
                 error={error?.message}
               />
             )}
@@ -349,7 +352,12 @@ export const EditEmployeeForm = ({ id }: EditEmployeeFormProps) => {
         </Card>
       </VStack>
       <Card p={0} width={200} className={stack.className} style={stack.style}>
-        <Button type="submit" offset={8} disabled={isUpdating}>
+        <Button
+          type="submit"
+          offset={8}
+          disabled={isUpdating}
+          data-testid="employee-submit-btn"
+        >
           {isUpdating ? 'Сохранение...' : 'Обновить данные'}
         </Button>
       </Card>

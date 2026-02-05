@@ -7,6 +7,13 @@ import { useState } from 'react';
 const meta: Meta<typeof Field> = {
   title: 'shared/Field',
   component: Field,
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     onChange: { action: 'changed' },
     type: {

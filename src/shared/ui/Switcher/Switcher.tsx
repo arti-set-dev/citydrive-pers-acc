@@ -24,8 +24,13 @@ export function Switcher({
       defaultChecked={defaultChecked}
       onChange={onChange}
       className={styles.Switcher}
+      data-testid="switcher"
     >
-      <span aria-hidden="true" className={styles.Thumb} />
+      <span
+        aria-hidden="true"
+        className={styles.Thumb}
+        data-testid="switcher-thumb"
+      />
     </Switch>
   );
 }

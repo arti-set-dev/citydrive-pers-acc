@@ -155,6 +155,7 @@ export const Flex = <T extends ElementType = 'div'>({
     <Component
       ref={ref}
       className={clsx(styles.Flex, className)}
+      data-testid="flex"
       style={style}
       {...restProps}
     >

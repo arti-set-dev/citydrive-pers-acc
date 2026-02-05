@@ -5,6 +5,13 @@ import { VStack, HStack } from '../Stack';
 const meta: Meta<typeof Skeleton> = {
   title: 'shared/Skeleton',
   component: Skeleton,
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -32,13 +39,6 @@ export const StaticForScreenshot: Story = {
     height: 100,
     borderRadius: 8,
   },
-  decorators: [
-    (Story) => (
-      <div data-screenshot="true">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export const SkeletonGroup: Story = {

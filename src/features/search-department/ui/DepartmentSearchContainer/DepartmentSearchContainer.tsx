@@ -17,11 +17,16 @@ export const DepartmentSearchContainer = ({
 
   return (
     <>
-      <SearchDepartmentForm value={search} onChange={setSearch} />
+      <SearchDepartmentForm
+        value={search}
+        onChange={setSearch}
+        data-testid="SearchDepartment"
+      />
       <DepartmentList
         companyId={employeeData?.companyId}
         search={debouncedSearch}
         renderActions={renderActions}
+        data-testid="DepartmentList"
       />
     </>
   );

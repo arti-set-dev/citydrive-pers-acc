@@ -10,7 +10,10 @@ const meta: Meta<typeof TimePicker> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: '400px', minHeight: '350px' }}>
+      <div
+        data-screenshot="true"
+        style={{ maxWidth: '400px', minHeight: '350px' }}
+      >
         <Story />
       </div>
     ),

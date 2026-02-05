@@ -55,7 +55,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <VStack as="form" gap={24} onSubmit={onLogin}>
+    <VStack as="form" gap={24} onSubmit={onLogin} data-testid="LoginForm">
       <Logo />
       <Text align="center" weight="medium" size={28}>
         Вход в личный кабинет
@@ -67,6 +67,7 @@ export const LoginForm = () => {
           value={userEmail}
           onChange={onChangeUserEmail}
           placeholder="Email"
+          data-testid="LoginForm.Email"
         />
         <Field
           fullWidth
@@ -74,9 +75,10 @@ export const LoginForm = () => {
           value={userPassword}
           onChange={onChangeUserPassword}
           placeholder="Пароль"
+          data-testid="LoginForm.Password"
         />
       </VStack>
-      <Button disabled={isLoading} offset={8}>
+      <Button disabled={isLoading} offset={8} data-testid="LoginForm.Submit">
         {isLoading ? 'Загрузка...' : 'Войти'}
       </Button>
     </VStack>

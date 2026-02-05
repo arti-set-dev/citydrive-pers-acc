@@ -20,7 +20,10 @@ const meta: Meta<typeof Select> = {
   component: Select,
   decorators: [
     (Story) => (
-      <div style={{ padding: '20px', minHeight: '300px' }}>
+      <div
+        data-screenshot="true"
+        style={{ padding: '20px', minHeight: '300px' }}
+      >
         <Story />
       </div>
     ),

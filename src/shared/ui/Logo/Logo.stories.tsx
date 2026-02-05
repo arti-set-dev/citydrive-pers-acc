@@ -5,6 +5,13 @@ import { PATHS } from '@/shared/lib/router/paths';
 const meta: Meta<typeof Logo> = {
   title: 'shared/Logo',
   component: Logo,
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

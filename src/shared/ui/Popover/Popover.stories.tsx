@@ -10,6 +10,7 @@ const meta: Meta<typeof ActionPopover> = {
   decorators: [
     (Story) => (
       <div
+        data-screenshot="true"
         style={{
           display: 'flex',
           justifyContent: 'center',

@@ -37,25 +37,33 @@ export const VirtualList = <T,>({
   );
 
   if (isLoading && items.length === 0) {
-    return renderSkeletons(skeletonCount);
+    return (
+      <React.Fragment data-testid="list-skeletons">
+        {renderSkeletons(skeletonCount)}
+      </React.Fragment>
+    );
   }
 
   if (items.length === 0 && !isFetching) {
-    return <>{emptyComponent}</>;
+    return (
+      <React.Fragment data-testid="list-empty">{emptyComponent}</React.Fragment>
+    );
   }
 
   return (
-    <Virtuoso
-      style={{ height }}
-      data={items}
-      endReached={onLoadMore}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      itemContent={(index: number, item: any) => renderItem(item, index)}
-      components={{
-        Footer: () => (isFetching ? renderSkeletons(skeletonCount) : null),
-      }}
-      useWindowScroll={false}
-      {...virtuosoProps}
-    />
+    <React.Fragment data-testid="virtuoso-container">
+      <Virtuoso
+        style={{ height }}
+        data={items}
+        endReached={onLoadMore}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        itemContent={(index: number, item: any) => renderItem(item, index)}
+        components={{
+          Footer: () => (isFetching ? renderSkeletons(skeletonCount) : null),
+        }}
+        useWindowScroll={false}
+        {...virtuosoProps}
+      />
+    </React.Fragment>
   );
 };

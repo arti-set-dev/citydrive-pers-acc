@@ -12,7 +12,10 @@ const meta: Meta<typeof DatePicker> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ paddingBottom: '350px', maxWidth: '600px' }}>
+      <div
+        data-screenshot="true"
+        style={{ paddingBottom: '350px', maxWidth: '600px' }}
+      >
         <Story />
       </div>
     ),

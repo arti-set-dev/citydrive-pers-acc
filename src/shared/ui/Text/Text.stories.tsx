@@ -40,6 +40,13 @@ const meta: Meta<typeof Text> = {
     size: 16,
     color: 'text-primary',
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

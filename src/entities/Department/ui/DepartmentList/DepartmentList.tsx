@@ -21,10 +21,12 @@ export const DepartmentList = ({
   companyId,
   search,
   renderActions,
+  'data-testid': testId = 'DepartmentList',
 }: {
   companyId?: string;
   search?: string;
   renderActions?: (department: Department) => React.ReactNode;
+  'data-testid'?: string;
 }) => {
   const [searchParams] = useSearchParams();
   const [mobilePage, setMobilePage] = useState(1);
@@ -114,7 +116,7 @@ export const DepartmentList = ({
         </VStack>
       ) : (
         <>
-          <VStack gap={0}>
+          <VStack gap={0} data-testid={testId}>
             {departments?.map((department) => (
               <DepartmentItem
                 key={department.id}

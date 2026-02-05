@@ -134,6 +134,7 @@ export const ImportDataAboutCompanyButton = ({
         accept=".xlsx, .xls"
         onChange={handleFile}
         id="import-excel"
+        data-testid="import-file-input"
         hidden
       />
       <Button variant="clear" offset={0} disabled={isImporting}>
@@ -142,6 +143,7 @@ export const ImportDataAboutCompanyButton = ({
           htmlFor="import-excel"
           p={0}
           style={{ cursor: 'pointer' }}
+          data-testid="import-status-text"
         >
           <Text as="span" align="center">
             {fileData ? 'Файл готов к отправке' : 'Импортировать базу'}
@@ -150,7 +152,11 @@ export const ImportDataAboutCompanyButton = ({
       </Button>
 
       {fileData && (
-        <Button onClick={startImport} disabled={isImporting}>
+        <Button
+          onClick={startImport}
+          disabled={isImporting}
+          data-testid="import-start-confirm"
+        >
           {isImporting ? 'Загрузка...' : 'ОК'}
         </Button>
       )}

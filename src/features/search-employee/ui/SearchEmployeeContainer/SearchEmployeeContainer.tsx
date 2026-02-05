@@ -24,7 +24,11 @@ export const SearchEmployeeContainer = ({
 
   return (
     <>
-      <SearchEmployeeForm value={search} onChange={setSearch} />
+      <SearchEmployeeForm
+        value={search}
+        onChange={setSearch}
+        data-testid="SearchEmployee"
+      />
       <EmployeeList
         activeKeys={activeKeys}
         filters={{

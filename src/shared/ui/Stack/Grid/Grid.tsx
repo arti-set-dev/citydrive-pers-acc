@@ -50,7 +50,11 @@ export const Grid = ({ cols, gap, children, className }: GridProps) => {
   } as React.CSSProperties;
 
   return (
-    <div className={clsx(styles.Grid, className)} style={style}>
+    <div
+      className={clsx(styles.Grid, className)}
+      style={style}
+      data-testid="grid"
+    >
       {children}
     </div>
   );

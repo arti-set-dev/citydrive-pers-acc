@@ -1,6 +1,6 @@
 import { LoginSchema } from '../types/login';
 
-interface StateWithLogin {
+export interface StateWithLogin {
   login?: LoginSchema;
 }
 

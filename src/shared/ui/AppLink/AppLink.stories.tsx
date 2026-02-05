@@ -8,6 +8,13 @@ const meta: Meta<typeof AppLink> = {
     to: '/',
     children: 'Link Text',
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

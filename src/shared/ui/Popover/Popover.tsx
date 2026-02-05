@@ -11,11 +11,15 @@ interface ActionPopoverProps {
 export function ActionPopover({ children }: ActionPopoverProps) {
   return (
     <Popover className={styles.Popover}>
-      <PopoverButton as={Button} variant="clear">
+      <PopoverButton as={Button} variant="clear" data-testid="popover-btn">
         <EllipsisVerticalIcon />
       </PopoverButton>
 
-      <PopoverPanel anchor="left start" className={styles.PopoverPanel}>
+      <PopoverPanel
+        anchor="left start"
+        className={styles.PopoverPanel}
+        data-testid="popover-panel"
+      >
         {children}
       </PopoverPanel>
     </Popover>

@@ -9,6 +9,10 @@ export const Status = ({ status }: StatusProps) => {
   const titleMessage = status === 'active' ? 'Активен' : 'Не активен';
 
   return (
-    <div className={clsx(styles.Status, styles[status])} title={titleMessage} />
+    <div
+      className={clsx(styles.Status, styles[status])}
+      title={titleMessage}
+      data-testid="status-indicator"
+    />
   );
 };

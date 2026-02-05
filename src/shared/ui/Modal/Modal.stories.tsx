@@ -15,7 +15,10 @@ const meta: Meta<typeof Modal> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ height: '400px', transform: 'scale(1)' }}>
+      <div
+        data-screenshot="true"
+        style={{ height: '400px', transform: 'scale(1)' }}
+      >
         <Story />
       </div>
     ),

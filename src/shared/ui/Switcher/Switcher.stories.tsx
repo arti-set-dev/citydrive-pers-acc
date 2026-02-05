@@ -11,6 +11,13 @@ const meta: Meta<typeof Switcher> = {
     onChange: { action: 'changed' },
     checked: { control: 'boolean' },
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

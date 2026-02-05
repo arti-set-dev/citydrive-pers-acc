@@ -43,7 +43,12 @@ export const AddNewDepartmentForm = () => {
 
   return (
     <Card p={0} width={540}>
-      <VStack as="form" onSubmit={handleSubmit(onSubmit)} gap={16}>
+      <VStack
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
+        gap={16}
+        data-testid="add-new-department-form"
+      >
         <VStack as="label" gap={4} align="stretch">
           <Text>Название отдела</Text>
           <Controller
@@ -52,6 +57,7 @@ export const AddNewDepartmentForm = () => {
             rules={{ required: 'Введите название' }}
             render={({ field: { onChange, value } }) => (
               <Field
+                data-testid="department-name-input"
                 value={value}
                 onChange={onChange}
                 placeholder="Название отдела"
@@ -69,6 +75,7 @@ export const AddNewDepartmentForm = () => {
             rules={{ required: 'Укажите лимит' }}
             render={({ field: { onChange, value } }) => (
               <Field
+                data-testid="department-limit-input"
                 type="number"
                 value={value}
                 onChange={onChange}
@@ -79,7 +86,11 @@ export const AddNewDepartmentForm = () => {
           />
         </VStack>
 
-        <Button type="submit" disabled={isLoading}>
+        <Button
+          type="submit"
+          disabled={isLoading}
+          data-testid="department-submit-btn"
+        >
           Добавить отдел
         </Button>
       </VStack>

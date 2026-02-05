@@ -74,7 +74,12 @@ export const AddBalanceForm = () => {
     }
   };
   return (
-    <VStack gap={24} as="form" onSubmit={handleSubmit(onSubmit)}>
+    <VStack
+      gap={24}
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      data-testid="add-balance-form"
+    >
       <Text as="h2" weight="bold" size={32}>
         Пополнение баланса
       </Text>
@@ -121,7 +126,12 @@ export const AddBalanceForm = () => {
         )}
       />
 
-      <Button type="submit" disabled={!isValid || isLoading} offset={8}>
+      <Button
+        type="submit"
+        disabled={!isValid || isLoading}
+        offset={8}
+        data-testid="add-balance-submit"
+      >
         {isLoading ? 'Формируем счёт...' : 'Скачать счёт в pdf'}
       </Button>
       {isError && (

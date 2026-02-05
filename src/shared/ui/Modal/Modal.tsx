@@ -19,6 +19,7 @@ export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
       <div
         onClick={onClose}
         className={clsx(styles.Overlay, { [styles.isOpen]: isOpen })}
+        data-testid="modal-overlay"
       >
         <Card
           width={540}
@@ -26,8 +27,14 @@ export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
           onClick={(e) => e.stopPropagation()}
           p={24}
           variant="bg-primary"
+          data-testid="modal-content"
         >
-          <Button variant="close" onClick={onClose} className={styles.Close} />
+          <Button
+            data-testid="modal-close-btn"
+            variant="close"
+            onClick={onClose}
+            className={styles.Close}
+          />
           {children}
         </Card>
       </div>

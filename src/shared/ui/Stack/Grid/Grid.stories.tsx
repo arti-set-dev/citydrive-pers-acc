@@ -34,6 +34,13 @@ const meta: Meta<typeof Grid> = {
       <GridItem key={i} index={i + 1} />
     )),
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

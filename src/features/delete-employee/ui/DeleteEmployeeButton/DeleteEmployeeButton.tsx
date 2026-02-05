@@ -31,7 +31,12 @@ export const DeleteEmployeeButton = ({ id }: DeleteEmployeeButtonProps) => {
 
   return (
     <>
-      <Button variant="clear" offset={8} onClick={onOpenModal}>
+      <Button
+        variant="clear"
+        offset={8}
+        onClick={onOpenModal}
+        data-testid="delete-employee-open-btn"
+      >
         Удалить сотрудника
       </Button>
 
@@ -45,6 +50,7 @@ export const DeleteEmployeeButton = ({ id }: DeleteEmployeeButtonProps) => {
               variant="outline"
               onClick={onCloseModal}
               disabled={isLoading}
+              data-testid="delete-employee-cancel-btn"
             >
               Отмена
             </Button>
@@ -53,6 +59,7 @@ export const DeleteEmployeeButton = ({ id }: DeleteEmployeeButtonProps) => {
               color="error"
               onClick={onDelete}
               disabled={isLoading}
+              data-testid="delete-employee-confirm-btn"
             >
               {isLoading ? 'Удаление...' : 'Удалить'}
             </Button>

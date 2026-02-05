@@ -1,6 +1,6 @@
 import { EmployeeSchema } from '../types/employee';
 
-interface StateWithEmployee {
+export interface StateWithEmployee {
   employee?: EmployeeSchema;
 }
 

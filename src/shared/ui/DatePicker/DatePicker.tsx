@@ -14,6 +14,7 @@ interface DatePickerProps {
   onChange?: (range: DateRange | undefined) => void;
   error?: string;
   disabledBefore?: Date;
+  'data-testid'?: string;
 }
 
 export const DatePicker = ({
@@ -22,6 +23,7 @@ export const DatePicker = ({
   value,
   error,
   disabledBefore,
+  'data-testid': testId = 'DatePicker',
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +48,7 @@ export const DatePicker = ({
   }, [isOpen]);
 
   return (
-    <VStack ref={containerRef} gap={4} align="start">
+    <VStack ref={containerRef} gap={4} align="start" data-testid={testId}>
       <Flex direction={{ base: 'row', lg: 'row' }} gap={0}>
         <Field
           fullWidth={fullWidth}
@@ -57,6 +59,7 @@ export const DatePicker = ({
           value={startDisplay}
           onClick={() => setIsOpen(true)}
           error={error ? ' ' : undefined}
+          data-testid={`${testId}.StartField`}
         />
         <Field
           name="end-date"
@@ -68,13 +71,14 @@ export const DatePicker = ({
           disabled={!value?.from}
           onClick={() => setIsOpen(true)}
           error={error ? ' ' : undefined}
+          data-testid={`${testId}.EndField`}
         />
       </Flex>
 
       {error && <span className={styles.ErrorMessage}>{error}</span>}
 
       {isOpen && (
-        <div className={styles.Popover}>
+        <div className={styles.Popover} data-testid={`${testId}.Popover`}>
           <DayPicker
             locale={ru}
             mode="range"

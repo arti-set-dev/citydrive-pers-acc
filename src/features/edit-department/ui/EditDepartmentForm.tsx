@@ -76,6 +76,7 @@ export const EditDepartmentForm = () => {
               <Field
                 {...field}
                 placeholder="Название отдела"
+                data-testid="dept-name-input"
                 error={errors.name?.message}
               />
             )}
@@ -93,13 +94,18 @@ export const EditDepartmentForm = () => {
                 {...field}
                 type="number"
                 placeholder="Лимит"
+                data-testid="dept-limit-input"
                 error={errors.limit?.message}
               />
             )}
           />
         </VStack>
 
-        <Button type="submit" disabled={isUpdating}>
+        <Button
+          type="submit"
+          disabled={isUpdating}
+          data-testid="dept-submit-btn"
+        >
           {isUpdating ? 'Сохранение...' : 'Сохранить изменения'}
         </Button>
       </VStack>

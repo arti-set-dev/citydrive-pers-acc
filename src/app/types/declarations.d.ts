@@ -26,3 +26,9 @@ declare module '*.webp' {
 
 type RootState = import('../store/store').RootState;
 type AppDispatch = import('../store/store').AppDispatch;
+
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;

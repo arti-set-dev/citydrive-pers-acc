@@ -40,6 +40,13 @@ const meta: Meta<typeof Button> = {
   args: {
     children: 'Отправить',
   },
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

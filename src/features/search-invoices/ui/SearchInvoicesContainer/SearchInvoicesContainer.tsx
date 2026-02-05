@@ -17,7 +17,11 @@ export const SearchInvoicesContainer = ({
 
   return (
     <>
-      <SearchInvoicesForm value={search} onChange={setSearch} />
+      <SearchInvoicesForm
+        value={search}
+        onChange={setSearch}
+        data-testid="SearchInvoices"
+      />
       <InvoiceList
         targetIds={targetIds}
         companyId={companyId}

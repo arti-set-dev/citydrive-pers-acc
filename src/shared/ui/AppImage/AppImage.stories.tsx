@@ -4,6 +4,13 @@ import { AppImage } from './AppImage';
 const meta: Meta<typeof AppImage> = {
   title: 'shared/AppImage',
   component: AppImage,
+  decorators: [
+    (Story) => (
+      <div data-screenshot="true">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

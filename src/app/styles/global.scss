@@ -29,13 +29,18 @@ svg {
 }
 
 [data-screenshot='true'] {
+  /* stylelint-disable-next-line rule-empty-line-before */
   &,
   & *,
   & *::before,
   & *::after {
-    caret-color: transparent;
-    transition: none;
-    animation-play-state: paused;
-    animation-delay: -1ms;
+    /* stylelint-disable-next-line declaration-no-important */
+    caret-color: transparent !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    transition: none !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    animation-play-state: paused !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    animation-delay: -1ms !important;
   }
 }

@@ -92,15 +92,21 @@ export const Select = <T,>({
       >
         <VStack gap={0} className={clsx(styles.Select, className)}>
           <ComboboxInput
+            data-testid="select-input"
             className={styles.Input}
             displayValue={(opt: T) => (opt ? getOptionLabel(opt) : '')}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />
           <Card p={0}>
-            <ComboboxOptions modal={false} className={styles.Options}>
+            <ComboboxOptions
+              data-testid="select-options"
+              modal={false}
+              className={styles.Options}
+            >
               {filteredOptions.map((option) => (
                 <ComboboxOption
+                  data-testid={`select-option-${getOptionKey(option)}`}
                   key={getOptionKey(option)}
                   value={option}
                   className={({ focus }) =>
@@ -125,16 +131,26 @@ export const Select = <T,>({
       onChange={handleChange}
     >
       <VStack gap={0} className={clsx(styles.Select, className)}>
-        <ListboxButton as={Button} variant={variant} offset={offset}>
+        <ListboxButton
+          data-testid="select-button"
+          as={Button}
+          variant={variant}
+          offset={offset}
+        >
           {activeOption
             ? getOptionLabel(activeOption)
             : desc || (options[0] ? getOptionLabel(options[0]) : '')}
           <ArrowDown />
         </ListboxButton>
         <Card p={0}>
-          <ListboxOptions modal={false} className={styles.Options}>
+          <ListboxOptions
+            data-testid="select-options"
+            modal={false}
+            className={styles.Options}
+          >
             {options.map((opt) => (
               <ListboxOption
+                data-testid={`select-option-${getOptionKey(opt)}`}
                 key={getOptionKey(opt)}
                 value={opt}
                 className={({ focus }) =>

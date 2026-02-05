@@ -31,9 +31,14 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
   };
 
   return (
-    <HStack as="ul" gap={4} className={styles.Container}>
+    <HStack
+      data-testid="pagination"
+      as="ul"
+      gap={4}
+      className={styles.Container}
+    >
       {current > 1 && (
-        <Link to={`?page=${current - 1}`}>
+        <Link to={`?page=${current - 1}`} data-testid="pagination-prev">
           <ArrowLeft />
         </Link>
       )}
@@ -41,10 +46,11 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
       {getPages().map((page, idx) => (
         <li key={idx}>
           {page === '...' ? (
-            <span>...</span>
+            <span data-testid={`pagination-dots-${idx}`}>...</span>
           ) : (
             <Link
               to={`?page=${page}`}
+              data-testid={`pagination-page-${page}`}
               className={clsx(styles.Button, {
                 [styles.current]: current === page,
               })}
@@ -56,7 +62,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
       ))}
 
       {current < totalPages && (
-        <Link to={`?page=${current + 1}`}>
+        <Link to={`?page=${current + 1}`} data-testid="pagination-next">
           <ArrowRight />
         </Link>
       )}

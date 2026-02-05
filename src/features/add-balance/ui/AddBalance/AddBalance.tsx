@@ -29,12 +29,16 @@ export const AddBalance = ({ id }: AddBalanceProps) => {
         <Text size={16} color="text-tertiary">
           Баланс:
         </Text>
-        <Text size={18} weight="bold">
+        <Text size={18} weight="bold" data-testid="balance-value">
           {isLoading ? 'Загрузка...' : `${data?.balance} р`}
         </Text>
       </Flex>
       <MobileView>
-        <Button onClick={onOpenModalFormWithAddBalance} variant="clear-brand">
+        <Button
+          onClick={onOpenModalFormWithAddBalance}
+          variant="clear-brand"
+          data-testid="open-add-balance-modal"
+        >
           Пополнить
         </Button>
       </MobileView>
@@ -47,7 +51,7 @@ export const AddBalance = ({ id }: AddBalanceProps) => {
         isOpen={isOpenModalFormWithAddBalance}
         onClose={onCloseModalFormWithAddBalance}
       >
-        <AddBalanceForm />
+        <AddBalanceForm data-testid="add-balance-form-mock" />
       </Modal>
     </HStack>
   );
