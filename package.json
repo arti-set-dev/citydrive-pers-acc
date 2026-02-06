@@ -27,7 +27,11 @@
     "screen-test:report": "run-s -c screen-test reg-cli",
     "generate-reports": "node scripts/generate-reports.js",
     "prepare": "husky",
-    "remove-feature": "ts-node ./scripts/remove-feature.ts"
+    "remove-feature": "ts-node ./scripts/remove-feature.ts",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "start-server-and-test start http://localhost:3000 cypress:open",
+    "test:e2e:ci": "start-server-and-test start http://localhost:3000 cypress:run"
   },
   "keywords": [],
   "author": "",
@@ -65,6 +69,7 @@
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.2",
+    "cypress": "^15.10.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -92,6 +97,7 @@
     "reg-cli": "^0.18.14",
     "sass": "^1.97.1",
     "sass-loader": "^16.0.6",
+    "start-server-and-test": "^2.1.3",
     "storybook": "^10.1.11",
     "style-loader": "^4.0.0",
     "stylelint": "^16.26.1",

@@ -21,6 +21,7 @@
     "json-server",
     "src",
     "eslint.config.ts",
+    "cypress.config.ts",
     "lostpixel.config.ts",
     "stylelint.config.mjs",
     "config/.storybook/**/*.ts",

@@ -42,17 +42,23 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: ['./tsconfig.json', './cypress/tsconfig.json'],
       },
     },
     settings: {
       react: { version: 'detect' },
       'import-x/resolver': {
-        typescript: { alwaysTryTypes: true, project: './tsconfig.json' },
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['./tsconfig.json', './cypress/tsconfig.json'],
+        },
         node: true,
       },
       'import/resolver': {
-        typescript: { alwaysTryTypes: true, project: './tsconfig.json' },
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['./tsconfig.json', './cypress/tsconfig.json'],
+        },
         node: true,
       },
       'boundaries/base-path': 'src',

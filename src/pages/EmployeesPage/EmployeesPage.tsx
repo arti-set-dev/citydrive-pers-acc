@@ -17,7 +17,11 @@ const EmployeesPage = () => {
         <Text as="h1" size={{ base: 32, sm: 20 }} weight="bold">
           Сотрудники
         </Text>
-        <AppLink variant="outline" to={PATHS.employees + '/new'}>
+        <AppLink
+          variant="outline"
+          to={PATHS.employees + '/new'}
+          data-testid="add-employee-btn"
+        >
           Добавить сотрудника
         </AppLink>
       </HStack>
