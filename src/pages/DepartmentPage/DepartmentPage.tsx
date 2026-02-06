@@ -16,9 +16,10 @@ const stack = getVStack({
 const DepartmentPage = () => {
   const { id } = useParams<{ id: string }>();
 
+  const { data: department, isLoading } = useGetDepartmentByIdQuery(id ?? '');
+
   if (!id) return <Text color="danger">Отдел не найден</Text>;
 
-  const { data: department, isLoading } = useGetDepartmentByIdQuery(id);
   return (
     <Card p={16} className={stack.className} style={stack.style}>
       <HStack justify="space-between">

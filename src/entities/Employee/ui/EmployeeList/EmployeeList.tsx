@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback, memo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
@@ -32,7 +32,10 @@ interface EmployeeListProps {
 
 const LIMIT = 10;
 
-export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
+export const EmployeeList = memo(function EmployeeList({
+  activeKeys,
+  filters,
+}: EmployeeListProps) {
   const [searchParams] = useSearchParams();
   const [mobilePage, setMobilePage] = useState(1);
   const employeeData = useAppSelector(getEmployeeData);
@@ -44,13 +47,8 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
     setMobilePage(1);
   }, [filters]);
 
-  const {
-    data: employees,
-    isLoading,
-    isFetching,
-    isError,
-  } = useGetEmployeesListQuery(
-    {
+  const queryArgs = useMemo(
+    () => ({
       fields: activeKeys,
       companyId: employeeData?.companyId,
       name_like: filters?.name,
@@ -60,11 +58,18 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
       _page: currentPage,
       _limit: LIMIT,
       isMobile,
-    },
-    {
-      skip: !employeeData?.companyId,
-    },
+    }),
+    [activeKeys, employeeData?.companyId, filters, currentPage],
   );
+
+  const {
+    data: employees,
+    isLoading,
+    isFetching,
+    isError,
+  } = useGetEmployeesListQuery(queryArgs, {
+    skip: !employeeData?.companyId,
+  });
 
   const totalPages = (employees as EmployeeArrayResponse)?.totalPages || 1;
   const totalCount = (employees as EmployeeArrayResponse)?.totalCount || 0;
@@ -80,6 +85,33 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
     const count = activeColumns.length;
     return (count <= 6 ? count : 6) as 1 | 2 | 3 | 4 | 5 | 6 | 12;
   }, [activeColumns]);
+
+  const headerColumns = useMemo(() => {
+    return activeColumns.map((key) => {
+      const config = COLUMN_MAP[key];
+      const flex = getFlex({ align: config.align || 'start' });
+      return {
+        key,
+        header: config.header,
+        className: flex.className,
+        style: flex.style,
+      };
+    });
+  }, [activeColumns]);
+
+  const renderVirtualItem = useCallback(
+    (item: Employee) => (
+      <VStack gap={16} key={item.id}>
+        <EmployeeItem
+          item={item}
+          activeColumns={activeColumns}
+          columnMap={COLUMN_MAP}
+          gridCols={gridCols}
+        />
+      </VStack>
+    ),
+    [activeColumns, gridCols],
+  );
 
   const handleLoadMore = () => {
     if (employees && employees.length < totalCount && !isFetching) {
@@ -113,16 +145,7 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
       }
       isFetching={isFetching}
       onLoadMore={handleLoadMore}
-      renderItem={(item) => (
-        <VStack gap={16} key={item.id}>
-          <EmployeeItem
-            item={item}
-            activeColumns={activeColumns}
-            columnMap={COLUMN_MAP}
-            gridCols={gridCols}
-          />
-        </VStack>
-      )}
+      renderItem={renderVirtualItem}
       emptyComponent={<Text>Сотрудники не найдены</Text>}
     />
   ) : (
@@ -165,27 +188,22 @@ export const EmployeeList = ({ activeKeys, filters }: EmployeeListProps) => {
     <Card p={0} isOverflowAuto>
       <Card p={0} minWidth={770}>
         <Grid cols={gridCols}>
-          {activeColumns.map((key) => {
-            const config = COLUMN_MAP[key];
-            const align = getFlex({ align: config.align || 'start' });
-
-            return (
-              <Card
-                key={key}
-                p={16}
-                borderLine="bottom"
-                className={align.className}
-                style={align.style}
-              >
-                <Text color="text-tertiary" weight="medium">
-                  {config.header}
-                </Text>
-              </Card>
-            );
-          })}
+          {headerColumns.map((col) => (
+            <Card
+              key={col.key}
+              p={16}
+              borderLine="bottom"
+              className={col.className}
+              style={col.style}
+            >
+              <Text color="text-tertiary" weight="medium">
+                {col.header}
+              </Text>
+            </Card>
+          ))}
         </Grid>
         {renderContent}
       </Card>
     </Card>
   );
-};
+});

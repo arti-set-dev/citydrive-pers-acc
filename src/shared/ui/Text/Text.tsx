@@ -3,6 +3,7 @@ import React, {
   ReactNode,
   ComponentPropsWithoutRef,
   CSSProperties,
+  memo,
 } from 'react';
 import cl from 'clsx';
 import s from './Text.module.scss';
@@ -69,7 +70,7 @@ const getResponsiveVars = (prop: string, value?: Responsive<any>) => {
   };
 };
 
-export const Text = <T extends ElementType = 'div'>({
+const TextComponent = <T extends ElementType = 'div'>({
   as,
   children,
   size,
@@ -103,3 +104,7 @@ export const Text = <T extends ElementType = 'div'>({
     </Component>
   );
 };
+
+export const Text = memo(TextComponent) as <T extends ElementType = 'div'>(
+  props: Props<T>,
+) => React.ReactElement | null;

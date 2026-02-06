@@ -13,6 +13,7 @@ import {
   ImportDataAboutCompanyButton,
   useGetCompanyEmployeesQuery,
 } from '@/features/import-data-about-company';
+import { memo } from 'react';
 
 const stack = getVStack({
   gap: 16,
@@ -63,4 +64,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default memo(HomePage);

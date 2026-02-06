@@ -1,4 +1,9 @@
-import React, { ElementType, ComponentPropsWithoutRef, ReactNode } from 'react';
+import React, {
+  ElementType,
+  ComponentPropsWithoutRef,
+  ReactNode,
+  memo,
+} from 'react';
 import { GAP_VALUES, GapToken, Responsive } from '@/shared/types/design-tokens';
 import styles from './Card.module.scss';
 import clsx from 'clsx';
@@ -84,7 +89,7 @@ const getResponsiveVars = (
   return vars;
 };
 
-export const Card = <T extends ElementType = 'div'>({
+const CardComponent = <T extends ElementType = 'div'>({
   as,
   variant = 'bg-primary',
   p,
@@ -102,10 +107,12 @@ export const Card = <T extends ElementType = 'div'>({
 }: PolymorphicCardProps<T>) => {
   const Component = (as || 'div') as ElementType;
 
-  const cssVars = getResponsiveVars(p, 'card-padding', (v) => {
-    const key = v as keyof typeof GAP_VALUES;
-    return GAP_VALUES[key];
-  });
+  // Эти вычисления будут происходить только если изменились пропсы Card
+  const cssVars = getResponsiveVars(
+    p,
+    'card-padding',
+    (v) => GAP_VALUES[v as keyof typeof GAP_VALUES],
+  );
   const radiusVars = getResponsiveVars(
     r,
     'card-radius',
@@ -113,11 +120,9 @@ export const Card = <T extends ElementType = 'div'>({
   );
   const widthStyle =
     width !== undefined ? { '--card-width': `var(--width-${width})` } : {};
-
   const widthVars = getResponsiveVars(width, 'card-max-width', (v) =>
     v === 'auto' ? 'auto' : `var(--width-${v})`,
   );
-
   const minWidthVars = getResponsiveVars(minWidth, 'card-min-width', (v) =>
     v === 'auto' ? 'auto' : `var(--width-${v})`,
   );
@@ -129,6 +134,7 @@ export const Card = <T extends ElementType = 'div'>({
     bottom: styles.borderBottom,
     none: '',
   };
+
   return (
     <Component
       className={clsx(
@@ -154,3 +160,8 @@ export const Card = <T extends ElementType = 'div'>({
     </Component>
   );
 };
+
+// 2. Экспортируем мемоизированную версию с сохранением Generic-типов
+export const Card = memo(CardComponent) as <T extends ElementType = 'div'>(
+  props: PolymorphicCardProps<T>,
+) => React.ReactElement | null;

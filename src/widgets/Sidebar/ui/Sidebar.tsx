@@ -1,7 +1,7 @@
 import { PATHS } from '@/shared/lib/router/paths';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Flex, VStack } from '@/shared/ui/Stack';
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import HouseIcon from '@/shared/assets/icons/house.svg';
 import IdCardLanyardIcon from '@/shared/assets/icons/id-card-lanyard.svg';
 import ClipboardListIcon from '@/shared/assets/icons/clipboard-list.svg';
@@ -70,34 +70,40 @@ const routs: SidebarItemOptions[] = [
   },
 ];
 
+const userPaths: string[] = [
+  PATHS.home,
+  PATHS.trips,
+  PATHS.invoices,
+  PATHS.promocodes,
+  PATHS.settings,
+];
+
 const stack = getVStack({
   gap: 16,
   justify: 'space-between',
 });
 
-export const Sidebar = () => {
-  const employeeData = useAppSelector(getEmployeeData);
-  const role = employeeData?.role;
-  const userPaths: string[] = [
-    PATHS.home,
-    PATHS.trips,
-    PATHS.invoices,
-    PATHS.promocodes,
-    PATHS.settings,
-  ];
-
-  const hiddenRouts = isMobile
-    ? routs.filter((item) => item.mobileVisible === false)
-    : [];
-
-  const filteredRouts = routs.filter((route) => {
-    if (role === 'admin') return true;
-    return userPaths.includes(route.path);
-  });
-
-  const visibleRouts = filteredRouts.filter(
-    (item) => !isMobile || item.mobileVisible !== false,
+export const Sidebar = memo(function Sidebar() {
+  const role = useAppSelector((state) => getEmployeeData(state)?.role);
+  const companyName = useAppSelector(
+    (state) => getEmployeeData(state)?.companyName,
   );
+
+  const { visibleRouts, hiddenRouts } = useMemo(() => {
+    const filtered = routs.filter((route) => {
+      if (role === 'admin') return true;
+      return userPaths.includes(route.path);
+    });
+
+    return {
+      visibleRouts: filtered.filter(
+        (item) => !isMobile || item.mobileVisible !== false,
+      ),
+      hiddenRouts: isMobile
+        ? routs.filter((item) => item.mobileVisible === false)
+        : [],
+    };
+  }, [role]);
 
   return (
     <Card
@@ -110,10 +116,7 @@ export const Sidebar = () => {
     >
       <VStack gap={16}>
         {!isMobile && (
-          <Logo
-            companyName={employeeData?.companyName}
-            className={styles.Logo}
-          />
+          <Logo companyName={companyName} className={styles.Logo} />
         )}
         <Flex
           as="ul"
@@ -165,4 +168,4 @@ export const Sidebar = () => {
       <ThemeSwitcher />
     </Card>
   );
-};
+});

@@ -77,8 +77,10 @@ export const CustomContent: Story = {
 
 export const IsOpened: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       const trigger = containerRef.current?.querySelector('button');
       trigger?.click();

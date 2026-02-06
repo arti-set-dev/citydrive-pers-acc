@@ -22,9 +22,10 @@ const stack = getVStack({
 
 const EmployeePage = () => {
   const { id } = useParams<{ id: string }>();
-  if (!id) return null;
 
-  const { data: employee, isLoading } = useGetEmployeeDataQuery(id);
+  const { data: employee, isLoading } = useGetEmployeeDataQuery(id ?? '');
+
+  if (!id) return null;
 
   return (
     <Card p={16} className={stack.className} style={stack.style}>

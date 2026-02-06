@@ -37,6 +37,7 @@ export const On: Story = {
 
 export const Interactive: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [enabled, setEnabled] = useState(false);
 
     return (

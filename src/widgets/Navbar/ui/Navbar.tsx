@@ -6,12 +6,13 @@ import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
 import { getHStack } from '@/shared/lib/stack/flex/getHStack';
 import { Card } from '@/shared/ui/Card/Card';
 import { HStack } from '@/shared/ui/Stack';
+import { memo } from 'react';
 
 const stack = getHStack({
   justify: 'space-between',
 });
 
-export const Navbar = () => {
+export const Navbar = memo(function Navbar() {
   const employeeData = useAppSelector(getEmployeeData);
   return (
     <Card
@@ -28,4 +29,4 @@ export const Navbar = () => {
       </HStack>
     </Card>
   );
-};
+});

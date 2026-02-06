@@ -1,4 +1,4 @@
-import React, { ComponentType, SVGProps } from 'react';
+import React, { ComponentType, memo, SVGProps } from 'react';
 import clsx from 'clsx';
 import s from './Button.module.scss';
 import { HStack } from '../Stack';
@@ -18,14 +18,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = memo(function Button({
   variant = 'primary',
   className,
   children,
   offset,
   icon: Icon,
   ...props
-}) => {
+}: ButtonProps) {
   const offsetClassesMap: Record<ButtonOffset, string> = {
     0: s.offset0,
     4: s.offset4,
@@ -65,4 +65,4 @@ export const Button: React.FC<ButtonProps> = ({
       {children}
     </button>
   );
-};
+});

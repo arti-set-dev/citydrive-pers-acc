@@ -45,6 +45,7 @@ export const Opened: Story = {
 
 export const Interactive: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [isOpen, setIsOpen] = useState(false);
     return (
       <>

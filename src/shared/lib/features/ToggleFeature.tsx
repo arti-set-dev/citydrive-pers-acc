@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { useFeatureFlags } from './FeatureFlagContext';
 import { FeatureFlags } from '../../types/featureFlags';
 
@@ -8,7 +8,11 @@ interface ToggleFeatureProps {
   off: ReactNode;
 }
 
-export const ToggleFeature = ({ name, on, off }: ToggleFeatureProps) => {
+export const ToggleFeature = memo(function ToggleFeature({
+  name,
+  on,
+  off,
+}: ToggleFeatureProps) {
   const flags = useFeatureFlags();
 
   if (flags[name]) {
@@ -16,4 +20,4 @@ export const ToggleFeature = ({ name, on, off }: ToggleFeatureProps) => {
   }
 
   return <>{off}</>;
-};
+});

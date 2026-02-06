@@ -29,5 +29,6 @@ export const useAsyncReducer = (
         dispatch({ type: `@DESTROY ${key} reducer` });
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

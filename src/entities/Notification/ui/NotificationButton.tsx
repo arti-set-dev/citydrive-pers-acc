@@ -10,6 +10,13 @@ import { getRouteEmployee } from '@/shared/lib/router/paths';
 import { Text } from '@/shared/ui/Text/Text';
 import { useEffect } from 'react';
 import { Button } from '@/shared/ui/Button/Button';
+import { Notification } from '../model/types/notification';
+
+interface NotificationContentProps {
+  open: boolean;
+  unreadNotifications: Notification[];
+  markAsRead: (id: string) => void;
+}
 
 export const NotificationButton = () => {
   const { data: notifications = [] } = useGetNotificationsQuery();
@@ -17,20 +24,30 @@ export const NotificationButton = () => {
   const unreadNotifications = notifications.filter((n) => !n.read);
   const unreadCount = unreadNotifications.length;
 
-  const handleOpen = (open: boolean) => {
-    if (open && unreadCount > 0) {
-      unreadNotifications.forEach((n) => {
-        markAsRead(n.id);
-      });
-    }
+  const NotificationContent = ({
+    open,
+    unreadNotifications,
+    markAsRead,
+  }: NotificationContentProps) => {
+    useEffect(() => {
+      if (open && unreadNotifications.length > 0) {
+        unreadNotifications.forEach((n) => {
+          markAsRead(n.id);
+        });
+      }
+    }, [open, unreadNotifications, markAsRead]);
+
+    return null;
   };
 
   return (
     <Popover className={styles.wrapper}>
       {({ open }) => {
-        useEffect(() => {
-          handleOpen(open);
-        }, [open]);
+        <NotificationContent
+          open={open}
+          unreadNotifications={unreadNotifications}
+          markAsRead={markAsRead}
+        />;
 
         return (
           <>

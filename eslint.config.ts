@@ -9,6 +9,8 @@ import boundaries from 'eslint-plugin-boundaries';
 import importX from 'eslint-plugin-import-x';
 import unusedImports from 'eslint-plugin-unused-imports';
 import prettierPlugin from 'eslint-plugin-prettier';
+import reactHooks from 'eslint-plugin-react-hooks';
+import { fixupPluginRules } from '@eslint/compat';
 
 export default defineConfig([
   {
@@ -38,6 +40,8 @@ export default defineConfig([
       'import-x': importX,
       'unused-imports': unusedImports,
       prettier: prettierPlugin,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      'react-hooks': fixupPluginRules(reactHooks as any),
     },
     languageOptions: {
       globals: globals.browser,
@@ -76,6 +80,8 @@ export default defineConfig([
       'react/react-in-jsx-scope': 'off',
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       'react/jsx-curly-brace-presence': [
         'error',
         {

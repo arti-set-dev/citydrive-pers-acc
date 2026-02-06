@@ -10,28 +10,28 @@ import { Select } from '@/shared/ui/Select/Select';
 import { Grid } from '@/shared/ui/Stack';
 import { useMemo, useState } from 'react';
 
+const activeKeys: Array<keyof Employee> = [
+  'name',
+  'email',
+  'role',
+  'status',
+  'spent',
+  'limit',
+];
+
+const initialFilters = {
+  name: '',
+  role: 'all',
+  department: 'all',
+  status: 'all',
+};
+
 export const EmployeesFilter = () => {
-  const activeKeys: Array<keyof Employee> = [
-    'name',
-    'email',
-    'role',
-    'status',
-    'spent',
-    'limit',
-  ];
-
-  const initialFilters = {
-    name: '',
-    role: 'all',
-    department: 'all',
-    status: 'all',
-  };
-
   const [filters, setFilters] = useState(initialFilters);
 
   const isDirty = useMemo(() => {
     return JSON.stringify(filters) !== JSON.stringify(initialFilters);
-  }, [filters, initialFilters]);
+  }, [filters]);
 
   const debouncedSearch = useDebounce(filters.name, 400);
 
@@ -52,13 +52,18 @@ export const EmployeesFilter = () => {
     ],
     [employees],
   );
-  const departments = [
-    { id: 'all', name: 'Все отделы' },
-    ...Array.from(new Set(employees.map((e) => e.department))).map((dept) => ({
-      id: dept,
-      name: dept,
-    })),
-  ];
+  const departments = useMemo(
+    () => [
+      { id: 'all', name: 'Все отделы' },
+      ...Array.from(new Set(employees.map((e) => e.department))).map(
+        (dept) => ({
+          id: dept,
+          name: dept,
+        }),
+      ),
+    ],
+    [employees],
+  );
 
   const statuses = [
     { id: 'all', name: 'Все статусы' },

@@ -51,6 +51,7 @@ export const Search: Story = {
 
 export const Telephone: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState('');
     return <Field {...args} value={value} onChange={setValue} />;
   },

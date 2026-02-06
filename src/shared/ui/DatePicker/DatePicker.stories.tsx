@@ -52,6 +52,7 @@ export const ErrorState: Story = {
 
 export const Interactive: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [range, setRange] = useState<DateRange | undefined>(args.value);
     return <DatePicker {...args} value={range} onChange={setRange} />;
   },

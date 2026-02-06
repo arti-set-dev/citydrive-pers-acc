@@ -4,13 +4,17 @@ import styles from './Pagination.module.scss';
 import ArrowLeft from '@/shared/assets/icons/chevron-left.svg';
 import ArrowRight from '@/shared/assets/icons/chevron-right.svg';
 import clsx from 'clsx';
+import { memo } from 'react';
 
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
 }
 
-export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
+export const Pagination = memo(function Pagination({
+  currentPage,
+  totalPages,
+}: PaginationProps) {
   const current = Number(currentPage);
 
   const getPages = () => {
@@ -68,4 +72,4 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
       )}
     </HStack>
   );
-};
+});
