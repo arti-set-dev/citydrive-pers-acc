@@ -6,3 +6,4 @@ export { ResetPasswordForm } from './ui/ResetPasswordForm/ResetPasswordForm';
 export type { LoginSchema } from './model/types/login';
 export { getIsAuth } from './model/selectors/loginSelectors';
 export { loginReducer } from './model/slices/loginSlice/loginSlice';
+export { useResetPasswordMutation } from './api/loginApi/loginApi';

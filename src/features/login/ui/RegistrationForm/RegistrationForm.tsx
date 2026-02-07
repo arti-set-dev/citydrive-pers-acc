@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button/Button';
 import { Field } from '@/shared/ui/Field/Field';
 import { Logo } from '@/shared/ui/Logo/Logo';
 import { Select } from '@/shared/ui/Select/Select';
-import { VStack, Flex } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text/Text';
-// Предполагаемый путь к слайсу
+import { useRegisterMutation } from '../../api/loginApi/loginApi'; // Импорт мутации
+import { getRouteHome } from '@/shared/lib/router/paths';
 
 export const RegistrationForm = () => {
-  //   const dispatch = useAppDispatch();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [register, { isLoading }] = useRegisterMutation();
+
+  // Состояния полей
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    companyName: '',
+    position: '',
+  });
 
   const [selectedDept, setSelectedDept] = useState<{
     id: number;
@@ -24,57 +36,60 @@ export const RegistrationForm = () => {
 
   const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      await register({
+        ...formData,
+        departmentId: selectedDept?.id,
+      }).unwrap();
 
-    // try {
-    //   const result = await register({
-    //     ...data,
-    //     department: selectedDept?.name,
-    //   }).unwrap();
+      alert('Регистрация успешна! Теперь вы можете войти.');
+      navigate(getRouteHome());
+    } catch (err) {
+      console.error('Ошибка регистрации:', err);
+    }
+  };
 
-    //   // Логика после успешной регистрации (как в LoginForm)
-    //   localStorage.setItem('token', result.token);
-    //   navigate(getRouteHome());
-    // } catch (err) {
-    //   console.error('Ошибка регистрации:', err);
-    // }
+  const onChange = (name: string) => (value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <VStack as="form" gap={24} onSubmit={onRegister}>
       <Logo />
       <Text align="center" weight="medium" size={28}>
-        Регистрация компании в личном кабинете
+        Регистрация компании
       </Text>
 
       <VStack gap={16} as="fieldset">
         <Text weight="medium" size={20}>
           Данные администратора
         </Text>
-        <Field value="" fullWidth placeholder="Имя и фамилия" required />
         <Field
-          name="email"
+          value={formData.name}
+          onChange={onChange('name')}
+          fullWidth
+          placeholder="Имя и фамилия"
+          required
+        />
+        <Field
+          value={formData.email}
+          onChange={onChange('email')}
           type="email"
-          value=""
           fullWidth
           placeholder="Email"
           required
         />
-        <Flex direction="column" gap={4}>
-          <Field
-            value=""
-            name="phone"
-            type="tel"
-            fullWidth
-            placeholder="Номер телефона"
-            required
-          />
-          <Text color="text-tertiary" size={12}>
-            Пришлём СМС со ссылкой на скачивание приложения
-          </Text>
-        </Flex>
         <Field
-          value=""
-          name="password"
+          value={formData.phone}
+          onChange={onChange('phone')}
+          type="tel"
+          fullWidth
+          placeholder="Номер телефона"
+          required
+        />
+        <Field
+          value={formData.password}
+          onChange={onChange('password')}
           type="password"
           fullWidth
           placeholder="Пароль"
@@ -87,35 +102,29 @@ export const RegistrationForm = () => {
           Данные организации
         </Text>
         <Field
-          value=""
-          name="companyName"
+          value={formData.companyName}
+          onChange={onChange('companyName')}
           fullWidth
           placeholder="Название компании"
           required
         />
         <Field
-          value=""
-          name="position"
+          value={formData.position}
+          onChange={onChange('position')}
           fullWidth
           placeholder="Ваша должность"
           required
         />
-
-        <VStack gap={8}>
-          <Text size={14} color="text-secondary">
-            Отдел (необязательно)
-          </Text>
-          <Select
-            options={departments}
-            onChange={setSelectedDept}
-            selected={selectedDept}
-            placeholder="Выберите отдел"
-          />
-        </VStack>
+        <Select
+          options={departments}
+          onChange={setSelectedDept}
+          selected={selectedDept}
+          placeholder="Выберите отдел"
+        />
       </VStack>
 
-      <Button offset={8} type="submit">
-        Зарегистрироваться
+      <Button offset={8} type="submit" disabled={isLoading}>
+        {isLoading ? 'Загрузка...' : 'Зарегистрироваться'}
       </Button>
     </VStack>
   );
