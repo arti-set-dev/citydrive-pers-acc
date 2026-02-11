@@ -1,11 +1,14 @@
-import { useGetEmployeeDataQuery } from '@/entities/Employee';
-import { useGetBillingInfoQuery, useGetCarByIdQuery } from '@/entities/Route';
-import { getGrid } from '@/shared/lib/stack/grid/getGrid';
-import { Card } from '@/shared/ui/Card/Card';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Status } from '@/shared/ui/Status/Status';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { useGetEmployeeDataQuery } from '@citydrive/entities/Employee';
+import {
+  useGetBillingInfoQuery,
+  useGetCarByIdQuery,
+} from '@citydrive/entities/Route';
+import { getGrid } from '@citydrive/shared/lib/stack/grid/getGrid';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { HStack, VStack } from '@citydrive/shared/ui/Stack';
+import { Status } from '@citydrive/shared/ui/Status/Status';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { skipToken } from '@reduxjs/toolkit/query';
 
 const grid = getGrid({

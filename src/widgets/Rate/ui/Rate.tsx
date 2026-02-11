@@ -1,9 +1,12 @@
-import { skipToken } from '@reduxjs/toolkit/query';
+﻿import { skipToken } from '@reduxjs/toolkit/query';
 
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { useGetBillingInfoQuery, useGetRateByIdQuery } from '@/entities/Route';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { HStack, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import {
+  useGetBillingInfoQuery,
+  useGetRateByIdQuery,
+} from '@citydrive/entities/Route';
 
 interface RateProps {
   tripId?: string;

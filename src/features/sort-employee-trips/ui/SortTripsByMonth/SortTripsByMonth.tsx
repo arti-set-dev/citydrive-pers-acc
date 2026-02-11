@@ -1,5 +1,5 @@
-import { Card } from '@/shared/ui/Card/Card';
-import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
+﻿import { Card } from '@citydrive/shared/ui/Card/Card';
+import { DatePicker } from '@citydrive/shared/ui/DatePicker/DatePicker';
 import { DateRange } from 'react-day-picker';
 
 interface SortTripsByMonthProps {

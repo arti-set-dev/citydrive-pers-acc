@@ -12,14 +12,23 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@citydrive/shared": ["packages/shared/src/index.ts"],
+      "@citydrive/shared/*": ["packages/shared/src/*"],
+      "@citydrive/entities": ["packages/entities/src/index.ts"],
+      "@citydrive/entities/*": ["packages/entities/src/*"],
+      "@citydrive/auth": ["packages/auth/src/index.ts"],
+      "@citydrive/auth/*": ["packages/auth/src/*"]
     }
   },
   "include": [
     "webpack.config.ts",
+    "webpack.auth.config.ts",
     "config",
     "json-server",
     "src",
+    "packages",
+    "apps",
     "eslint.config.ts",
     "cypress.config.ts",
     "lostpixel.config.ts",

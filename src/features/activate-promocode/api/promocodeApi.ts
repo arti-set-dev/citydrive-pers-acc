@@ -1,4 +1,4 @@
-import { baseApi } from '@/shared/api/baseApi';
+﻿import { baseApi } from '@citydrive/shared/api/baseApi';
 
 export const promocodeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -32,3 +32,27 @@ type DeepPartial<T> = T extends object
       [P in keyof T]?: DeepPartial<T[P]>;
     }
   : T;
+
+declare module 'auth/LoginPage' {
+  import { ComponentType } from 'react';
+  const Component: ComponentType<object>;
+  export default Component;
+}
+
+declare module 'auth/RegistrationPage' {
+  import { ComponentType } from 'react';
+  const Component: ComponentType<object>;
+  export default Component;
+}
+
+declare module 'auth/ForgotPasswordPage' {
+  import { ComponentType } from 'react';
+  const Component: ComponentType<object>;
+  export default Component;
+}
+
+declare module 'auth/ResetPasswordPage' {
+  import { ComponentType } from 'react';
+  const Component: ComponentType<object>;
+  export default Component;
+}

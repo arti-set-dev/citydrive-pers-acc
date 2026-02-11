@@ -1,23 +1,23 @@
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { Select } from '@/shared/ui/Select/Select';
-import { Flex, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { TimePicker } from '@/shared/ui/TimePicker/TimePicker';
+﻿import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Select } from '@citydrive/shared/ui/Select/Select';
+import { Flex, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { TimePicker } from '@citydrive/shared/ui/TimePicker/TimePicker';
 import { useEffect } from 'react';
 import {
   useGetEmployeeByIdQuery,
   useUpdateEmployeeMutation,
 } from '../api/editEmployeeApi';
 import { Controller, useForm } from 'react-hook-form';
-import { Cars, Employee, getEmployeeData } from '@/entities/Employee';
-import { useGetDepartmentsQuery } from '@/entities/Department';
+import { Cars, Employee, getEmployeeData } from '@citydrive/entities/Employee';
+import { useGetDepartmentsQuery } from '@citydrive/entities/Department';
 import { useNavigate } from 'react-router-dom';
-import { getRouteEmployee } from '@/shared/lib/router/paths';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { getRouteEmployee } from '@citydrive/shared/lib/router/paths';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
 
 interface EditEmployeeFormProps {
   id?: string;

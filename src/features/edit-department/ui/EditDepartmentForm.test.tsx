@@ -1,13 +1,13 @@
-import { screen, waitFor } from '@testing-library/react';
+﻿import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EditDepartmentForm } from './EditDepartmentForm';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import { useUpdateDepartmentMutation } from '../api/editDepartmentApi';
-import { useGetDepartmentByIdQuery } from '@/entities/Department';
+import { useGetDepartmentByIdQuery } from '@citydrive/entities/Department';
 
 // Мокаем хуки
 jest.mock('../api/editDepartmentApi');
-jest.mock('@/entities/Department');
+jest.mock('@citydrive/entities/Department');
 
 const mockedUpdate = useUpdateDepartmentMutation as jest.Mock;
 const mockedGetById = useGetDepartmentByIdQuery as jest.Mock;

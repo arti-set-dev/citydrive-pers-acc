@@ -1,7 +1,7 @@
-import { skipToken } from '@reduxjs/toolkit/query';
-import { IRoute, RouteItem, useGetStopsQuery } from '@/entities/Route';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { VStack } from '@/shared/ui/Stack';
+﻿import { skipToken } from '@reduxjs/toolkit/query';
+import { IRoute, RouteItem, useGetStopsQuery } from '@citydrive/entities/Route';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { VStack } from '@citydrive/shared/ui/Stack';
 
 interface RoutePathProps {
   tripId?: string;

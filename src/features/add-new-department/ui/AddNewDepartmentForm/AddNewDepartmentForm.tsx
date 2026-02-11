@@ -1,12 +1,12 @@
-import { useForm, Controller } from 'react-hook-form';
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { getEmployeeData } from '@/entities/Employee';
+﻿import { useForm, Controller } from 'react-hook-form';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { getEmployeeData } from '@citydrive/entities/Employee';
 import { useCreateDepartmentMutation } from '../../api/addNewDepartmentApi';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
 
 interface FormValues {
   name: string;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -10,11 +10,11 @@ import {
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import { useGetStopsQuery } from '@/entities/Route';
+import { useGetStopsQuery } from '@citydrive/entities/Route';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,

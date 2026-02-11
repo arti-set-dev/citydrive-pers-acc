@@ -8,6 +8,8 @@ const config: StorybookConfig = {
   stories: [
     '../../src/**/*.mdx',
     '../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../../packages/shared/src/**/*.mdx',
+    '../../packages/shared/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
@@ -17,12 +19,21 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
   ],
   framework: '@storybook/react-webpack5',
-  staticDirs: ['../../public', '../../src/shared/assets/images'],
+  staticDirs: ['../../public', '../../packages/shared/src/assets/images'],
   webpackFinal: async (config) => {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
         '@': path.resolve(__dirname, '../../src'),
+        '@citydrive/shared': path.resolve(
+          __dirname,
+          '../../packages/shared/src',
+        ),
+        '@citydrive/entities': path.resolve(
+          __dirname,
+          '../../packages/entities/src',
+        ),
+        '@citydrive/auth': path.resolve(__dirname, '../../packages/auth/src'),
       };
     }
 
@@ -80,7 +91,7 @@ const config: StorybookConfig = {
           {
             loader: 'sass-loader',
             options: {
-              additionalData: `@use "@/app/styles/_mixins.scss" as *;`,
+              additionalData: `@use "@citydrive/shared/styles/_mixins.scss" as *;`,
             },
           },
         ],

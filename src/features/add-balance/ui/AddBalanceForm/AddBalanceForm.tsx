@@ -1,15 +1,15 @@
-import { getEmployeeData } from '@/entities/Employee';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { Button } from '@/shared/ui/Button/Button';
-import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
-import { Field } from '@/shared/ui/Field/Field';
-import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { getEmployeeData } from '@citydrive/entities/Employee';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { DatePicker } from '@citydrive/shared/ui/DatePicker/DatePicker';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { DateRange } from 'react-day-picker';
 import { Controller, useForm } from 'react-hook-form';
 import { useAddBalanceMutation } from '../../api/balanceApi';
 import { AddBalanceRequest } from '../../model/types/types';
-import { Invoice } from '@/entities/Invoice';
+import { Invoice } from '@citydrive/entities/Invoice';
 
 interface IBalanceForm {
   period: DateRange | undefined;
@@ -59,7 +59,7 @@ export const AddBalanceForm = () => {
     try {
       const [{ pdf }, { InvoiceDocument }, { saveAs }] = await Promise.all([
         import('@react-pdf/renderer'),
-        import('@/entities/Invoice'),
+        import('@citydrive/entities/Invoice'),
         import('file-saver'),
       ]);
 

@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, fireEvent, act } from '@testing-library/react';
 import { SearchInvoicesContainer } from './SearchInvoicesContainer';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
-jest.mock('@/entities/Invoice', () => ({
+jest.mock('@citydrive/entities/Invoice', () => ({
   InvoiceList: ({ search, companyId, targetIds }: any) => (
     <div data-testid="InvoiceList">
       <span data-testid="invoice-search">{search}</span>
@@ -13,9 +13,12 @@ jest.mock('@/entities/Invoice', () => ({
   ),
 }));
 
-jest.mock('@/entities/Invoice/ui/InvoiceDocument/InvoiceDocument', () => ({
-  InvoiceDocument: () => null,
-}));
+jest.mock(
+  '@citydrive/entities/Invoice/ui/InvoiceDocument/InvoiceDocument',
+  () => ({
+    InvoiceDocument: () => null,
+  }),
+);
 
 describe('SearchInvoicesContainer', () => {
   beforeEach(() => {

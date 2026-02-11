@@ -1,0 +1,86 @@
+﻿import { useAppDispatch } from '@citydrive/shared/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Logo } from '@citydrive/shared/ui/Logo/Logo';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { loginActions } from '../../model/slices/loginSlice/loginSlice';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import {
+  getLoginEmail,
+  getLoginName,
+  getLoginPassword,
+} from '../../model/selectors/loginSelectors';
+import { useLoginMutation } from '../../api/loginApi/loginApi';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getRouteHome } from '@citydrive/shared/lib/router/paths';
+import { employeeActions } from '@citydrive/entities/Employee';
+
+export const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const userName = useAppSelector(getLoginName);
+  const userEmail = useAppSelector(getLoginEmail);
+  const userPassword = useAppSelector(getLoginPassword);
+  const [login, { isLoading }] = useLoginMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const onChangeUserEmail = (value: string) => {
+    dispatch(loginActions.setLoginEmail(value));
+  };
+
+  const onChangeUserPassword = (value: string) => {
+    dispatch(loginActions.setLoginPassword(value));
+  };
+
+  const onLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const result = await login({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+        isAuth: true,
+      }).unwrap();
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('userId', result.id);
+      dispatch(loginActions.setIsAuth(true));
+      dispatch(employeeActions.setEmployeeData(result));
+      const from = location.state?.from?.pathname || getRouteHome();
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error('Ошибка при входе:', err);
+    }
+  };
+
+  return (
+    <VStack as="form" gap={24} onSubmit={onLogin} data-testid="LoginForm">
+      <Logo />
+      <Text align="center" weight="medium" size={28}>
+        Вход в личный кабинет
+      </Text>
+      <VStack gap={16}>
+        <Field
+          fullWidth
+          type="email"
+          value={userEmail}
+          onChange={onChangeUserEmail}
+          placeholder="Email"
+          data-testid="LoginForm.Email"
+        />
+        <Field
+          fullWidth
+          type="password"
+          value={userPassword}
+          onChange={onChangeUserPassword}
+          placeholder="Пароль"
+          data-testid="LoginForm.Password"
+        />
+      </VStack>
+      <Button disabled={isLoading} offset={8} data-testid="LoginForm.Submit">
+        {isLoading ? 'Загрузка...' : 'Войти'}
+      </Button>
+    </VStack>
+  );
+};

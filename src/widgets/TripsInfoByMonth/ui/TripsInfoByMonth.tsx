@@ -1,8 +1,8 @@
-import { useGetStatsQuery } from '@/entities/Employee';
-import { getGrid } from '@/shared/lib/stack/grid/getGrid';
-import { Card } from '@/shared/ui/Card/Card';
-import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { useGetStatsQuery } from '@citydrive/entities/Employee';
+import { getGrid } from '@citydrive/shared/lib/stack/grid/getGrid';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { TripsInfoByMonthSkeleton } from './TripsInfoByMonthSkeleton';
 
 const stack = getGrid({

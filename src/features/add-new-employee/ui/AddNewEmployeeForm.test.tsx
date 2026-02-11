@@ -1,24 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AddNewEmployeeForm } from './AddNewEmployeeForm';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import { useCreateEmployeeMutation } from '../api/addNewEmployeeApi';
-import { useGetDepartmentsQuery } from '@/entities/Department';
-import { useCreateNotificationMutation } from '@/entities/Notification';
-import { Employee } from '@/entities/Employee';
+import { useGetDepartmentsQuery } from '@citydrive/entities/Department';
+import { useCreateNotificationMutation } from '@citydrive/entities/Notification';
+import { Employee } from '@citydrive/entities/Employee';
 import { addNewEmployeeReducer } from '../model/slices/addNewEmployeeSlice';
 import { Reducer } from '@reduxjs/toolkit';
 
 jest.mock('../api/addNewEmployeeApi');
-jest.mock('@/entities/Department');
-jest.mock('@/entities/Notification');
+jest.mock('@citydrive/entities/Department');
+jest.mock('@citydrive/entities/Notification');
 
 const mockedCreateEmployee = useCreateEmployeeMutation as jest.Mock;
 const mockedGetDepartments = useGetDepartmentsQuery as jest.Mock;
 const mockedCreateNotification = useCreateNotificationMutation as jest.Mock;
 
-jest.mock('@/shared/ui/Select/Select', () => ({
+jest.mock('@citydrive/shared/ui/Select/Select', () => ({
   Select: ({ onChange, options, selected, placeholder }: any) => (
     <select
       data-testid="mock-select"

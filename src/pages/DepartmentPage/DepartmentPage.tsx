@@ -1,13 +1,13 @@
-import { SearchEmployeeContainer } from '@/features/search-employee';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Card } from '@/shared/ui/Card/Card';
-import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { getRouteDepartmentEdit } from '@/shared/lib/router/paths';
+﻿import { SearchEmployeeContainer } from '@/features/search-employee';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { AppLink } from '@citydrive/shared/ui/AppLink/AppLink';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { getRouteDepartmentEdit } from '@citydrive/shared/lib/router/paths';
 import { useParams } from 'react-router-dom';
-import { useGetDepartmentByIdQuery } from '@/entities/Department';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { useGetDepartmentByIdQuery } from '@citydrive/entities/Department';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
 
 const stack = getVStack({
   gap: 16,

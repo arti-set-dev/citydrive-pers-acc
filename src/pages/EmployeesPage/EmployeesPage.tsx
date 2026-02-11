@@ -1,10 +1,10 @@
-import { EmployeesFilter } from '@/features/employees-filter';
-import { PATHS } from '@/shared/lib/router/paths';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Card } from '@/shared/ui/Card/Card';
-import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { EmployeesFilter } from '@/features/employees-filter';
+import { PATHS } from '@citydrive/shared/lib/router/paths';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { AppLink } from '@citydrive/shared/ui/AppLink/AppLink';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 
 const stack = getVStack({
   gap: 16,

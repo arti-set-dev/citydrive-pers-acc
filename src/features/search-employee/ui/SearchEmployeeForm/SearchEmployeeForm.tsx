@@ -1,7 +1,7 @@
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { HStack } from '@/shared/ui/Stack';
+﻿import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { HStack } from '@citydrive/shared/ui/Stack';
 
 interface SearchEmployeeFormProps {
   value: string;

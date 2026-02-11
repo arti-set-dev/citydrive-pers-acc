@@ -1,0 +1,37 @@
+﻿import {
+  FlexProps,
+  GapToken,
+  Responsive,
+} from '@citydrive/shared/types/design-tokens';
+import { Flex } from './Flex';
+import { ElementType, ComponentPropsWithoutRef, RefObject } from 'react';
+
+type HStackProps<T extends ElementType = 'div'> = Omit<
+  {
+    as?: T;
+    gap?: FlexProps['gap'];
+    align?: FlexProps['align'];
+    justify?: FlexProps['justify'];
+    children?: React.ReactNode;
+    ref?: RefObject<HTMLDivElement | null>;
+  } & (T extends 'ul' | 'ol'
+    ? {
+        listStyle?: React.CSSProperties['listStyle'];
+        p?: Responsive<GapToken>;
+        m?: Responsive<GapToken>;
+      }
+    : // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+      {}),
+  'direction'
+> &
+  Omit<
+    ComponentPropsWithoutRef<T>,
+    'gap' | 'align' | 'as' | 'children' | 'listStyle' | 'p' | 'm' | 'direction'
+  >;
+
+export const HStack = <T extends ElementType = 'div'>(
+  props: HStackProps<T>,
+) => (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  <Flex {...(props as any)} direction="row" align={props.align ?? 'center'} />
+);

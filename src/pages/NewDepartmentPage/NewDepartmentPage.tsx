@@ -1,7 +1,7 @@
-import { AddNewDepartmentForm } from '@/features/add-new-department';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { AddNewDepartmentForm } from '@/features/add-new-department';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 
 const stack = getVStack({
   gap: 16,

@@ -1,26 +1,26 @@
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch/useAppDispatch';
-import { useAsyncReducer } from '@/shared/hooks/useAsyncReducer/useAsyncReducer';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { Select } from '@/shared/ui/Select/Select';
-import { Flex, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { TimePicker } from '@/shared/ui/TimePicker/TimePicker';
+﻿import { useAppDispatch } from '@citydrive/shared/hooks/useAppDispatch/useAppDispatch';
+import { useAsyncReducer } from '@citydrive/shared/hooks/useAsyncReducer/useAsyncReducer';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Select } from '@citydrive/shared/ui/Select/Select';
+import { Flex, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { TimePicker } from '@citydrive/shared/ui/TimePicker/TimePicker';
 import { useEffect } from 'react';
 import {
   addNewEmployeeActions,
   addNewEmployeeReducer,
   initialState,
 } from '../model/slices/addNewEmployeeSlice';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
 import { getAddNewEmployeeData } from '../model/selectors/addNewEmployeeSelectors';
 import { useCreateEmployeeMutation } from '../api/addNewEmployeeApi';
 import { Controller, useForm } from 'react-hook-form';
-import { Cars, Employee, getEmployeeData } from '@/entities/Employee';
-import { useGetDepartmentsQuery } from '@/entities/Department';
-import { useCreateNotificationMutation } from '@/entities/Notification';
+import { Cars, Employee, getEmployeeData } from '@citydrive/entities/Employee';
+import { useGetDepartmentsQuery } from '@citydrive/entities/Department';
+import { useCreateNotificationMutation } from '@citydrive/entities/Notification';
 
 const stack = getVStack({
   gap: 16,

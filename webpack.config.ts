@@ -31,8 +31,38 @@ const config = (env: BuildEnv): webpack.Configuration => {
       filename: '[name].[contenthash].js',
       publicPath: '/',
       clean: true,
+      environment: {
+        asyncFunction: true,
+      },
     },
-    plugins: buildPlugins(paths, env),
+    plugins: [
+      ...buildPlugins(paths, env),
+      new webpack.container.ModuleFederationPlugin({
+        name: 'host',
+        remotes: {
+          auth: 'auth@http://localhost:3002/remoteEntry.js',
+        },
+        shared: {
+          react: { singleton: true, requiredVersion: false, eager: true },
+          'react-dom': { singleton: true, requiredVersion: false, eager: true },
+          'react-router-dom': {
+            singleton: true,
+            requiredVersion: false,
+            eager: true,
+          },
+          '@reduxjs/toolkit': {
+            singleton: true,
+            requiredVersion: false,
+            eager: true,
+          },
+          'react-redux': {
+            singleton: true,
+            requiredVersion: false,
+            eager: true,
+          },
+        },
+      }),
+    ],
     devServer: buildDevServer(),
   };
 };

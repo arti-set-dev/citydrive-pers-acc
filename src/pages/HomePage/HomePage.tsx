@@ -1,14 +1,14 @@
-import { Card } from '@/shared/ui/Card/Card';
-import { Grid, HStack, VStack } from '@/shared/ui/Stack';
+﻿import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Grid, HStack, VStack } from '@citydrive/shared/ui/Stack';
 import { Stat } from '@/widgets/Stat';
-import IdCardLanyardIcon from '@/shared/assets/icons/id-card-lanyard.svg';
-import CarFrontIcon from '@/shared/assets/icons/car-front.svg';
-import { Text } from '@/shared/ui/Text/Text';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { getRouteTrips } from '@/shared/lib/router/paths';
-import { EmployeeList, getEmployeeData } from '@/entities/Employee';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
+import IdCardLanyardIcon from '@citydrive/shared/assets/icons/id-card-lanyard.svg';
+import CarFrontIcon from '@citydrive/shared/assets/icons/car-front.svg';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { AppLink } from '@citydrive/shared/ui/AppLink/AppLink';
+import { getRouteTrips } from '@citydrive/shared/lib/router/paths';
+import { EmployeeList, getEmployeeData } from '@citydrive/entities/Employee';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
 import {
   ImportDataAboutCompanyButton,
   useGetCompanyEmployeesQuery,

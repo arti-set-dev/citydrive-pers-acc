@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, fireEvent, act } from '@testing-library/react';
 import { SearchEmployeeContainer } from './SearchEmployeeContainer';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
-jest.mock('@/entities/Employee', () => ({
-  ...jest.requireActual('@/entities/Employee'),
+jest.mock('@citydrive/entities/Employee', () => ({
+  ...jest.requireActual('@citydrive/entities/Employee'),
   EmployeeList: ({ filters, activeKeys }: any) => (
     <div data-testid="EmployeeList">
       <span data-testid="filter-name">{filters.name}</span>

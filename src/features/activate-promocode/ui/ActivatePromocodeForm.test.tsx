@@ -1,4 +1,4 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+﻿import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { ActivatePromocodeForm } from './ActivatePromocodeForm';
 
 jest.mock('../api/promocodeApi', () => ({
@@ -7,7 +7,7 @@ jest.mock('../api/promocodeApi', () => ({
 }));
 
 import { useLazyCheckPromocodeQuery } from '../api/promocodeApi';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 const mockedQuery = useLazyCheckPromocodeQuery as jest.Mock;
 
 describe('ActivatePromocodeForm', () => {

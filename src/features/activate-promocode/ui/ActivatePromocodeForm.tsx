@@ -1,10 +1,10 @@
-import { getFlex } from '@/shared/lib/stack/flex/getFlex';
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { Field } from '@/shared/ui/Field/Field';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { getFlex } from '@citydrive/shared/lib/stack/flex/getFlex';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Modal } from '@citydrive/shared/ui/Modal/Modal';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useState } from 'react';
 import { useLazyCheckPromocodeQuery } from '../api/promocodeApi';
 

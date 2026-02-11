@@ -1,8 +1,8 @@
-import { screen, waitFor } from '@testing-library/react';
+﻿import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AddNewDepartmentForm } from './AddNewDepartmentForm';
 import { useCreateDepartmentMutation } from '../../api/addNewDepartmentApi';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
 jest.mock('../../api/addNewDepartmentApi');
 const mockedCreateDepartment = useCreateDepartmentMutation as jest.Mock;

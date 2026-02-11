@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, fireEvent } from '@testing-library/react';
 import { TripsSortContainer } from './TripsSortContainer';
-import { useGetRoutesQuery } from '@/entities/Route';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { useGetRoutesQuery } from '@citydrive/entities/Route';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
-jest.mock('@/entities/Route/api/routeApi', () => ({
+jest.mock('@citydrive/entities/Route/api/routeApi', () => ({
   useGetRoutesQuery: jest.fn(),
 }));
 
@@ -24,8 +24,8 @@ jest.mock('react-day-picker', () => ({
   ),
 }));
 
-jest.mock('@/entities/Route', () => ({
-  ...jest.requireActual('@/entities/Route'),
+jest.mock('@citydrive/entities/Route', () => ({
+  ...jest.requireActual('@citydrive/entities/Route'),
   RouteList: ({ filters }: any) => (
     <div data-testid="RouteList">
       <span data-testid="filter-start-date">{filters.startDate}</span>

@@ -1,13 +1,13 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+﻿import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { AddBalanceForm } from './AddBalanceForm';
 import { useAddBalanceMutation } from '../../api/balanceApi';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('../../api/balanceApi');
 const mockedAddBalance = useAddBalanceMutation as jest.Mock;
 
-jest.mock('@/shared/ui/DatePicker/DatePicker', () => ({
+jest.mock('@citydrive/shared/ui/DatePicker/DatePicker', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   DatePicker: ({ onChange, error }: any) => (
     <div>
@@ -31,7 +31,7 @@ jest.mock('file-saver', () => ({ saveAs: jest.fn() }));
 jest.mock('@react-pdf/renderer', () => ({
   pdf: () => ({ toBlob: jest.fn().mockResolvedValue(new Blob()) }),
 }));
-jest.mock('@/entities/Invoice', () => ({
+jest.mock('@citydrive/entities/Invoice', () => ({
   InvoiceDocument: () => <div data-testid="pdf-doc" />,
 }));
 

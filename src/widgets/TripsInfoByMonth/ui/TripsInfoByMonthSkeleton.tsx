@@ -1,7 +1,7 @@
-import { getGrid } from '@/shared/lib/stack/grid/getGrid';
-import { Card } from '@/shared/ui/Card/Card';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { VStack } from '@/shared/ui/Stack';
+﻿import { getGrid } from '@citydrive/shared/lib/stack/grid/getGrid';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { VStack } from '@citydrive/shared/ui/Stack';
 
 const stack = getGrid({
   cols: 3,

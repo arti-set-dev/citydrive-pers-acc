@@ -1,8 +1,8 @@
-import { skipToken } from '@reduxjs/toolkit/query';
-import { useGetEmployeeDataQuery } from '@/entities/Employee';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { Grid, HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { skipToken } from '@reduxjs/toolkit/query';
+import { useGetEmployeeDataQuery } from '@citydrive/entities/Employee';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { Grid, HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 
 interface RouteDetailsProps {
   employeeId?: string;

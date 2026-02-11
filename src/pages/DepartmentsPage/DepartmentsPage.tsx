@@ -1,4 +1,4 @@
-import { Department } from '@/entities/Department';
+﻿import { Department } from '@citydrive/entities/Department';
 import {
   DeleteDepartmentButton,
   DeleteDepartmentModal,
@@ -7,14 +7,14 @@ import { DepartmentSearchContainer } from '@/features/search-department';
 import {
   getRouteDepartmentEdit,
   getRouteDepartmentNew,
-} from '@/shared/lib/router/paths';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Button } from '@/shared/ui/Button/Button';
-import { Card } from '@/shared/ui/Card/Card';
-import { ActionPopover } from '@/shared/ui/Popover/Popover';
-import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+} from '@citydrive/shared/lib/router/paths';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { AppLink } from '@citydrive/shared/ui/AppLink/AppLink';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { ActionPopover } from '@citydrive/shared/ui/Popover/Popover';
+import { HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

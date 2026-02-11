@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 
-import { Text } from '@/shared/ui/Text/Text';
-import { Card } from '@/shared/ui/Card/Card';
-import { VStack } from '@/shared/ui/Stack';
-import { Field } from '@/shared/ui/Field/Field';
-import { Button } from '@/shared/ui/Button/Button';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Button } from '@citydrive/shared/ui/Button/Button';
 import { useUpdateDepartmentMutation } from '../api/editDepartmentApi';
-import { getRouteDepartments } from '@/shared/lib/router/paths';
-import { Loader } from '@/shared/ui/Loader/Loader';
-import { useGetDepartmentByIdQuery } from '@/entities/Department';
+import { getRouteDepartments } from '@citydrive/shared/lib/router/paths';
+import { Loader } from '@citydrive/shared/ui/Loader/Loader';
+import { useGetDepartmentByIdQuery } from '@citydrive/entities/Department';
 
 interface FormValues {
   name: string;

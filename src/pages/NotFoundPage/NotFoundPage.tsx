@@ -1,10 +1,10 @@
-import { getRouteHome } from '@/shared/lib/router/paths';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { Card } from '@/shared/ui/Card/Card';
-import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import notFoundImage from '@/shared/assets/images/404.png';
-import { AppImage } from '@/shared/ui/AppImage/AppImage';
+﻿import { getRouteHome } from '@citydrive/shared/lib/router/paths';
+import { AppLink } from '@citydrive/shared/ui/AppLink/AppLink';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import notFoundImage from '@citydrive/shared/assets/images/404.png';
+import { AppImage } from '@citydrive/shared/ui/AppImage/AppImage';
 
 export const NotFoundPage = () => {
   return (

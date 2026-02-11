@@ -1,4 +1,4 @@
-import { Employee } from '@/entities/Employee';
+﻿import { Employee } from '@citydrive/entities/Employee';
 import { AddNewEmployeeSchema } from '../types/addNewEmployee';
 import { createSelector } from '@reduxjs/toolkit';
 

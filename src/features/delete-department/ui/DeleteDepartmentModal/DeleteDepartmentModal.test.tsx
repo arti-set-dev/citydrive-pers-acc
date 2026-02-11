@@ -1,9 +1,9 @@
-import { screen, waitFor } from '@testing-library/react';
+﻿import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DeleteDepartmentModal } from './DeleteDepartmentModal';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import { useDeleteDepartmentMutation } from '../../api/deleteDepartmentApi';
-import { Department } from '@/entities/Department';
+import { Department } from '@citydrive/entities/Department';
 
 jest.mock('../../api/deleteDepartmentApi');
 const mockedDeleteDepartment = useDeleteDepartmentMutation as jest.Mock;

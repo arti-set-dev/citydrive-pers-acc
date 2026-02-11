@@ -1,7 +1,7 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+﻿import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { DeleteEmployeeButton } from './DeleteEmployeeButton';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import { useDeleteEmployeeMutation } from '../../api/deleteEmployeeApi';
 
 jest.mock('../../api/deleteEmployeeApi');

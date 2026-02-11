@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/Button/Button';
+﻿import { Button } from '@citydrive/shared/ui/Button/Button';
 
 export const DeleteDepartmentButton = ({
   onClick,

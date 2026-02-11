@@ -1,14 +1,14 @@
-import {
+﻿import {
   getEmployeeData,
   useUpdateFeatureFlagsMutation,
-} from '@/entities/Employee';
-import { useUpdateNotificationSettingsMutation } from '@/entities/Notification';
+} from '@citydrive/entities/Employee';
+import { useUpdateNotificationSettingsMutation } from '@citydrive/entities/Notification';
 import { ImportDataAboutCompanyButton } from '@/features/import-data-about-company';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { Card } from '@/shared/ui/Card/Card';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Switcher } from '@/shared/ui/Switcher/Switcher';
-import { Text } from '@/shared/ui/Text/Text';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { HStack, VStack } from '@citydrive/shared/ui/Stack';
+import { Switcher } from '@citydrive/shared/ui/Switcher/Switcher';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useEffect, useState } from 'react';
 
 const SettingsPage = () => {

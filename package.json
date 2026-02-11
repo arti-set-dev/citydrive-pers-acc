@@ -6,7 +6,12 @@
   "scripts": {
     "server": "node json-server/server.cjs",
     "start": "concurrently \"webpack serve --progress --env mode=development\" \"npm run server\"",
+    "start:host": "concurrently \"webpack serve --progress --env mode=development\" \"npm run server\"",
+    "start:auth": "webpack serve --config webpack.auth.config.ts --progress --env mode=development",
+    "start:mf": "concurrently \"npm run start:host\" \"npm run start:auth\"",
     "build": "webpack --env mode=production",
+    "build:auth": "webpack --config webpack.auth.config.ts --env mode=production",
+    "deploy": "git push production master",
     "analyze:prod": "webpack --mode production --env analyze=true",
     "analyze:dev": "webpack --mode development --env analyze=true",
     "postinstall": "node scripts/clean-cache.js",
@@ -30,13 +35,17 @@
     "remove-feature": "ts-node ./scripts/remove-feature.ts",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test:e2e": "start-server-and-test start http://localhost:3000 cypress:open",
-    "test:e2e:ci": "start-server-and-test start http://localhost:3000 cypress:run"
+    "test:e2e": "start-server-and-test start http://localhost:3003 cypress:open",
+    "test:e2e:ci": "start-server-and-test start http://localhost:3003 cypress:run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",

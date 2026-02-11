@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, fireEvent, act } from '@testing-library/react';
 import { DepartmentSearchContainer } from './DepartmentSearchContainer';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
-jest.mock('@/entities/Department', () => ({
-  ...jest.requireActual('@/entities/Department'),
+jest.mock('@citydrive/entities/Department', () => ({
+  ...jest.requireActual('@citydrive/entities/Department'),
   DepartmentList: ({ search, companyId }: any) => (
     <div data-testid="DepartmentList">
       <span data-testid="search-value">{search}</span>

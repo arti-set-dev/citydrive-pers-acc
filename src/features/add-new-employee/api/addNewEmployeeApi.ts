@@ -1,5 +1,5 @@
-import { Employee } from '@/entities/Employee';
-import { baseApi } from '@/shared/api/baseApi';
+﻿import { Employee } from '@citydrive/entities/Employee';
+import { baseApi } from '@citydrive/shared/api/baseApi';
 
 export const addNewEmployeeApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

@@ -1,6 +1,6 @@
-import { useTheme } from '@/shared/lib/context/ThemeContext';
-import { Button } from '@/shared/ui/Button/Button';
-import ThemeIcon from '@/shared/assets/icons/sun-dim.svg';
+﻿import { useTheme } from '@citydrive/shared/lib/context/ThemeContext';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import ThemeIcon from '@citydrive/shared/assets/icons/sun-dim.svg';
 
 export const ThemeSwitcher = () => {
   const { toggleTheme } = useTheme();

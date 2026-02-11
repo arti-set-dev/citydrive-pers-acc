@@ -1,9 +1,9 @@
-import { getEmployeeData } from '@/entities/Employee';
+﻿import { getEmployeeData } from '@citydrive/entities/Employee';
 import { SearchEmployeeContainer } from '@/features/search-employee';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Text } from '@/shared/ui/Text/Text';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 
 const stack = getVStack({
   gap: 16,

@@ -1,7 +1,7 @@
-import { Button } from '@/shared/ui/Button/Button';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { Flex, HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Modal } from '@citydrive/shared/ui/Modal/Modal';
+import { Flex, HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useState } from 'react';
 import { AddBalanceForm } from '../AddBalanceForm/AddBalanceForm';
 import { BrowserView, MobileView } from 'react-device-detect';

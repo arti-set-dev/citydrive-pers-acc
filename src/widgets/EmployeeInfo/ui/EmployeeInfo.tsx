@@ -1,15 +1,15 @@
-import { useGetEmployeeDataQuery } from '@/entities/Employee';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Flex, Grid } from '@/shared/ui/Stack';
-import { Status } from '@/shared/ui/Status/Status';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { useGetEmployeeDataQuery } from '@citydrive/entities/Employee';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Flex, Grid } from '@citydrive/shared/ui/Stack';
+import { Status } from '@citydrive/shared/ui/Status/Status';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { EmployeeInfoSkeleton } from './EmployeeInfoSkeleton';
 import {
   mapCars,
   mapCities,
   mapDays,
-} from '@/shared/lib/mapEmployeeData/mapEmployeeData';
+} from '@citydrive/shared/lib/mapEmployeeData/mapEmployeeData';
 
 const stack = getVStack({
   gap: 16,

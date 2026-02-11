@@ -1,10 +1,10 @@
-import { balanceApi } from './balanceApi';
+﻿import { balanceApi } from './balanceApi';
 import { configureStore } from '@reduxjs/toolkit';
-import { baseApi } from '@/shared/api/baseApi';
-import { $api } from '@/shared/api/interceptors';
+import { baseApi } from '@citydrive/shared/api/baseApi';
+import { $api } from '@citydrive/shared/api/interceptors';
 import { AddBalanceRequest } from '../model/types/types';
 
-jest.mock('@/shared/api/interceptors', () => ({
+jest.mock('@citydrive/shared/api/interceptors', () => ({
   $api: jest.fn(),
 }));
 

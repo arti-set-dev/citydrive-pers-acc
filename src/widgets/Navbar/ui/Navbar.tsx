@@ -1,11 +1,11 @@
-import { getEmployeeData } from '@/entities/Employee';
-import { NotificationButton } from '@/entities/Notification';
+﻿import { getEmployeeData } from '@citydrive/entities/Employee';
+import { NotificationButton } from '@citydrive/entities/Notification';
 import { AddBalance } from '@/features/add-balance';
-import { LogoutButton } from '@/features/login';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { getHStack } from '@/shared/lib/stack/flex/getHStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { HStack } from '@/shared/ui/Stack';
+import { LogoutButton } from '@citydrive/auth';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { getHStack } from '@citydrive/shared/lib/stack/flex/getHStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { HStack } from '@citydrive/shared/ui/Stack';
 import { memo } from 'react';
 
 const stack = getHStack({

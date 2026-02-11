@@ -1,9 +1,9 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { DateRange } from 'react-day-picker';
-import { useGetRoutesQuery } from '@/entities/Route';
+import { useGetRoutesQuery } from '@citydrive/entities/Route';
 import { SortTripsByMonth } from '../SortTripsByMonth/SortTripsByMonth';
 import { TripsFilter } from '../TripsFilter/TripsFilter';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@citydrive/shared/ui/Stack';
 
 interface TripsSortContainerProps {
   employeeId: string;

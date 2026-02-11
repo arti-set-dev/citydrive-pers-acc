@@ -1,4 +1,4 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+﻿// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -25,6 +25,8 @@ export default defineConfig([
       'scripts/*.{js,ts}',
       'src/shared/utils/jest/providers/JestProvider.tsx',
       'config/jest/EmptyMock.js',
+      'babel.config.cjs',
+      '.lintstagedrc.cjs',
     ],
   },
   js.configs.recommended,
@@ -65,14 +67,23 @@ export default defineConfig([
         },
         node: true,
       },
-      'boundaries/base-path': 'src',
+      'boundaries/base-path': '.',
       'boundaries/elements': [
-        { type: 'app', pattern: 'app' },
-        { type: 'pages', pattern: 'pages/*' },
-        { type: 'widgets', pattern: 'widgets/*' },
-        { type: 'features', pattern: 'features/*' },
-        { type: 'entities', pattern: 'entities/*' },
-        { type: 'shared', pattern: 'shared/*' },
+        { type: 'app', pattern: 'src/app' },
+        { type: 'pages', pattern: 'src/pages/*' },
+        { type: 'widgets', pattern: 'src/widgets/*' },
+        { type: 'features', pattern: 'src/features/*' },
+        { type: 'entities', pattern: 'src/entities/*' },
+        { type: 'shared', pattern: 'src/shared/*' },
+        { type: 'app', pattern: 'apps/*/src/app' },
+        { type: 'pages', pattern: 'apps/*/src/pages/*' },
+        { type: 'widgets', pattern: 'apps/*/src/widgets/*' },
+        { type: 'features', pattern: 'apps/*/src/features/*' },
+        { type: 'entities', pattern: 'apps/*/src/entities/*' },
+        { type: 'shared', pattern: 'apps/*/src/shared/*' },
+        { type: 'features', pattern: 'packages/*/src/features/*' },
+        { type: 'entities', pattern: 'packages/entities/src/*' },
+        { type: 'shared', pattern: 'packages/shared/src/*' },
       ],
     },
     rules: {
@@ -101,7 +112,7 @@ export default defineConfig([
             },
             {
               target: ['app', 'pages', 'widgets', 'features', 'entities'],
-              allow: 'index.ts',
+              allow: ['**/index.ts', '**/index.tsx'],
             },
           ],
         },
@@ -127,6 +138,13 @@ export default defineConfig([
           ],
         },
       ],
+    },
+  },
+  {
+    files: ['packages/shared/src/utils/jest/**/*.{ts,tsx}'],
+    rules: {
+      'boundaries/element-types': 'off',
+      'boundaries/entry-point': 'off',
     },
   },
   eslintConfigPrettier,

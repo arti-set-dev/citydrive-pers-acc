@@ -1,4 +1,4 @@
-import { Invoice } from '@/entities/Invoice';
+﻿import { Invoice } from '@citydrive/entities/Invoice';
 
 export interface Balance {
   balance: string;

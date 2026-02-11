@@ -1,9 +1,9 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import { Button } from '@/shared/ui/Button/Button';
-import { VStack } from '@/shared/ui/Stack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Text } from '@/shared/ui/Text/Text';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { VStack } from '@citydrive/shared/ui/Stack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import {
   useCreateDepartmentMutation,
   useCreateEmployeeMutation,

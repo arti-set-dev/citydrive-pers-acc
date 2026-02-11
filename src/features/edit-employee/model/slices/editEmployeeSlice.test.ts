@@ -1,4 +1,4 @@
-import { Employee } from '@/entities/Employee';
+﻿import { Employee } from '@citydrive/entities/Employee';
 import { editEmployeeReducer, editEmployeeActions } from './editEmployeeSlice';
 import { EditEmployeeSchema } from '../types/editEmployee';
 

@@ -1,9 +1,9 @@
-import { Department } from '@/entities/Department';
+﻿import { Department } from '@citydrive/entities/Department';
 import { useDeleteDepartmentMutation } from '../../api/deleteDepartmentApi';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { Button } from '@/shared/ui/Button/Button';
+import { Modal } from '@citydrive/shared/ui/Modal/Modal';
+import { HStack, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { Button } from '@citydrive/shared/ui/Button/Button';
 
 export const DeleteDepartmentModal = ({
   department,

@@ -1,9 +1,9 @@
-import { $api } from '@/shared/api/interceptors';
+﻿import { $api } from '@citydrive/shared/api/interceptors';
 import { configureStore } from '@reduxjs/toolkit';
-import { baseApi } from '@/shared/api/baseApi';
+import { baseApi } from '@citydrive/shared/api/baseApi';
 import { deleteDepartmentApi } from './deleteDepartmentApi';
 
-jest.mock('@/shared/api/interceptors', () => ({
+jest.mock('@citydrive/shared/api/interceptors', () => ({
   $api: jest.fn(),
 }));
 

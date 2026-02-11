@@ -1,7 +1,10 @@
-import { getEmployeeData, getEmployeeInited } from '@/entities/Employee';
-import { getIsAuth } from '@/features/login';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { getRouteAuth, getRouteHome } from '@/shared/lib/router/paths';
+﻿import {
+  getEmployeeData,
+  getEmployeeInited,
+} from '@citydrive/entities/Employee';
+import { getIsAuth } from '@citydrive/auth';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { getRouteAuth, getRouteHome } from '@citydrive/shared/lib/router/paths';
 import { PageLoader } from '@/widgets/PageLoader';
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';

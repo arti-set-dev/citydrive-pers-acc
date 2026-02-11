@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { InvoiceList } from '@/entities/Invoice';
-import { useDebounce } from '@/shared/hooks/useDebounce/useDebounce';
+﻿import { useState } from 'react';
+import { InvoiceList } from '@citydrive/entities/Invoice';
+import { useDebounce } from '@citydrive/shared/hooks/useDebounce/useDebounce';
 import { SearchInvoicesForm } from '../SearchInvoicesForm/SearchInvoicesForm';
 
 interface SearchInvoicesContainerProps {

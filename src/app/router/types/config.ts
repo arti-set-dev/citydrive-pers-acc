@@ -1,24 +1,25 @@
-import { Role } from '@/entities/Employee';
+﻿import { Role } from '@citydrive/entities/Employee';
 import { DepartmentEditPage } from '@/pages/DepartmentEditPage';
 import { DepartmentPage } from '@/pages/DepartmentPage';
 import { DepartmentsPage } from '@/pages/DepartmentsPage';
 import { EmployeeEditPage } from '@/pages/EmployeeEditPage';
 import { EmployeePage } from '@/pages/EmployeePage';
 import { EmployeesPage } from '@/pages/EmployeesPage';
-import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage';
 import { HomePage } from '@/pages/HomePage';
 import { InvoicesPage } from '@/pages/InvoicesPage';
-import { LoginPage } from '@/pages/LoginPage';
 import { NewDepartmentPage } from '@/pages/NewDepartmentPage';
 import { NewEmployeePage } from '@/pages/NewEmployeePage';
 import { PromocodesPage } from '@/pages/PromocodesPage';
-import { RegistrationPage } from '@/pages/RegistrationPage';
-import { ResetPasswordPage } from '@/pages/ResetPasswordPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { TripPage } from '@/pages/TripPage';
 import { TripsPage } from '@/pages/TripsPage';
-import { PATHS } from '@/shared/lib/router/paths';
-import { ComponentType, LazyExoticComponent } from 'react';
+import { PATHS } from '@citydrive/shared/lib/router/paths';
+import { ComponentType, LazyExoticComponent, lazy } from 'react';
+
+const LoginPage = lazy(() => import('auth/LoginPage'));
+const RegistrationPage = lazy(() => import('auth/RegistrationPage'));
+const ForgotPasswordPage = lazy(() => import('auth/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('auth/ResetPasswordPage'));
 
 export type AppRouteProps = {
   path: string;

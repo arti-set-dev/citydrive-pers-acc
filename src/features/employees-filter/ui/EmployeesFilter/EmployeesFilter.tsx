@@ -1,13 +1,13 @@
-import {
+﻿import {
   Employee,
   EmployeeList,
   useGetEmployeesListQuery,
-} from '@/entities/Employee';
-import { useDebounce } from '@/shared/hooks/useDebounce/useDebounce';
-import { Button } from '@/shared/ui/Button/Button';
-import { Field } from '@/shared/ui/Field/Field';
-import { Select } from '@/shared/ui/Select/Select';
-import { Grid } from '@/shared/ui/Stack';
+} from '@citydrive/entities/Employee';
+import { useDebounce } from '@citydrive/shared/hooks/useDebounce/useDebounce';
+import { Button } from '@citydrive/shared/ui/Button/Button';
+import { Field } from '@citydrive/shared/ui/Field/Field';
+import { Select } from '@citydrive/shared/ui/Select/Select';
+import { Grid } from '@citydrive/shared/ui/Stack';
 import { useMemo, useState } from 'react';
 
 const activeKeys: Array<keyof Employee> = [

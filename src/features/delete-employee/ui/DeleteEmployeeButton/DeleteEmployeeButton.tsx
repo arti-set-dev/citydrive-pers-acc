@@ -1,11 +1,11 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { VStack, HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
-import { getRouteEmployees } from '@/shared/lib/router/paths';
+import { Modal } from '@citydrive/shared/ui/Modal/Modal';
+import { VStack, HStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
+import { getRouteEmployees } from '@citydrive/shared/lib/router/paths';
 import { useDeleteEmployeeMutation } from '../../api/deleteEmployeeApi';
-import { Button } from '@/shared/ui/Button/Button';
+import { Button } from '@citydrive/shared/ui/Button/Button';
 
 interface DeleteEmployeeButtonProps {
   id: string;

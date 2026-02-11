@@ -1,6 +1,6 @@
-import { Department } from '@/entities/Department';
-import { Employee } from '@/entities/Employee';
-import { baseApi } from '@/shared/api/baseApi';
+﻿import { Department } from '@citydrive/entities/Department';
+import { Employee } from '@citydrive/entities/Employee';
+import { baseApi } from '@citydrive/shared/api/baseApi';
 
 export const importApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

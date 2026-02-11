@@ -1,9 +1,9 @@
-import { memo, useState } from 'react';
+﻿import { memo, useState } from 'react';
 import { SearchDepartmentForm } from '../SearchDepartmentForm/SearchDepartmentForm';
-import { Department, DepartmentList } from '@/entities/Department';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { getEmployeeData } from '@/entities/Employee';
-import { useDebounce } from '@/shared/hooks/useDebounce/useDebounce';
+import { Department, DepartmentList } from '@citydrive/entities/Department';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { getEmployeeData } from '@citydrive/entities/Employee';
+import { useDebounce } from '@citydrive/shared/hooks/useDebounce/useDebounce';
 
 export const DepartmentSearchContainer = memo(
   function DepartmentSearchContainer({

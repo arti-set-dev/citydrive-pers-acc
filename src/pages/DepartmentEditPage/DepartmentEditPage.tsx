@@ -1,7 +1,7 @@
-import { EditDepartmentForm } from '@/features/edit-department';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { EditDepartmentForm } from '@/features/edit-department';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useParams } from 'react-router-dom';
 
 const stack = getVStack({

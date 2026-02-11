@@ -6,7 +6,11 @@ import path from 'path';
 export const buildRules = (mode: BuildEnv): webpack.RuleSetRule[] => {
   const isDev = mode.mode === 'development';
   const isProd = !isDev;
-  const mixinsPath = path.posix.join('@', 'app', 'styles', '_mixins.scss');
+  const mixinsPath = path.posix.join(
+    '@citydrive/shared',
+    'styles',
+    '_mixins.scss',
+  );
 
   return [
     {

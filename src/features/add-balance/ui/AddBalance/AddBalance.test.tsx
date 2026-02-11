@@ -1,7 +1,7 @@
-import { screen, fireEvent } from '@testing-library/react';
+﻿import { screen, fireEvent } from '@testing-library/react';
 import { AddBalance } from './AddBalance';
 import { useGetBalanceQuery } from '../../api/balanceApi';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 
 jest.mock('../../api/balanceApi');
 const mockedUseGetBalanceQuery = useGetBalanceQuery as jest.Mock;

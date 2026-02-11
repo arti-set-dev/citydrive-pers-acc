@@ -1,7 +1,7 @@
 /** @type {import('stylelint').Config} */
 export default {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-clean-order'],
-  ignoreFiles: ['build/**/*.css', 'src/**/normalize.scss'],
+  ignoreFiles: ['build/**/*.css', 'packages/shared/src/**/normalize.scss'],
   rules: {
     'color-hex-length': 'short',
     'block-no-empty': true,

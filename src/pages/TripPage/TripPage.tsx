@@ -1,8 +1,8 @@
-import { useGetRouteByIdQuery } from '@/entities/Route';
-import { getVStack } from '@/shared/lib/stack/flex/getVStack';
-import { Card } from '@/shared/ui/Card/Card';
-import { Grid, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+﻿import { useGetRouteByIdQuery } from '@citydrive/entities/Route';
+import { getVStack } from '@citydrive/shared/lib/stack/flex/getVStack';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Grid, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { Rate } from '@/widgets/Rate';
 import { RideInfo } from '@/widgets/RideInfo';
 import { RouteDetails } from '@/widgets/RouteDitails';

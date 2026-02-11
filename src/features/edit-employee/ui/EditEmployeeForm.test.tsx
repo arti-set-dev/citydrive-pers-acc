@@ -1,18 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EditEmployeeForm } from './EditEmployeeForm';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
 import {
   useGetEmployeeByIdQuery,
   useUpdateEmployeeMutation,
 } from '../api/editEmployeeApi';
-import { useGetDepartmentsQuery } from '@/entities/Department';
+import { useGetDepartmentsQuery } from '@citydrive/entities/Department';
 import { editEmployeeReducer } from '../model/slices/editEmployeeSlice';
 
 // 1. Мокаем API
 jest.mock('../api/editEmployeeApi');
-jest.mock('@/entities/Department');
+jest.mock('@citydrive/entities/Department');
 
 const mockedGetById = useGetEmployeeByIdQuery as jest.Mock;
 const mockedUpdate = useUpdateEmployeeMutation as jest.Mock;
@@ -26,7 +26,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 // 3. Стабильные моки для кастомных UI
-jest.mock('@/shared/ui/Select/Select', () => ({
+jest.mock('@citydrive/shared/ui/Select/Select', () => ({
   Select: ({ onChange, options, selected, placeholder }: any) => (
     <select
       data-testid="mock-select"
@@ -49,7 +49,7 @@ jest.mock('@/shared/ui/Select/Select', () => ({
   ),
 }));
 
-jest.mock('@/shared/ui/TimePicker/TimePicker', () => ({
+jest.mock('@citydrive/shared/ui/TimePicker/TimePicker', () => ({
   TimePicker: ({ onChange, value }: any) => (
     <input
       data-testid="mock-time"

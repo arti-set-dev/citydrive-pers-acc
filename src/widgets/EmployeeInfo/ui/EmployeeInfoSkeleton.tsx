@@ -1,6 +1,6 @@
-import { Card } from '@/shared/ui/Card/Card';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { Grid, VStack } from '@/shared/ui/Stack';
+﻿import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Skeleton } from '@citydrive/shared/ui/Skeleton/Skeleton';
+import { Grid, VStack } from '@citydrive/shared/ui/Stack';
 
 export const EmployeeInfoSkeleton = () => (
   <Card p={24} r={24} variant="bg-outline">

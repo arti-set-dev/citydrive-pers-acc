@@ -1,4 +1,4 @@
-import { Employee } from '@/entities/Employee';
+﻿import { Employee } from '@citydrive/entities/Employee';
 import {
   addNewEmployeeReducer,
   addNewEmployeeActions,

@@ -1,8 +1,12 @@
-import { RouteList, RouteListProps, useGetRoutesQuery } from '@/entities/Route';
+﻿import {
+  RouteList,
+  RouteListProps,
+  useGetRoutesQuery,
+} from '@citydrive/entities/Route';
 
-import { Select } from '@/shared/ui/Select/Select';
-import { Flex, Grid, VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text/Text';
+import { Select } from '@citydrive/shared/ui/Select/Select';
+import { Flex, Grid, VStack } from '@citydrive/shared/ui/Stack';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { useMemo, useState } from 'react';
 import { DateRange } from 'react-day-picker';
 import { format } from 'date-fns';

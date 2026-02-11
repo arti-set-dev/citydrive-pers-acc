@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { screen, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EmployeesFilter } from './EmployeesFilter';
-import { render } from '@/shared/utils/jest/providers/JestProvider';
-import { useGetEmployeesListQuery } from '@/entities/Employee';
+import { render } from '@citydrive/shared/utils/jest/providers/JestProvider';
+import { useGetEmployeesListQuery } from '@citydrive/entities/Employee';
 
-jest.mock('@/entities/Employee', () => ({
-  ...jest.requireActual('@/entities/Employee'),
+jest.mock('@citydrive/entities/Employee', () => ({
+  ...jest.requireActual('@citydrive/entities/Employee'),
   useGetEmployeesListQuery: jest.fn(),
   EmployeeList: ({ filters }: any) => (
     <div data-testid="employee-list-mock">{JSON.stringify(filters)}</div>
@@ -15,7 +15,7 @@ jest.mock('@/entities/Employee', () => ({
 
 const mockedGetEmployees = useGetEmployeesListQuery as jest.Mock;
 
-jest.mock('@/shared/ui/Select/Select', () => ({
+jest.mock('@citydrive/shared/ui/Select/Select', () => ({
   Select: ({ onChange, options, selected }: any) => (
     <select
       data-testid="filter-select"

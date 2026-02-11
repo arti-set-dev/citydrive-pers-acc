@@ -1,14 +1,14 @@
-import {
+﻿import {
   employeeActions,
   getEmployeeData,
   useGetEmployeeDataQuery,
-} from '@/entities/Employee';
-import { getIsAuth } from '@/features/login';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch/useAppDispatch';
-import { useAppSelector } from '@/shared/hooks/useAppSelector/useAppSelector';
-import { FeatureFlagContext } from '@/shared/lib/features/FeatureFlagContext';
-import { Card } from '@/shared/ui/Card/Card';
-import { Text } from '@/shared/ui/Text/Text';
+} from '@citydrive/entities/Employee';
+import { getIsAuth } from '@citydrive/auth';
+import { useAppDispatch } from '@citydrive/shared/hooks/useAppDispatch/useAppDispatch';
+import { useAppSelector } from '@citydrive/shared/hooks/useAppSelector/useAppSelector';
+import { FeatureFlagContext } from '@citydrive/shared/lib/features/FeatureFlagContext';
+import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Text } from '@citydrive/shared/ui/Text/Text';
 import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';

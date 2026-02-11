@@ -1,7 +1,7 @@
-import { Card } from '@/shared/ui/Card/Card';
-import { Loader } from '@/shared/ui/Loader/Loader';
+﻿import { Card } from '@citydrive/shared/ui/Card/Card';
+import { Loader } from '@citydrive/shared/ui/Loader/Loader';
 import styles from './PageLoader.module.scss';
-import { getFlex } from '@/shared/lib/stack/flex/getFlex';
+import { getFlex } from '@citydrive/shared/lib/stack/flex/getFlex';
 import clsx from 'clsx';
 import { CSSProperties } from 'react';
 

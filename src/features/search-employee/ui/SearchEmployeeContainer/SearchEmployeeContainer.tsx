@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
-import { EmployeeList } from '@/entities/Employee';
-import { Employee } from '@/entities/Employee';
-import { useDebounce } from '@/shared/hooks/useDebounce/useDebounce';
+﻿import { useMemo, useState } from 'react';
+import { EmployeeList } from '@citydrive/entities/Employee';
+import { Employee } from '@citydrive/entities/Employee';
+import { useDebounce } from '@citydrive/shared/hooks/useDebounce/useDebounce';
 import { SearchEmployeeForm } from '../SearchEmployeeForm/SearchEmployeeForm';
 
 interface SearchEmployeeContainerProps {
